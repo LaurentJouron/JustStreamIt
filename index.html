@@ -3,15 +3,16 @@
     <head>
         <meta charset="utf-8"/>
         <title>Just Stream It</title>
-        <link rel="icon" href="src/index/JustSteamIt_logo.png">
+        <link rel="icon" href="src/index/JustStreamIt.png">
         <link rel="stylesheet" href="CSS/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
     </head>
 
-    <body>
-    <section class="movies_categories">
+    
+<!-- Header - Navigation bar -->
+    <header>
         <nav>
             <ul class="liste-nav">
                 <h1 class="item-nav">JustStreamIt</h1>
@@ -19,52 +20,81 @@
                 <li class="item-nav">Catégories</li>
             </ul>
         </nav>
+    </header>
 
-        <h1 class="categorie_title">Films les mieux notés</h1>
-        <div class="container_list">
-            <div class="container">
-                <div class="item">1</div>
-                <div class="item">2</div>
-                <div class="item">3</div>
-                <div class="item">4</div>
-            </div>
-        </div>
+    <body>
 
-        <h1 class="categorie_title">Catégorie 1</h1>
-        <div class="container_list">
-            <div class="container">
-                <div class="item">1</div>
-                <div class="item">2</div>
-                <div class="item">3</div>
-                <div class="item">4</div>
-            </div>
-        </div>
+<!-- Categorie movie presentation -->
+        <section class="box-movies" id="box-movies">
+            <h1 class="movie-title">fight club</h1>
+            <button class="play-movie">Play</button>
+        </section>
 
-        <h1 class="categorie_title">Catégorie 2</h1>
-        <div class="container_list">
-            <div class="container">
-                <div class="item">1</div>
-                <div class="item">2</div>
-                <div class="item">3</div>
-                <div class="item">4</div>
-            </div>
-        </div>
+<!-- Categorie top rated -->
+        <section class="top-rated" id="top-rated">
+            <h1 class="categorie_title">Films les mieux notés</h1>
+                <div class="container_list">
+                    <div class="container">
+                        <button class="item_direction">⬅️</button>
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                        <button class="item_direction">➡️</button>
+                    </div>
+                </div>
+        </section>
 
-        <h1 class="categorie_title">Catégorie 3</h1>
-        <div class="container_list">
-            <div class="container">
-                <div class="item">1</div>
-                <div class="item">2</div>
-                <div class="item">3</div>
-                <div class="item">4</div>
-            </div>
-        </div>
-    </section>
+<!-- Categorie first category -->     
+        <section class="first-categorie" id="first-categorie">
+            <h1 class="categorie_title">Catégorie 1</h1>
+                <div class="container_list">
+                    <div class="container">
+                        <button class="item_direction">⬅️</button>
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                        <button class="item_direction">➡️</button>
+                    </div>
+                </div>
+        </section>
 
+<!-- Categorie second category -->     
+        <section class="second-categorie" id="second-categorie">
+            <h1 class="categorie_title">Catégorie 2</h1>
+                <div class="container_list">
+                    <div class="container">
+                        <button class="item_direction">⬅️</button>
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                        <button class="item_direction">➡️</button>
+                    </div>
+                </div>
+        </section>
+
+<!-- Categorie third category -->     
+        <section class="third-categorie" id="third-categorie">
+            <h1 class="categorie_title">Catégorie 3</h1>
+                <div class="container_list">
+                    <div class="container">
+                        <button class="item_direction">⬅️</button>
+                        <div class="item">1</div>
+                        <div class="item">2</div>
+                        <div class="item">3</div>
+                        <div class="item">4</div>
+                        <button class="item_direction">➡️</button>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Footer -->
     <footer>
         <img id="imgCopy" src="src/index/ikigai.png"> Laurent Jouron - Copyright 2022 &copy; - All rights reserved
     </footer>
 
-    <script src="JS.index.js"></script>
+    <script src="JS.app.js"></script>
     </body>
 </html>

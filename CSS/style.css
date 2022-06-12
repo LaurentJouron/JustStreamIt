@@ -7,11 +7,12 @@
     --color1: #505050;  /* Gris foncé rgb(80, 80, 80) */
     --color2: #f1f1f1;  /* Gris très clair rgb(241, 241, 241) */
     --color3: #28282B;  /* Gris très foncé rgb(40, 40, 43) */
+    --color4: #AB060F;  /* Rouge Netflix rgb(171, 6, 15) */
    }
 html {
     scroll-behavior: smooth;
 }
-/* ------------- NAV -------------- */
+/* --------- Header NAV ----------- */
 .liste-nav {
     height: 100%;
     height: 70px;
@@ -32,15 +33,41 @@ html {
     font-size: 40px;
 }
 .item-nav:nth-child(3) {
-    margin-right: 50px;
+    margin-right: 100px;
 }
-    
-
-/* ------------ Header ------------ */
-
-
 
 /* ------------- Body ------------- */
+.box-movies {
+    width: 94%;
+    height: 300px;
+    border: 7px solid var(--color1);
+    margin-top: 50px;
+    margin-left: 3%;
+    background-image: linear-gradient(to right bottom, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)),url(../src/index/fight-club.jpg);
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+
+}
+.movie-title {
+    color: var(--color3);
+    font-size: 60px;
+    padding-top: 60px;
+    padding-left: 80px;
+}
+.play-movie {
+    display: block;
+    width: auto;
+    padding: 15px 60px;
+    border: 3px solid var(--color1);
+    border-radius: 50px;
+    background-color: var(--color4);
+    color: var(--color2);
+    font-size: 24px;
+    font-weight: 800;
+    margin-top: 30px;
+    margin-left: 120px;
+}
 
 /* Titre des categories */
 .categorie_title {
@@ -52,9 +79,8 @@ html {
 
 /* Gestion des boxs */
 .container {
-    width: 90%;
+    width: 85%;
     height: 180px;
-    background: var(--color3);
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
@@ -62,47 +88,64 @@ html {
 }
 .container_list {
     display: flex;
-    flex-direction: row-reverse;
+    justify-content: center;
 }
 
 /* Organisation des items */
+.item_direction {
+    width: 50px;
+    height: 140px;
+    font-size: 30px;
+    margin-left: 7px;
+    margin-right: 7px;
+    border: 3px solid var(--color1);
+    background-color: var(--color2);
+}
+
 .item {
     height: 140px;
     width: 270px;
     flex-shrink: 0;
-}
-.item:nth-child(1) {
-    background: var(--color2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 .item:nth-child(2) {
     background: var(--color2);
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid var(--color1);
 }
 .item:nth-child(3) {
     background: var(--color2);
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid var(--color1);
 }
 .item:nth-child(4) {
     background: var(--color2);
     display: flex;
     justify-content: center;
     align-items: center;
+    border: 3px solid var(--color1);
+}
+.item:nth-child(5) {
+    background: var(--color2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid var(--color1);
 }
 
 /* ------------ Footer ------------ */
 footer {
     width: 100%;
+    border-top: 2px solid var(--color1);
     text-align: center;
     font-family: 'Kaushan Script';
     color: var(--color1);
-    padding-top: 100px;
+    margin-top: 80px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 @media screen and (max-width: 1300px) {
     footer {
