@@ -6,6 +6,7 @@
 }
 
 /* --------- VAR COLOR ----------- */
+/* --------- MIXIN VAR ----------- */
 /* --------- Header NAV ---------- */
 .nav-list {
   height: 100%;
@@ -188,12 +189,11 @@ footer {
   border-top: 2px solid #505050;
   text-align: center;
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-  color: var(--color1);
+  color: #28282B;
   margin-top: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
-
 footer #imgCopy {
   width: 15px;
   height: 15px;

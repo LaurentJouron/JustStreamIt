@@ -10,6 +10,23 @@ $dark-grey: #505050;
 $very-dark-grey: #28282B;
 $red-netflix: #AB060F;
 
+/* --------- MIXIN VAR ----------- */
+@mixin category_boxes {
+        background: $light-grey;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid $very-dark-grey;
+}
+
+@mixin direction_boxes {
+    width: 50px;
+    height: 140px;
+    font-size: 40px;
+    display: flexbox;
+    border: 3px solid $very-dark-grey;
+    background-color: $light-grey;
+}
 /* --------- Header NAV ---------- */
 .nav-list {
     height: 100%;
@@ -92,12 +109,7 @@ $red-netflix: #AB060F;
 
 /* Organisation des items */
 .item_direction {
-    width: 50px;
-    height: 140px;
-    font-size: 40px;
-    display: flexbox;
-    border: 3px solid $very-dark-grey;
-    background-color: $light-grey;
+    @include direction_boxes
 }
 .item {
     height: 140px;
@@ -105,32 +117,16 @@ $red-netflix: #AB060F;
     flex-shrink: 0;
 }
 .item:nth-child(2) {
-    background: $light-grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid $very-dark-grey;
+    @include category_boxes
 }
 .item:nth-child(3) {
-    background: $light-grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid $very-dark-grey;
+    @include category_boxes
 }
 .item:nth-child(4) {
-    background: $light-grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid $very-dark-grey;
+    @include category_boxes
 }
 .item:nth-child(5) {
-    background: $light-grey;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid $very-dark-grey;
+    @include category_boxes
 }
 
 
@@ -140,7 +136,7 @@ footer {
     border-top: 2px solid $dark-grey;
     text-align: center;
     font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-    color: var(--color1);
+    color: $very-dark-grey;
     margin-top: 40px;
     padding-top: 10px;
     padding-bottom: 10px;
