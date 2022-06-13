@@ -39,7 +39,7 @@
 /* ------------- Body ------------- */
 /* Box movie */
 .box-movies {
-  width: 94%;
+  width: 92%;
   height: 300px;
   border: 7px solid #28282B;
   margin: auto;
@@ -53,7 +53,7 @@
 .box-movies .movie-title {
   color: #28282B;
   font-size: 60px;
-  padding-top: 60px;
+  padding-top: 50px;
   padding-left: 80px;
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
 }
@@ -67,7 +67,7 @@
   background-color: #AB060F;
   color: #f1f1f1;
   font-size: 24px;
-  font-weight: 800;
+  display: flexbox;
   margin-top: 30px;
   margin-left: 120px;
 }
@@ -86,7 +86,6 @@
 /* Gestion des boxs */
 .container {
   width: 85%;
-  height: 180px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -114,9 +113,8 @@
 .item_direction {
   width: 50px;
   height: 140px;
-  font-size: 30px;
-  margin-left: 7px;
-  margin-right: 7px;
+  font-size: 40px;
+  display: flexbox;
   border: 3px solid #28282B;
   background-color: #f1f1f1;
 }

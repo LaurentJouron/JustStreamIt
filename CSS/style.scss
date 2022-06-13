@@ -36,7 +36,7 @@ $red-netflix: #AB060F;
 /* ------------- Body ------------- */
 /* Box movie */
 .box-movies {
-    width: 94%;
+    width: 92%;
     height: 300px;
     border: 7px solid $very-dark-grey;
     margin: auto;
@@ -47,7 +47,7 @@ $red-netflix: #AB060F;
     .movie-title {
         color: $very-dark-grey;
         font-size: 60px;
-        padding-top: 60px;
+        padding-top: 50px;
         padding-left: 80px;
         font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
     }
@@ -60,7 +60,7 @@ $red-netflix: #AB060F;
         background-color: $red-netflix;
         color: $light-grey;
         font-size: 24px;
-        font-weight: 800;
+        display: flexbox;
         margin-top: 30px;
         margin-left: 120px;
     }
@@ -80,7 +80,6 @@ $red-netflix: #AB060F;
 /* Gestion des boxs */
 .container {
     width: 85%;
-    height: 180px;
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
@@ -95,9 +94,8 @@ $red-netflix: #AB060F;
 .item_direction {
     width: 50px;
     height: 140px;
-    font-size: 30px;
-    margin-left: 7px;
-    margin-right: 7px;
+    font-size: 40px;
+    display: flexbox;
     border: 3px solid $very-dark-grey;
     background-color: $light-grey;
 }
