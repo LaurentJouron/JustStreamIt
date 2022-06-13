@@ -1,158 +1,209 @@
 *, ::before, ::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-:root {
-    --color1: #505050;  /* Gris foncé rgb(80, 80, 80) */
-    --color2: #f1f1f1;  /* Gris très clair rgb(241, 241, 241) */
-    --color3: #28282B;  /* Gris très foncé rgb(40, 40, 43) */
-    --color4: #AB060F;  /* Rouge Netflix rgb(171, 6, 15) */
-   }
-html {
-    scroll-behavior: smooth;
-}
-/* --------- Header NAV ----------- */
-.liste-nav {
-    height: 100%;
-    height: 70px;
-    background: var(--color1);
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.item-nav {
-    font-size: 25px;
-    margin: 0 10px;
-    color: var(--color2);
+/* --------- VAR COLOR ----------- */
+/* --------- Header NAV ---------- */
+.nav-list {
+  height: 100%;
+  height: 70px;
+  background: #505050;
+  list-style-type: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.item-nav:nth-child(1) {
-    margin-right: auto;
-    font-size: 40px;
+
+.nav-list .nav-item {
+  font-size: 25px;
+  margin: 0 10px;
+  color: #f1f1f1;
 }
-.item-nav:nth-child(3) {
-    margin-right: 100px;
+
+.nav-list .nav-item:nth-child(1) {
+  margin-right: auto;
+  font-size: 40px;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+}
+
+.nav-list .nav-item:nth-child(3) {
+  margin-right: 100px;
 }
 
 /* ------------- Body ------------- */
+/* Box movie */
 .box-movies {
-    width: 94%;
-    height: 300px;
-    border: 7px solid var(--color1);
-    margin-top: 50px;
-    margin-left: 3%;
-    background-image: linear-gradient(to right bottom, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)),url(../src/index/fight-club.jpg);
-    background-repeat: no-repeat;
-    background-position: right;
-    background-size: cover;
-
-}
-.movie-title {
-    color: var(--color3);
-    font-size: 60px;
-    padding-top: 60px;
-    padding-left: 80px;
-}
-.play-movie {
-    display: block;
-    width: auto;
-    padding: 15px 60px;
-    border: 3px solid var(--color1);
-    border-radius: 50px;
-    background-color: var(--color4);
-    color: var(--color2);
-    font-size: 24px;
-    font-weight: 800;
-    margin-top: 30px;
-    margin-left: 120px;
+  width: 94%;
+  height: 300px;
+  border: 7px solid #28282B;
+  margin: auto;
+  margin-top: 3%;
+  background-image: -webkit-gradient(linear, left top, right top, from(#cfcff0), to(rgba(207, 207, 240, 0))), url(../src/index/fight-club.jpg);
+  background-image: linear-gradient(to right, #cfcff0, rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
+.box-movies .movie-title {
+  color: #28282B;
+  font-size: 60px;
+  padding-top: 60px;
+  padding-left: 80px;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+}
+
+.box-movies .play-movie {
+  display: block;
+  width: auto;
+  padding: 15px 60px;
+  border: 3px solid #28282B;
+  border-radius: 50px;
+  background-color: #AB060F;
+  color: #f1f1f1;
+  font-size: 24px;
+  font-weight: 800;
+  margin-top: 30px;
+  margin-left: 120px;
+}
+
+/* Category */
 /* Titre des categories */
-.categorie_title {
-    padding-top: 90px;
-    padding-bottom: 40px;
-    text-align: center;
-    color: var(--color1)
+.category_title {
+  padding-top: 90px;
+  padding-bottom: 40px;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  color: #28282B;
 }
 
 /* Gestion des boxs */
 .container {
-    width: 85%;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-    align-items: center;
+  width: 85%;
+  height: 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .container_list {
-    display: flex;
-    justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 /* Organisation des items */
 .item_direction {
-    width: 50px;
-    height: 140px;
-    font-size: 30px;
-    margin-left: 7px;
-    margin-right: 7px;
-    border: 3px solid var(--color1);
-    background-color: var(--color2);
+  width: 50px;
+  height: 140px;
+  font-size: 30px;
+  margin-left: 7px;
+  margin-right: 7px;
+  border: 3px solid #28282B;
+  background-color: #f1f1f1;
 }
 
 .item {
-    height: 140px;
-    width: 270px;
-    flex-shrink: 0;
+  height: 140px;
+  width: 270px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
+
 .item:nth-child(2) {
-    background: var(--color2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid var(--color1);
+  background: #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px solid #28282B;
 }
+
 .item:nth-child(3) {
-    background: var(--color2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid var(--color1);
+  background: #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px solid #28282B;
 }
+
 .item:nth-child(4) {
-    background: var(--color2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid var(--color1);
+  background: #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px solid #28282B;
 }
+
 .item:nth-child(5) {
-    background: var(--color2);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 3px solid var(--color1);
+  background: #f1f1f1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 3px solid #28282B;
 }
 
 /* ------------ Footer ------------ */
 footer {
-    width: 100%;
-    border-top: 2px solid var(--color1);
-    text-align: center;
-    font-family: 'Kaushan Script';
-    color: var(--color1);
-    margin-top: 80px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+  width: 100%;
+  border-top: 2px solid #505050;
+  text-align: center;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  color: var(--color1);
+  margin-top: 40px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
+
+footer #imgCopy {
+  width: 15px;
+  height: 15px;
+}
+
 @media screen and (max-width: 1300px) {
-    footer {
-        padding-left: 0px;
-    }
+  footer footer {
+    padding-left: 0px;
+  }
 }
-#imgCopy {
-	width: 15px;
-	height: 15px;
-}
+/*# sourceMappingURL=style.css.map */
