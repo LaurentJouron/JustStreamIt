@@ -1,16 +1,25 @@
+/* --------- VAR COLOR ----------- */
+$light-grey: #f1f1f1;
+$grey: #505050;
+$dark-grey: #969696;
+$very-dark-grey: #28282B;
+$red-netflix: #AB060F;
+
+/* ---------- GLOBAL ------------- */
 *, ::before, ::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+body {
+    background-color: $dark-grey;
+}
 
-/* --------- VAR COLOR ----------- */
-$light-grey: #f1f1f1;
-$dark-grey: #505050;
-$very-dark-grey: #28282B;
-$red-netflix: #AB060F;
+/* ----------- MIXINS ------------ */
+@mixin font {font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;}
+@mixin font_size_30 {font-size: 30px;}
+@mixin font_size_40 {font-size: 40px;}
 
-/* --------- MIXIN VAR ----------- */
 @mixin category_boxes {
         background: $light-grey;
         display: flex;
@@ -18,34 +27,55 @@ $red-netflix: #AB060F;
         align-items: center;
         border: 3px solid $very-dark-grey;
 }
-
 @mixin direction_boxes {
+    @include font_size_40();
     width: 50px;
     height: 140px;
-    font-size: 40px;
     display: flexbox;
-    border: 3px solid $very-dark-grey;
-    background-color: $light-grey;
+    background: none;
+    color: $very-dark-grey;
+    border: none;
 }
+@mixin category_title {
+    @include font();
+    @include font_size_40();
+    padding-top: 90px;
+    padding-bottom: 40px;
+    text-align: center;
+    color: $very-dark-grey;
+}
+@mixin nav_items {
+    color: $light-grey;
+    text-decoration: none;
+}
+
 /* --------- Header NAV ---------- */
 .nav-list {
     height: 100%;
     height: 70px;
-    background: $dark-grey;
+    background: $grey;
     list-style-type: none;
     display: flex;
     align-items: center;
     .nav-item {
         font-size: 25px;
         margin: 0 10px;
-        color: $light-grey;
     }
     .nav-item:nth-child(1) {
+        @include nav_items();
+        @include font();
+        @include font_size_40();
         margin-right: auto;
-        font-size: 40px;
-        font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
     }
-    .nav-item:nth-child(3) {
+    .nav-item:nth-child(2) a {
+        @include nav_items();
+        @include font();
+        @include font_size_30();
+    }
+    .nav-item:nth-child(3) a {
+        @include nav_items();
+        @include font();
+        @include font_size_30();
         margin-right: 100px;
     }
 }
@@ -62,11 +92,11 @@ $red-netflix: #AB060F;
     background-repeat: no-repeat;
     background-size: cover;
     .movie-title {
+        @include font();
         color: $very-dark-grey;
         font-size: 60px;
         padding-top: 50px;
         padding-left: 80px;
-        font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
     }
     .play-movie {
         display: block;
@@ -83,59 +113,50 @@ $red-netflix: #AB060F;
     }
 }
 
-/* Category */
 /* Titre des categories */
 .category_title {
-    padding-top: 90px;
-    padding-bottom: 40px;
-    text-align: center;
-    font-size: 40px;
-    font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-    color: $very-dark-grey;
+   @include category_title
 }
 
 /* Gestion des boxs */
-.container {
-    width: 85%;
-    display: flex;
-    justify-content: center;
-    justify-content: space-evenly;
-    align-items: center;
-}
 .container_list {
     display: flex;
     justify-content: center;
+    .container {
+        width: 75%;
+        display: flex;
+        justify-content: center;
+        justify-content: space-evenly;
+        align-items: center;
+        .item_direction {
+            @include direction_boxes
+        }
+        .item {
+            height: 140px;
+            width: 270px;
+            flex-shrink: 0;
+        }
+        .item:nth-child(2) {
+            @include category_boxes
+        }
+        .item:nth-child(3) {
+            @include category_boxes
+        }
+        .item:nth-child(4) {
+            @include category_boxes
+        }
+        .item:nth-child(5) {
+            @include category_boxes
+        }
+    }
 }
-
-/* Organisation des items */
-.item_direction {
-    @include direction_boxes
-}
-.item {
-    height: 140px;
-    width: 270px;
-    flex-shrink: 0;
-}
-.item:nth-child(2) {
-    @include category_boxes
-}
-.item:nth-child(3) {
-    @include category_boxes
-}
-.item:nth-child(4) {
-    @include category_boxes
-}
-.item:nth-child(5) {
-    @include category_boxes
-}
-
 
 /* ------------ Footer ------------ */
 footer {
+    @include font();
     width: 100%;
-    border-top: 2px solid $dark-grey;
+    border-top: 2px solid $grey;
     text-align: center;
-    font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
     color: $very-dark-grey;
     margin-top: 40px;
     padding-top: 10px;

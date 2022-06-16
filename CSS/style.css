@@ -1,3 +1,5 @@
+/* --------- VAR COLOR ----------- */
+/* ---------- GLOBAL ------------- */
 *, ::before, ::after {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -5,8 +7,11 @@
   padding: 0;
 }
 
-/* --------- VAR COLOR ----------- */
-/* --------- MIXIN VAR ----------- */
+body {
+  background-color: #969696;
+}
+
+/* ----------- MIXINS ------------ */
 /* --------- Header NAV ---------- */
 .nav-list {
   height: 100%;
@@ -24,16 +29,28 @@
 .nav-list .nav-item {
   font-size: 25px;
   margin: 0 10px;
-  color: #f1f1f1;
 }
 
 .nav-list .nav-item:nth-child(1) {
-  margin-right: auto;
-  font-size: 40px;
+  color: #f1f1f1;
+  text-decoration: none;
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  font-size: 40px;
+  margin-right: auto;
 }
 
-.nav-list .nav-item:nth-child(3) {
+.nav-list .nav-item:nth-child(2) a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.nav-list .nav-item:nth-child(3) a {
+  color: #f1f1f1;
+  text-decoration: none;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  font-size: 30px;
   margin-right: 100px;
 }
 
@@ -52,11 +69,11 @@
 }
 
 .box-movies .movie-title {
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   font-size: 60px;
   padding-top: 50px;
   padding-left: 80px;
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
 }
 
 .box-movies .play-movie {
@@ -73,20 +90,28 @@
   margin-left: 120px;
 }
 
-/* Category */
 /* Titre des categories */
 .category_title {
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  font-size: 40px;
   padding-top: 90px;
   padding-bottom: 40px;
   text-align: center;
-  font-size: 40px;
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
 }
 
 /* Gestion des boxs */
-.container {
-  width: 85%;
+.container_list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container_list .container {
+  width: 75%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -101,33 +126,24 @@
           align-items: center;
 }
 
-.container_list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-/* Organisation des items */
-.item_direction {
+.container_list .container .item_direction {
+  font-size: 40px;
   width: 50px;
   height: 140px;
-  font-size: 40px;
   display: flexbox;
-  border: 3px solid #28282B;
-  background-color: #f1f1f1;
+  background: none;
+  color: #28282B;
+  border: none;
 }
 
-.item {
+.container_list .container .item {
   height: 140px;
   width: 270px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
 
-.item:nth-child(2) {
+.container_list .container .item:nth-child(2) {
   background: #f1f1f1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -141,7 +157,7 @@
   border: 3px solid #28282B;
 }
 
-.item:nth-child(3) {
+.container_list .container .item:nth-child(3) {
   background: #f1f1f1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,7 +171,7 @@
   border: 3px solid #28282B;
 }
 
-.item:nth-child(4) {
+.container_list .container .item:nth-child(4) {
   background: #f1f1f1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -169,7 +185,7 @@
   border: 3px solid #28282B;
 }
 
-.item:nth-child(5) {
+.container_list .container .item:nth-child(5) {
   background: #f1f1f1;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -185,15 +201,16 @@
 
 /* ------------ Footer ------------ */
 footer {
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   width: 100%;
   border-top: 2px solid #505050;
   text-align: center;
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   margin-top: 40px;
   padding-top: 10px;
   padding-bottom: 10px;
 }
+
 footer #imgCopy {
   width: 15px;
   height: 15px;
