@@ -5,43 +5,12 @@ $dark-grey: #969696;
 $very-dark-grey: #28282B;
 $red-netflix: #AB060F;
 
-/* ---------- VARIABLE ----------- */
+/* --------- VARIABLES ----------- */
+$font: 'Kaushan Script', Arial, Helvetica, sans-serif;
 $font_size_30: 30px;
 $font_size_40: 40px;
+$box_shadow: 0px 5px 5px 5px $grey;
 
-$font : 'Kaushan Script', Arial, Helvetica, sans-serif;
-
-/* ----------- MIXINS ------------ */
-
-@mixin category_boxes {
-        background: $light-grey;
-        border: 3px solid $very-dark-grey;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-}
-@mixin direction_boxes {
-    font-size: $font_size_40;
-    display: flexbox;
-    color: $very-dark-grey;
-    width: 50px;
-    height: 140px;
-    background: none;
-    border: none;
-    text-decoration: none;
-}
-@mixin category_title {
-    font-family: $font;
-    font-size: $font_size_40;
-    color: $very-dark-grey;
-    padding-top: 90px;
-    padding-bottom: 40px;
-    text-align: center;
-}
-@mixin nav_items {
-    color: $light-grey;
-    text-decoration: none;
-}
 
 /* ---------- GLOBAL ------------- */
 *, ::before, ::after {
@@ -53,41 +22,91 @@ body {
     background-color: $dark-grey;
 }
 
-/* --------- Header NAV ---------- */
-.nav-list {
-    background: $grey;
-    height: 100%;
-    height: 70px;
-    list-style-type: none;
+/* ----------- MIXINS ------------ */
+
+@mixin category_title {
+    font-family: $font;
+    font-size: $font_size_40;
+    color: $very-dark-grey;
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 20px;
+}
+@mixin category_boxes {
+    background: $light-grey;
+    border: 3px solid $very-dark-grey;
+    box-shadow: $box_shadow;
     display: flex;
+    justify-content: center;
     align-items: center;
-    .nav-item {
-        font-size: 25px;
-        margin: 0 10px;
+}
+@mixin direction_boxes {
+    font-size: $font_size_40;
+    display: flexbox;
+    color: $very-dark-grey;
+    background: none;
+    border: none;
+}
+@mixin nav_items {
+    color: $light-grey;
+    font-family: $font;
+    font-size: $font_size_30;
+    text-decoration: none;
+}
+@mixin footer {
+    font-family: $font;
+    border-top: 2px solid $grey;
+    color: $very-dark-grey;
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    #imgCopy {
+        width: 15px;
+        height: 15px;
     }
-    .nav-item:nth-child(1) {
-        @include nav_items();
-        font-family: $font;
-        font-size: $font_size_40;
-        margin-right: auto;
-    }
-    .nav-item:nth-child(2) a {
-        @include nav_items();
-        font-family: $font;
-        font-size: $font_size_30;
-    }
-    .nav-item:nth-child(3) a {
-        @include nav_items();
-        font-family: $font;
-        font-size: $font_size_30;
-        margin-right: 100px;
+    @media screen and (max-width: 1300px) {
+        footer {
+            padding-left: 0px;
+        }
     }
 }
+
+/* --------- Header NAV ---------- */
+#nav{
+    height: 100%;
+    height: 70px;
+    background: $grey;
+    box-shadow: $box_shadow;
+        .nav-list {
+        list-style-type: none;
+        display: flex;
+        align-items: center;
+        .nav-item {
+            margin: 0 10px;
+        }
+        .nav-item:nth-child(1) {
+            @include nav_items();
+            font-size: $font_size_40;
+            margin-right: auto;
+        }
+        .nav-item:nth-child(2) a {
+            @include nav_items();
+        }
+        .nav-item:nth-child(3) a {
+            @include nav_items();
+            margin-right: 100px;
+        }
+    }
+}
+
 
 /* ------------- Body ------------- */
 /* Box movie */
 .box-movies {
     border: 7px solid $very-dark-grey;
+    box-shadow: $box_shadow;
     width: 92%;
     height: 300px;
     margin: auto;
@@ -123,17 +142,17 @@ body {
 }
 
 /* Gestion des boxs */
-.container {
+.container_list {
     display: flex;
     justify-content: center;
-    .container_list {
-        width: 75%;
+    .container {
         display: flex;
         justify-content: center;
         justify-content: space-evenly;
         align-items: center;
+        width: 75%;
         .item_direction {
-            @include direction_boxes;
+            @include direction_boxes
         }
         .item {
             height: 140px;
@@ -157,22 +176,5 @@ body {
 
 /* ------------ Footer ------------ */
 footer {
-    font-family: $font;
-    border-top: 2px solid $grey;
-    color: $very-dark-grey;
-    width: 100%;
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-
-    #imgCopy {
-        width: 15px;
-        height: 15px;
-    }
-    @media screen and (max-width: 1300px) {
-        footer {
-            padding-left: 0px;
-        }
-    }
+    @include footer()
 }
