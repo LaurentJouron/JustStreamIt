@@ -9,12 +9,12 @@ $red-netflix: #AB060F;
 $font: 'Kaushan Script', Arial, Helvetica, sans-serif;
 $font_size_30: 30px;
 $font_size_40: 40px;
-$box_shadow: 0px 5px 5px 5px $grey;
+$box_shadow: 0px 3px 3px 3px $grey;
+$text-shadow: $grey 8px 0 10px;
 
 
 /* ---------- GLOBAL ------------- */
 *, ::before, ::after {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -28,6 +28,7 @@ body {
     font-family: $font;
     font-size: $font_size_40;
     color: $very-dark-grey;
+    text-shadow: $text-shadow;
     text-align: center;
     padding-top: 70px;
     padding-bottom: 20px;
@@ -41,8 +42,8 @@ body {
     align-items: center;
 }
 @mixin direction_boxes {
-    font-size: $font_size_40;
     display: flexbox;
+    font-size: $font_size_40;
     color: $very-dark-grey;
     background: none;
     border: none;
@@ -51,17 +52,15 @@ body {
     color: $light-grey;
     font-family: $font;
     font-size: $font_size_30;
-    text-decoration: none;
 }
 @mixin footer {
     font-family: $font;
-    border-top: 2px solid $grey;
     color: $very-dark-grey;
+    border-top: 2px solid $grey;
     text-align: center;
     width: 100%;
     margin-top: 40px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 0 10px 0;
     #imgCopy {
         width: 15px;
         height: 15px;
@@ -75,16 +74,15 @@ body {
 
 /* --------- Header NAV ---------- */
 #nav{
-    height: 100%;
-    height: 70px;
     background: $grey;
     box-shadow: $box_shadow;
+    height: 70px;
         .nav-list {
         list-style-type: none;
         display: flex;
         align-items: center;
         .nav-item {
-            margin: 0 10px;
+            margin: 0 8px;
         }
         .nav-item:nth-child(1) {
             @include nav_items();
@@ -101,10 +99,9 @@ body {
     }
 }
 
-
 /* ------------- Body ------------- */
 /* Box movie */
-.box-movies {
+#box-movies {
     border: 7px solid $very-dark-grey;
     box-shadow: $box_shadow;
     width: 92%;
@@ -117,6 +114,7 @@ body {
     .movie-title {
         font-family: $font;
         color: $very-dark-grey;
+        text-shadow: $text-shadow;
         font-size: 60px;
         padding-top: 50px;
         padding-left: 80px;
@@ -126,26 +124,24 @@ body {
         background-color: $red-netflix;
         color: $light-grey;
         display: flexbox;
-        display: block;
-        width: auto;
         padding: 15px 60px;
         border-radius: 50px;
         font-size: 24px;
-        margin-top: 30px;
-        margin-left: 120px;
+        margin: 30px 0 0 100px;
+        box-shadow: $box_shadow;
     }
 }
 
-/* Titre des categories */
+/* Category titles */
 .category_title {
    @include category_title
 }
 
-/* Gestion des boxs */
-.container_list {
+/* Box management */
+#container {
     display: flex;
     justify-content: center;
-    .container {
+    .container_list {
         display: flex;
         justify-content: center;
         justify-content: space-evenly;
