@@ -41,6 +41,15 @@ body {
     justify-content: center;
     align-items: center;
 }
+@mixin category_boxes_hover {
+    background: $light-grey;
+    border: 3px solid $very-dark-grey;
+    box-shadow: $box_shadow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 4px solid $red-netflix;
+}
 @mixin direction_boxes {
     display: flexbox;
     font-size: $font_size_40;
@@ -52,6 +61,12 @@ body {
     color: $light-grey;
     font-family: $font;
     font-size: $font_size_30;
+}
+@mixin nav_items_hover {
+    color: $light-grey;
+    font-family: $font;
+    color: $red-netflix;
+    transition-duration: 0.3s;
 }
 @mixin footer {
     font-family: $font;
@@ -77,23 +92,30 @@ body {
     background: $grey;
     box-shadow: $box_shadow;
     height: 70px;
-        .nav-list {
+        .nav__list {
         list-style-type: none;
         display: flex;
         align-items: center;
-        .nav-item {
+        .nav__item {
             margin: 0 8px;
         }
-        .nav-item:nth-child(1) {
+        .nav__item:nth-child(1) {
             @include nav_items();
             font-size: $font_size_40;
             margin-right: auto;
         }
-        .nav-item:nth-child(2) a {
+        .nav__item:nth-child(2) a {
             @include nav_items();
         }
-        .nav-item:nth-child(3) a {
+        .nav__item:nth-child(3) a {
             @include nav_items();
+            margin-right: 100px;
+        }
+        .nav__item:nth-child(2) a:hover {
+            @include nav_items_hover();
+        }
+        .nav__item:nth-child(3) a:hover {
+            @include nav_items_hover();
             margin-right: 100px;
         }
     }
@@ -111,7 +133,7 @@ body {
     background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)),url(../src/index/fight-club.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    .movie-title {
+    .box-movies__title {
         font-family: $font;
         color: $very-dark-grey;
         text-shadow: $text-shadow;
@@ -119,7 +141,7 @@ body {
         padding-top: 50px;
         padding-left: 80px;
     }
-    .play-movie {
+    .box-movies__player {
         border: 3px solid $very-dark-grey;
         background-color: $red-netflix;
         color: $light-grey;
@@ -127,6 +149,19 @@ body {
         padding: 15px 60px;
         border-radius: 50px;
         font-size: 24px;
+        margin: 30px 0 0 100px;
+        box-shadow: $box_shadow;
+    }
+    .box-movies__player:hover {
+        border: 3px solid $very-dark-grey;
+        background-color: $red-netflix;
+        color: $light-grey;
+        display: flexbox;
+        padding: 15px 60px;
+        border-radius: 50px;
+        font-size: 26px;
+        font-weight: bold;
+        transition-duration: 0.3s;
         margin: 30px 0 0 100px;
         box-shadow: $box_shadow;
     }
@@ -143,12 +178,17 @@ body {
     justify-content: center;
     .container_list {
         display: flex;
-        justify-content: center;
         justify-content: space-evenly;
         align-items: center;
         width: 75%;
         .item_direction {
-            @include direction_boxes
+            @include direction_boxes;
+        }
+        .item_direction:hover{
+            @include direction_boxes;
+            color: $red-netflix;
+            font-size: 50px;
+            transition-duration: 0.2s;
         }
         .item {
             height: 140px;
@@ -156,16 +196,29 @@ body {
             flex-shrink: 0;
         }
         .item:nth-child(2) {
-            @include category_boxes
+            @include category_boxes;
         }
         .item:nth-child(3) {
-            @include category_boxes
+            @include category_boxes;
         }
         .item:nth-child(4) {
-            @include category_boxes
+            @include category_boxes;
         }
         .item:nth-child(5) {
-            @include category_boxes
+            @include category_boxes;
+        }
+
+        .item:nth-child(2):hover {
+            @include category_boxes_hover;
+        }
+        .item:nth-child(3):hover {
+            @include category_boxes_hover;
+        }
+        .item:nth-child(4):hover {
+            @include category_boxes_hover;
+        }
+        .item:nth-child(5):hover {
+            @include category_boxes_hover;
         }
     }
 }
