@@ -22,6 +22,21 @@ body {
 }
 
 /* ----------- MIXINS ------------ */
+@mixin nav_items {
+    color: $light-grey;
+    font-family: $font;
+    font-size: $font_size_30;
+}
+@mixin nav_items_hover {
+    color: $red-netflix;
+    transition-duration: 0.3s;
+}
+@mixin nav_items_and_hover {
+    @include nav_items();
+    &:hover{
+        @include nav_items_hover();
+    }
+}
 
 @mixin category_title {
     font-family: $font;
@@ -45,29 +60,60 @@ body {
     box-shadow: 0px 2px 2px 2px $red-netflix;
     transform: translateY(-5px);
     transition: transform 0.3s ease-out;
-
 }
+@mixin box_and_hover {
+    @include category_boxes;
+    &:hover {
+        @include category_boxes_hover;
+    }
+}
+
 @mixin direction_boxes {
     display: flexbox;
     font-size: $font_size_40;
     color: $very-dark-grey;
     background: none;
     border: none;
+    margin: 0 15px;
 }
-@mixin direction_boxes_hover {
+@mixin direction_boxes_hover_left {
     color: $red-netflix;
-    transform: translateY(-5px);
+    transform: translateX(-5px);
     transition: transform 0.3s ease-out;
 }
-@mixin nav_items {
-    color: $light-grey;
-    font-family: $font;
-    font-size: $font_size_30;
-}
-@mixin nav_items_hover {
+@mixin direction_boxes_hover_right {
     color: $red-netflix;
-    transition-duration: 0.3s;
+    transform: translateX(5px);
+    transition: transform 0.3s ease-out;
 }
+
+@mixin box-movies__title {
+    font-family: $font;
+    color: $very-dark-grey;
+    text-shadow: $text-shadow;
+    font-size: 60px;
+    padding-top: 50px;
+    padding-left: 80px;
+}
+@mixin box_movies_player {
+    border: 3px solid $very-dark-grey;
+    background-color: $red-netflix;
+    color: $light-grey;
+    display: flexbox;
+    padding: 15px 60px;
+    border-radius: 50px;
+    font-size: 24px;
+    margin: 30px 0 0 100px;
+    box-shadow: $box_shadow;
+}
+@mixin box_movies_player_hover {
+        box-shadow: 0px 2px 2px 2px $red-netflix;
+        font-size: 26px;
+        font-weight: bold;
+        border: none;
+        overflow: hidden;
+    }
+
 @mixin footer {
     font-family: $font;
     color: $very-dark-grey;
@@ -105,17 +151,10 @@ body {
             margin-right: auto;
         }
         .nav__item:nth-child(2) a {
-            @include nav_items();
-        }
+            @include nav_items_and_hover();
+            }
         .nav__item:nth-child(3) a {
-            @include nav_items();
-            margin-right: 100px;
-        }
-        .nav__item:nth-child(2) a:hover {
-            @include nav_items_hover();
-        }
-        .nav__item:nth-child(3) a:hover {
-            @include nav_items_hover();
+            @include nav_items_and_hover();
             margin-right: 100px;
         }
     }
@@ -134,31 +173,13 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     .box-movies__title {
-        font-family: $font;
-        color: $very-dark-grey;
-        text-shadow: $text-shadow;
-        font-size: 60px;
-        padding-top: 50px;
-        padding-left: 80px;
+        @include box-movies__title();
     }
     .box-movies__player {
-        border: 3px solid $very-dark-grey;
-        background-color: $red-netflix;
-        color: $light-grey;
-        display: flexbox;
-        padding: 15px 60px;
-        border-radius: 50px;
-        font-size: 24px;
-        margin: 30px 0 0 100px;
-        box-shadow: $box_shadow;
-    }
-    .box-movies__player:hover {
-        box-shadow: 0px 2px 2px 2px $red-netflix;
-        font-size: 26px;
-        font-weight: bold;
-        border: none;
-        transition: transform 0.3s ease-out;
-        overflow: hidden;
+        @include box_movies_player();
+        &:hover{
+            @include box_movies_player_hover();
+        }
     }
 }
 
@@ -168,7 +189,7 @@ body {
 }
 
 /* Box management */
-#container {
+.container {
     display: flex;
     justify-content: center;
     .container_list {
@@ -176,41 +197,36 @@ body {
         justify-content: space-evenly;
         align-items: center;
         width: 75%;
-        .item_direction {
-            @include direction_boxes;
-        }
-        .item_direction:hover{
-            @include direction_boxes_hover();
-        }
         .item {
             height: 140px;
             width: 270px;
             flex-shrink: 0;
         }
-        .item:nth-child(2) {
-            @include category_boxes;
+        
+        .item_direction_left {
+            @include direction_boxes;
+            &:hover{
+                @include direction_boxes_hover_left();
+            }
         }
-        .item:nth-child(3) {
-            @include category_boxes;
-        }
-        .item:nth-child(4) {
-            @include category_boxes;
-        }
-        .item:nth-child(5) {
-            @include category_boxes;
+        .item_direction_right {
+            @include direction_boxes;
+            &:hover{
+                @include direction_boxes_hover_right();
+            }
         }
 
-        .item:nth-child(2):hover {
-            @include category_boxes_hover;
+        .item:nth-child(2) {
+            @include box_and_hover;
         }
-        .item:nth-child(3):hover {
-            @include category_boxes_hover;
+        .item:nth-child(3)  {
+            @include box_and_hover;
         }
-        .item:nth-child(4):hover {
-            @include category_boxes_hover;
+        .item:nth-child(4)  {
+            @include box_and_hover;
         }
-        .item:nth-child(5):hover {
-            @include category_boxes_hover;
+        .item:nth-child(5)  {
+            @include box_and_hover;
         }
     }
 }
