@@ -55,16 +55,12 @@ body {
 }
 
 #nav .nav__list .nav__item:nth-child(2) a:hover {
-  color: #f1f1f1;
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #AB060F;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
 
 #nav .nav__list .nav__item:nth-child(3) a:hover {
-  color: #f1f1f1;
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #AB060F;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
@@ -110,19 +106,16 @@ body {
 }
 
 #box-movies .box-movies__player:hover {
-  border: 3px solid #28282B;
-  background-color: #AB060F;
-  color: #f1f1f1;
-  display: flexbox;
-  padding: 15px 60px;
-  border-radius: 50px;
+  -webkit-box-shadow: 0px 2px 2px 2px #AB060F;
+          box-shadow: 0px 2px 2px 2px #AB060F;
   font-size: 26px;
   font-weight: bold;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-  margin: 30px 0 0 100px;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
+  border: none;
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  overflow: hidden;
 }
 
 /* Category titles */
@@ -168,15 +161,13 @@ body {
 }
 
 #container .container_list .item_direction:hover {
-  display: flexbox;
-  font-size: 40px;
-  color: #28282B;
-  background: none;
-  border: none;
   color: #AB060F;
-  font-size: 50px;
-  -webkit-transition-duration: 0.2s;
-          transition-duration: 0.2s;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 #container .container_list .item {
@@ -251,71 +242,51 @@ body {
 }
 
 #container .container_list .item:nth-child(2):hover {
-  background: #f1f1f1;
-  border: 3px solid #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border: 4px solid #AB060F;
+  -webkit-box-shadow: 0px 2px 2px 2px #AB060F;
+          box-shadow: 0px 2px 2px 2px #AB060F;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 #container .container_list .item:nth-child(3):hover {
-  background: #f1f1f1;
-  border: 3px solid #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border: 4px solid #AB060F;
+  -webkit-box-shadow: 0px 2px 2px 2px #AB060F;
+          box-shadow: 0px 2px 2px 2px #AB060F;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 #container .container_list .item:nth-child(4):hover {
-  background: #f1f1f1;
-  border: 3px solid #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border: 4px solid #AB060F;
+  -webkit-box-shadow: 0px 2px 2px 2px #AB060F;
+          box-shadow: 0px 2px 2px 2px #AB060F;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 #container .container_list .item:nth-child(5):hover {
-  background: #f1f1f1;
-  border: 3px solid #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border: 4px solid #AB060F;
+  -webkit-box-shadow: 0px 2px 2px 2px #AB060F;
+          box-shadow: 0px 2px 2px 2px #AB060F;
+  -webkit-transform: translateY(-5px);
+          transform: translateY(-5px);
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+  transition: -webkit-transform 0.3s ease-out;
+  transition: transform 0.3s ease-out;
+  transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out;
 }
 
 /* ------------ Footer ------------ */
