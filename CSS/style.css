@@ -10,8 +10,9 @@ body {
   background-color: #969696;
 }
 
-/* ----------- MIXINS ------------ */
-/* --------- Header NAV ---------- */
+/* ------------ MIXINS ------------ */
+/* ------------- Body ------------- */
+/* ---------- Header NAV ---------- */
 #nav {
   background: #505050;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -66,8 +67,7 @@ body {
           transition-duration: 0.3s;
 }
 
-/* ------------- Body ------------- */
-/* Box movie */
+/* ---------- Box movie ----------- */
 #box-movies {
   border: 7px solid #28282B;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -113,7 +113,7 @@ body {
   overflow: hidden;
 }
 
-/* Category titles */
+/* ------- Category titles -------- */
 .category_title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 40px;
@@ -124,7 +124,7 @@ body {
   padding-bottom: 20px;
 }
 
-/* Box management */
+/* -------- Box management -------- */
 .container {
   display: -webkit-box;
   display: -ms-flexbox;

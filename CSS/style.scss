@@ -21,7 +21,7 @@ body {
     background-color: $dark-grey;
 }
 
-/* ----------- MIXINS ------------ */
+/* ------------ MIXINS ------------ */
 @mixin nav_items {
     color: $light-grey;
     font-family: $font;
@@ -86,6 +86,18 @@ body {
     transform: translateX(5px);
     transition: transform 0.3s ease-out;
 }
+@mixin arrows_to_the_right {
+    @include direction_boxes;
+        &:hover{
+        @include direction_boxes_hover_right;
+        }
+    }
+@mixin arrows_to_the_left {
+    @include direction_boxes;
+        &:hover{
+        @include direction_boxes_hover_left;
+        }
+    }
 
 @mixin box-movies__title {
     font-family: $font;
@@ -113,6 +125,12 @@ body {
         border: none;
         overflow: hidden;
     }
+@mixin button_and_hover {
+    @include box_movies_player;
+        &:hover{
+        @include box_movies_player_hover;
+        }
+    }
 
 @mixin footer {
     font-family: $font;
@@ -133,7 +151,8 @@ body {
     }
 }
 
-/* --------- Header NAV ---------- */
+/* ------------- Body ------------- */
+/* ---------- Header NAV ---------- */
 #nav{
     background: $grey;
     box-shadow: $box_shadow;
@@ -160,8 +179,7 @@ body {
     }
 }
 
-/* ------------- Body ------------- */
-/* Box movie */
+/* ---------- Box movie ----------- */
 #box-movies {
     border: 7px solid $very-dark-grey;
     box-shadow: $box_shadow;
@@ -169,26 +187,23 @@ body {
     height: 300px;
     margin: auto;
     margin-top: 3%;
-    background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)),url(../src/index/fight-club.jpg);
+    background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     .box-movies__title {
-        @include box-movies__title();
+        @include box-movies__title;
     }
     .box-movies__player {
-        @include box_movies_player();
-        &:hover{
-            @include box_movies_player_hover();
-        }
+        @include button_and_hover;
     }
 }
 
-/* Category titles */
+/* ------- Category titles -------- */
 .category_title {
    @include category_title
 }
 
-/* Box management */
+/* -------- Box management -------- */
 .container {
     display: flex;
     justify-content: center;
@@ -204,17 +219,11 @@ body {
         }
         
         .item_direction_left {
-            @include direction_boxes;
-            &:hover{
-                @include direction_boxes_hover_left();
+            @include arrows_to_the_left;
             }
-        }
         .item_direction_right {
-            @include direction_boxes;
-            &:hover{
-                @include direction_boxes_hover_right();
+            @include arrows_to_the_right;
             }
-        }
 
         .item:nth-child(2) {
             @include box_and_hover;
@@ -233,5 +242,5 @@ body {
 
 /* ------------ Footer ------------ */
 footer {
-    @include footer()
+    @include footer;
 }
