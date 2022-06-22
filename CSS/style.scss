@@ -1,16 +1,16 @@
 /* --------- VAR COLOR ----------- */
-$light-grey: #f1f1f1;
-$grey: #505050;
-$dark-grey: #969696;
-$very-dark-grey: #28282B;
-$red-netflix: #AB060F;
+$light-font: #f1f1f1;
+$nav_bar: #505050;
+$background_color_files: #969696;
+$border_boxes: #28282B;
+$play_button: #AB060F;
 
 /* --------- VARIABLES ----------- */
 $font: 'Kaushan Script', Arial, Helvetica, sans-serif;
-$font_size_30: 30px;
-$font_size_40: 40px;
-$box_shadow: 0px 3px 3px 3px $grey;
-$text-shadow: $grey 8px 0 10px;
+$font_nav_bar_size: 30px;
+$title_nav_bar_size: 40px;
+$box_shadow: 0px 3px 3px 3px $nav_bar;
+$text-shadow: $nav_bar 8px 0 10px;
 
 /* ---------- GLOBAL ------------- */
 *, ::before, ::after {
@@ -18,17 +18,17 @@ $text-shadow: $grey 8px 0 10px;
     padding: 0;
 }
 body {
-    background-color: $dark-grey;
+    background-color: $background_color_files;
 }
 
 /* ------------ MIXINS ------------ */
 @mixin nav_items {
-    color: $light-grey;
+    color: $light-font;
     font-family: $font;
-    font-size: $font_size_30;
+    font-size: $font_nav_bar_size;
 }
 @mixin nav_items_hover {
-    color: $red-netflix;
+    color: $play_button;
     transition-duration: 0.3s;
 }
 @mixin nav_items_and_hover {
@@ -40,24 +40,24 @@ body {
 
 @mixin category_title {
     font-family: $font;
-    font-size: $font_size_40;
-    color: $very-dark-grey;
+    font-size: $title_nav_bar_size;
+    color: $border_boxes;
     text-shadow: $text-shadow;
     text-align: center;
     padding-top: 70px;
     padding-bottom: 20px;
 }
 @mixin category_boxes {
-    background: $light-grey;
-    border: 3px solid $very-dark-grey;
+    background: $light-font;
+    border: 3px solid $border_boxes;
     box-shadow: $box_shadow;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 @mixin category_boxes_hover {
-    border: 4px solid $red-netflix;
-    box-shadow: 0px 2px 2px 2px $red-netflix;
+    border: 4px solid $play_button;
+    box-shadow: 0px 2px 2px 2px $play_button;
     transform: translateY(-5px);
     transition: transform 0.3s ease-out;
 }
@@ -70,19 +70,19 @@ body {
 
 @mixin direction_boxes {
     display: flexbox;
-    font-size: $font_size_40;
-    color: $very-dark-grey;
+    font-size: $title_nav_bar_size;
+    color: $border_boxes;
     background: none;
     border: none;
     margin: 0 15px;
 }
 @mixin direction_boxes_hover_left {
-    color: $red-netflix;
+    color: $play_button;
     transform: translateX(-5px);
     transition: transform 0.3s ease-out;
 }
 @mixin direction_boxes_hover_right {
-    color: $red-netflix;
+    color: $play_button;
     transform: translateX(5px);
     transition: transform 0.3s ease-out;
 }
@@ -101,7 +101,7 @@ body {
 
 @mixin box-movies__title {
     font-family: $font;
-    color: $very-dark-grey;
+    color: $border_boxes;
     text-shadow: $text-shadow;
     font-size: 60px;
     padding-top: 50px;
@@ -109,8 +109,8 @@ body {
 }
 @mixin box_movies_player {
     border: 3px solid $very-dark-grey;
-    background-color: $red-netflix;
-    color: $light-grey;
+    background-color: $play_button;
+    color: $light_font;
     display: flexbox;
     padding: 15px 60px;
     border-radius: 50px;
@@ -119,7 +119,7 @@ body {
     box-shadow: $box_shadow;
 }
 @mixin box_movies_player_hover {
-        box-shadow: 0px 2px 2px 2px $red-netflix;
+        box-shadow: 0px 2px 2px 2px $play_button;
         font-size: 26px;
         font-weight: bold;
         border: none;
@@ -134,8 +134,8 @@ body {
 
 @mixin footer {
     font-family: $font;
-    color: $very-dark-grey;
-    border-top: 2px solid $grey;
+    color: $border_boxes;
+    border-top: 2px solid $nav_bar;
     text-align: center;
     width: 100%;
     margin-top: 40px;
@@ -154,7 +154,7 @@ body {
 /* ------------- Body ------------- */
 /* ---------- Header NAV ---------- */
 #nav{
-    background: $grey;
+    background: $nav_bar;
     box-shadow: $box_shadow;
     height: 70px;
         .nav__list {
@@ -166,7 +166,7 @@ body {
         }
         .nav__item:nth-child(1) {
             @include nav_items();
-            font-size: $font_size_40;
+            font-size: $title_nav_bar_size;
             margin-right: auto;
         }
         .nav__item:nth-child(2) a {
@@ -181,7 +181,7 @@ body {
 
 /* ---------- Box movie ----------- */
 #box-movies {
-    border: 7px solid $very-dark-grey;
+    border: 7px solid $border_boxes;
     box-shadow: $box_shadow;
     width: 92%;
     height: 300px;
