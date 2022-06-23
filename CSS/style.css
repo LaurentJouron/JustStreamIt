@@ -1,7 +1,8 @@
 /* --------- VAR COLOR ----------- */
-/* --------- MIXIN ALONE ---------- */
+/* ---------- VAR SIZE ----------- */
+/* -------- MIXIN ALONE ---------- */
 /* ------------ MIXINS ------------ */
-/* Navigationn */
+/* Navigation */
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
   margin: 0;
@@ -9,14 +10,14 @@
 }
 
 body {
-  background-color: #969696;
+  background: #969696;
 }
 
 /* ------------- Body ------------- */
 /* ---------- Header NAV ---------- */
 #nav {
-  font-size: 30px;
   background: #505050;
+  box-shadow: 0px 3px 3px 3px #505050;
   height: 70px;
 }
 #nav .nav__list {
@@ -40,7 +41,6 @@ body {
   color: #f1f1f1;
 }
 #nav .nav__list .nav__item:nth-child(2) a:hover {
-  color: #f1f1f1;
   transition-duration: 0.3s;
   color: #AB060F;
 }
@@ -51,7 +51,6 @@ body {
   margin-right: 100px;
 }
 #nav .nav__list .nav__item:nth-child(3) a:hover {
-  color: #f1f1f1;
   transition-duration: 0.3s;
   color: #AB060F;
 }
@@ -70,26 +69,26 @@ body {
 }
 #box-movies .box-movies__title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  text-shadow: #505050 8px 0 10px;
   font-size: 80px;
-  color: #28282B;
+  text-shadow: #505050 8px 0 10px;
+  color: #28282B, 5px solid;
   padding-top: 50px;
   padding-left: 80px;
 }
 #box-movies .box-movies__player {
   color: #f1f1f1;
-  border: 3px solid #28282B;
-  background-color: #AB060F;
+  background: #AB060F;
+  font-size: 26px;
+  color: #28282B, 3px solid;
   display: flexbox;
   padding: 15px 60px;
   border-radius: 50px;
-  font-size: 24px;
   margin: 30px 0 0 100px;
 }
 #box-movies .box-movies__player:hover {
   transition-duration: 0.3s;
-  border: none;
   font-size: 26px;
+  border: none;
   font-weight: bold;
   box-shadow: 0px 2px 2px 2px #AB060F;
 }
@@ -99,6 +98,7 @@ body {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 40px;
   color: #28282B;
+  color: #28282B, 3px solid;
   text-shadow: #505050 8px 0 10px;
   text-align: center;
   padding-top: 70px;
@@ -120,32 +120,34 @@ body {
 }
 .container .container_list .item {
   height: 140px;
-  width: 270px;
+  width: 250px;
   flex-shrink: 0;
 }
 .container .container_list .item_direction_left {
   font-size: 40px;
   color: #28282B;
-  display: flexbox;
+  color: #28282B, 3px solid;
   background: none;
+  display: flexbox;
   border: none;
   margin: 0 15px;
 }
 .container .container_list .item_direction_left:hover {
-  color: #f1f1f1;
+  color: #AB060F;
   transform: translateX(-5px);
   transition: transform 0.3s ease-out;
 }
 .container .container_list .item_direction_right {
   font-size: 40px;
   color: #28282B;
-  display: flexbox;
+  color: #28282B, 3px solid;
   background: none;
+  display: flexbox;
   border: none;
   margin: 0 15px;
 }
 .container .container_list .item_direction_right:hover {
-  color: #f1f1f1;
+  color: #AB060F;
   transform: translateX(5px);
   transition: transform 0.3s ease-out;
 }
@@ -209,8 +211,7 @@ body {
 /* ------------ Footer ------------ */
 footer {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  color: #28282B;
-  border-top: 2px solid #f1f1f1;
+  border-top: 2px solid #28282B;
   text-align: center;
   width: 100%;
   margin-top: 40px;

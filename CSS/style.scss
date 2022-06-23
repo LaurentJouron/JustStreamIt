@@ -5,18 +5,25 @@ $background_color_files: #969696;
 $border_boxes: #28282B;
 $play_button: #AB060F;
 
-/* --------- MIXIN ALONE ---------- */
+/* ---------- VAR SIZE ----------- */
+$play_font_size: 26px;
+$nav_font_size: 30px;
+$title_font_size: 40px;
+
+$principal_box_font_size: 80px;
+$big_border: 5px;
+$small_border: 3px;
+
+/* -------- MIXIN ALONE ---------- */
 @mixin font_family{ font-family: 'Kaushan Script', Arial, Helvetica, sans-serif};
-@mixin font_nav_bar_size {font-size: 30px};
-@mixin title_nav_bar_size {font-size: 40px};
-@mixin font_size_movie_title_reception {font-size: 80px};
+@mixin font_size($size) {font-size: $size};
+@mixin font_color($color) {color: $color};
+@mixin text_shadow($color) {text-shadow: $color 8px 0 10px};
 
-@mixin nav_font_color {color: $nav_font_color};
-@mixin border_box_font_color {color: $border_boxes};
-@mixin play_box_background_color {color: $play_button};
-
-@mixin box_shadow_nav_bar_color {box-shadow: 0px 3px 3px 3px $background_nav_bar};
-@mixin text_shadow_nav_bar_color {text-shadow: $background_nav_bar 8px 0 10px};
+@mixin border_box($color, $size) {color: $color, $size solid};
+@mixin play_box($color) {color: $color};
+@mixin box_shadow($color) {box-shadow: 0px 3px 3px 3px $color};
+@mixin background($color) {background: $color};
 
 @mixin transition_duration {transition-duration: 0.3s};
 @mixin transition_transform {transition: transform 0.3s ease-out};
@@ -25,16 +32,15 @@ $play_button: #AB060F;
 @mixin tranform_translate_right {transform: translateX(5px)};
 
 /* ------------ MIXINS ------------ */
-/* Navigationn */
+/* Navigation */
 @mixin nav_items {
     @include font_family;
-    @include font_nav_bar_size;
-    @include nav_font_color;
+    @include font_size($nav_font_size);
+    @include font_color($nav_font_color);
 }
 @mixin nav_items_hover {
-    @include nav_font_color;
     @include transition_duration;
-    @include play_box_background_color;
+    @include play_box($play_button);
 }
 @mixin nav_items_and_hover {
     @include nav_items;
@@ -45,26 +51,26 @@ $play_button: #AB060F;
 
 @mixin box-movies__title {
     @include font_family;
-    @include text_shadow_nav_bar_color;
-    @include font_size_movie_title_reception;
-    @include border_box_font_color;
+    @include font_size($principal_box_font_size);
+    @include text_shadow($background_nav_bar);
+    @include border_box($border_boxes, $big_border);
     padding-top: 50px;
     padding-left: 80px;
 }
 @mixin box_movies_player {
-    @include nav_font_color;
-    border: 3px solid $border_boxes;
-    background-color: $play_button;
+    @include font_color($nav_font_color);
+    @include background($play_button);
+    @include font_size($play_font_size);
+    @include border_box($border_boxes, $small_border);
     display: flexbox;
     padding: 15px 60px;
     border-radius: 50px;
-    font-size: 24px;
     margin: 30px 0 0 100px;
 }
 @mixin box_movies_player_hover {
     @include transition_duration;
+    @include font_size($play_font_size);
     border: none;
-    font-size: 26px;
     font-weight: bold;
     box-shadow: 0px 2px 2px 2px $play_button;
 }
@@ -77,16 +83,17 @@ $play_button: #AB060F;
 
 @mixin category_title {
     @include font_family;
-    @include title_nav_bar_size;
-    @include border_box_font_color;
-    @include text_shadow_nav_bar_color;
+    @include font_size($title_font_size);
+    @include font_color($border_boxes);
+    @include border_box($border_boxes, $small_border);
+    @include text_shadow($background_nav_bar);
     text-align: center;
     padding-top: 70px;
     padding-bottom: 20px;
 }
 @mixin category_boxes {
-    @include box_shadow_nav_bar_color;
-    background: $nav_font_color;
+    @include box_shadow($background_nav_bar);
+    @include background($nav_font_color);
     border: 3px solid $border_boxes;
     display: flex;
     justify-content: center;
@@ -106,20 +113,21 @@ $play_button: #AB060F;
 }
 
 @mixin direction_boxes {
-    @include title_nav_bar_size;
-    @include border_box_font_color;
+    @include font_size($title_font_size);
+    @include font_color($border_boxes);
+    @include border_box($border_boxes, $small_border);
+    @include background(none);
     display: flexbox;
-    background: none;
     border: none;
     margin: 0 15px;
 }
 @mixin direction_boxes_hover_left {
-    @include nav_font_color;
+    @include font_color($play_button);
     @include tranform_translate_left;
     @include transition_transform;
 }
 @mixin direction_boxes_hover_right {
-    @include nav_font_color;
+    @include font_color($play_button);
     @include tranform_translate_right;
     @include transition_transform;
 }
@@ -136,12 +144,9 @@ $play_button: #AB060F;
     }
 }
 
-
-
 @mixin footer {
     @include font_family;
-    @include border_box_font_color;
-    border-top: 2px solid $nav_font_color;
+    border-top: 2px solid $border_boxes;
     text-align: center;
     width: 100%;
     margin-top: 40px;
@@ -166,14 +171,14 @@ $play_button: #AB060F;
     padding: 0;
 }
 body {
-    background-color: $background_color_files;
+    @include background($background_color_files);
 }
 
 /* ------------- Body ------------- */
 /* ---------- Header NAV ---------- */
 #nav{
-    @include font_nav_bar_size;
-    background: $background_nav_bar;
+    @include background($background_nav_bar);
+    @include box_shadow($background_nav_bar);
     height: 70px;
         .nav__list {
         list-style-type: none;
@@ -184,7 +189,7 @@ body {
         }
         .nav__item:nth-child(1) {
             @include nav_items;
-            @include title_nav_bar_size;
+            @include font_size(40px);
             margin-right: auto;
         }
         .nav__item:nth-child(2) a {
@@ -199,7 +204,7 @@ body {
 
 /* ------- Header movie box ------- */
 #box-movies {
-    @include box_shadow_nav_bar_color;
+    @include box_shadow($background_nav_bar);
     border: 7px solid $border_boxes;
     width: 92%;
     height: 300px;
@@ -232,7 +237,7 @@ body {
         width: 75%;
         .item {
             height: 140px;
-            width: 270px;
+            width: 250px;
             flex-shrink: 0;
         }
         
