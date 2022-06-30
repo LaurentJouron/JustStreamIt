@@ -25,6 +25,3 @@ class movie {
       this.objects = objects;
     }
   }
-
-
-
