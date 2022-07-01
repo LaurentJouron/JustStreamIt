@@ -59,6 +59,6 @@ class movieActor {
 class gender {
   constructor(name, objects){
     this.name = name;
-    this.objects = objects;
+    this.objects = objects
   }
 }
