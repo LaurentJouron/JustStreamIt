@@ -1,6 +1,7 @@
 const btnMoviePlayer = document.querySelector(".box-movies__player");
-const btnLeftDirection = document.querySelector(".item_direction_left");
-const btnRightDirection = document.querySelector(".item_direction_right");
+const btnLeftDirection = document.getElementsByClassName(".item_direction_left");
+const btnRightDirection = document.getElementsByClassName(".item_direction_right");
+const allItemsList = document.querySelectorAll('.item');
 
 function tabPlus(tab, func){
   const newTab = [];

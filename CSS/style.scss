@@ -19,14 +19,15 @@ $small_border: 3px;
 @mixin font_size($size) {font-size: $size};
 @mixin font_color($color) {color: $color};
 @mixin text_shadow($color) {text-shadow: $color 8px 0 10px};
+@mixin letter_spacing($spacing) {letter-spacing: $spacing};
 
 @mixin border_box($color, $size) {color: $color, $size solid};
 @mixin play_box($color) {color: $color};
 @mixin box_shadow($color) {box-shadow: 0px 3px 3px 3px $color};
 @mixin background($color) {background: $color};
+@mixin border_radius($radius) {border-radius: $radius};
 
-@mixin transition_duration {transition-duration: 0.3s};
-@mixin transition_transform {transition: transform 0.3s ease-out};
+@mixin transition_transform {transition: 0.3s ease-out};
 
 @mixin tranform_translate_left {transform: translateX(-5px)};
 @mixin tranform_translate_right {transform: translateX(5px)};
@@ -54,6 +55,7 @@ $small_border: 3px;
     @include font_size($principal_box_font_size);
     @include text_shadow($background_nav_bar);
     @include border_box($border_boxes, $big_border);
+    @include letter_spacing(7px);
     padding-top: 50px;
     padding-left: 80px;
 }
@@ -62,14 +64,17 @@ $small_border: 3px;
     @include background($play_button);
     @include font_size($play_font_size);
     @include border_box($border_boxes, $small_border);
+    @include letter_spacing(3px);
+    cursor: pointer;
     display: flexbox;
     padding: 15px 60px;
     border-radius: 50px;
     margin: 30px 0 0 100px;
 }
 @mixin box_movies_player_hover {
-    @include transition_duration;
     @include font_size($play_font_size);
+    @include transition_transform();
+
     border: none;
     font-weight: bold;
     box-shadow: 0px 2px 2px 2px $play_button;
@@ -87,6 +92,7 @@ $small_border: 3px;
     @include font_color($border_boxes);
     @include border_box($border_boxes, $small_border);
     @include text_shadow($background_nav_bar);
+    @include letter_spacing(5px);
     text-align: center;
     padding-top: 70px;
     padding-bottom: 20px;
@@ -94,16 +100,17 @@ $small_border: 3px;
 @mixin category_boxes {
     @include box_shadow($background_nav_bar);
     @include background($nav_font_color);
+    @include border_radius(15px);
     border: 3px solid $border_boxes;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 @mixin category_boxes_hover {
+    @include transition_transform();
     border: 4px solid $play_button;
     box-shadow: 0px 2px 2px 2px $play_button;
     transform: translateY(-5px);
-    transition: transform 0.3s ease-out;
 }
 @mixin box_and_hover {
     @include category_boxes;
@@ -205,6 +212,7 @@ body {
 /* ------- Header movie box ------- */
 #box-movies {
     @include box_shadow($background_nav_bar);
+    @include border_radius(20px);
     border: 7px solid $border_boxes;
     width: 92%;
     height: 300px;
