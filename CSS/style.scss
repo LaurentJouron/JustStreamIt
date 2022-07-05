@@ -40,7 +40,7 @@ $small_border: 3px;
     @include font_color($nav_font_color);
 }
 @mixin nav_items_hover {
-    @include transition_duration;
+    @include transition_transform();
     @include play_box($play_button);
 }
 @mixin nav_items_and_hover {
