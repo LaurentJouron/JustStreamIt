@@ -19,6 +19,10 @@ fetch('http://localhost:8000/api/v1/titles/')
     }
 })
 
+function search_selection(control) {
+    const message = control.value == "10" ? "Score" : "Common message";
+    document.getElementById("message").innerHTML = message;
+}
 
 /*
 chemin travail => cd C:\Users\l.jouron\PycharmProjects\OCMovies-API

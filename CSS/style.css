@@ -48,11 +48,19 @@ body {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
-  margin-right: 100px;
+  margin-right: 30px;
 }
 #nav .nav__list .nav__item:nth-child(3) a:hover {
   transition: 0.3s ease-out;
   color: #AB060F;
+}
+#nav .nav__list .nav__item:nth-child(4) a {
+  font-size: 26px;
+  color: #28282B;
+  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  text-decoration: none;
+  font-weight: bold;
+  margin-right: 10px;
 }
 
 /* ------- Header movie box ------- */
