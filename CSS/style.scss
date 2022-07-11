@@ -50,25 +50,25 @@ $small_border: 3px;
 
 /* ------------ MIXINS ------------ */
 /* Navigation bar */
-.nav_items {
+@mixin nav_items {
     @include font_family;
     @include font_size($nav_font_size);
     @include font_color($nav_font_color);
 }
-.nav_items--hover {
+@mixin nav_items--hover {
     @include transition_transform();
     @include play_box($play_button);
 }
 
 @mixin nav--items-and-hover {
-    @extend .nav_items;
+    @include nav_items;
     &:hover{
-        @extend .nav_items--hover;
+        @include nav_items--hover;
     }
 }
 
 /* Title movie for header box */
-.box-movies--title {
+@mixin box-movies--title {
     @include font_family;
     @include font_color($border_boxes);
     @include font_size($principal_box_font_size);
@@ -80,7 +80,7 @@ $small_border: 3px;
 }
 
 /* Play button in movie box header */
-.box_movies--play-button {
+@mixin box_movies--play-button {
     @include font_color($nav_font_color);
     @include background($play_button);
     @include font_size($play_font_size);
@@ -92,7 +92,7 @@ $small_border: 3px;
     border-radius: 50px;
     @include margin(30px 0 0 100px);
 }
-.box_movies--play-button-hover {
+@mixin box_movies--play-button-hover {
     @include font_size($play_font_size);
     @include transition_transform();
     border: none;
@@ -100,9 +100,9 @@ $small_border: 3px;
     box-shadow: 2px 2px 2px 2px $play_button;
 }
 @mixin button_and_hover {
-    @extend .box_movies--play-button;
+    @include box_movies--play-button;
     &:hover{
-        @extend .box_movies--play-button-hover;
+        @include box_movies--play-button-hover;
     }
 }
 
@@ -120,7 +120,7 @@ $small_border: 3px;
 }
 
 /* Boxes for categories movies*/
-.category_boxes {
+@mixin category_boxes {
     @include font_family;
     @include font_color($border_boxes);
     @include box_shadow($background_nav_bar);
@@ -132,21 +132,21 @@ $small_border: 3px;
     justify-content: flex-start;
     align-items: center;
 }
-.category_boxes_hover {
+@mixin category_boxes_hover {
     @include transition_transform();
     border: 4px solid $play_button;
     box-shadow: 0px 2px 2px 2px $play_button;
     transform: translateY(-5px);
 }
 @mixin box_and_hover {
-    @extend .category_boxes;
+    @include category_boxes;
     &:hover {
-        @extend .category_boxes_hover;
+        @include category_boxes_hover;
     }
 }
 
 /* Directional arrows */
-.direction_boxes {
+@mixin direction_boxes {
     @include font_size($title_font_size);
     @include font_color($border_boxes);
     @include border_box($border_boxes, $small_border);
@@ -155,26 +155,26 @@ $small_border: 3px;
     border: none;
     @include margin(0 15px);
 }
-.direction_boxes--hover_left {
+@mixin direction_boxes--hover_left {
     @include font_color($play_button);
     @include tranform_translate_left;
     @include transition_transform;
 }
-.direction_boxe--hover_right {
+@mixin direction_boxe--hover_right {
     @include font_color($play_button);
     @include tranform_translate_right;
     @include transition_transform;
 }
 @mixin arrows_to_the_left {
-    @extend .direction_boxes;
+    @include direction_boxes;
     &:hover{
-        @extend .direction_boxe--hover_left;
+        @include direction_boxes--hover_left;
     }
 }
 @mixin arrows_to_the_right {
-    @extend .direction_boxes;
+    @include direction_boxes;
     &:hover{
-        @extend .direction_boxes--hover_right;
+        @include direction_boxe--hover_right;
     }
 }
 
@@ -222,7 +222,7 @@ body {
             @include margin(0 8px);
         }
         .nav__list--item:nth-child(1) {
-            @extend .nav_items;
+            @include nav_items;
             @include font_size(40px);
             @include margin_right(auto);
         }
@@ -249,7 +249,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     .box-movies__title {
-        @extend .box-movies__title;
+        @include box-movies__title;
     }
     .box-movies__player {
         @include button_and_hover;
