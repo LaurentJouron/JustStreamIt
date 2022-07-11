@@ -59,6 +59,7 @@ $small_border: 3px;
     @include transition_transform();
     @include play_box($play_button);
 }
+
 @mixin nav--items-and-hover {
     @extend .nav_items;
     &:hover{
@@ -96,7 +97,7 @@ $small_border: 3px;
     @include transition_transform();
     border: none;
     font-weight: bold;
-    box-shadow: 0px 2px 2px 2px $play_button;
+    box-shadow: 2px 2px 2px 2px $play_button;
 }
 @mixin button_and_hover {
     @extend .box_movies--play-button;
@@ -154,12 +155,12 @@ $small_border: 3px;
     border: none;
     @include margin(0 15px);
 }
-.direction_boxes_hover_left {
+.direction_boxes--hover_left {
     @include font_color($play_button);
     @include tranform_translate_left;
     @include transition_transform;
 }
-.direction_boxes_hover_right {
+.direction_boxe--hover_right {
     @include font_color($play_button);
     @include tranform_translate_right;
     @include transition_transform;
@@ -167,13 +168,13 @@ $small_border: 3px;
 @mixin arrows_to_the_left {
     @extend .direction_boxes;
     &:hover{
-        @extend .direction_boxes_hover_left;
+        @extend .direction_boxe--hover_left;
     }
 }
 @mixin arrows_to_the_right {
     @extend .direction_boxes;
     &:hover{
-        @extend .direction_boxes_hover_right;
+        @extend .direction_boxes--hover_right;
     }
 }
 
@@ -276,10 +277,10 @@ body {
         }
         
 /* Box direction */
-        .item_direction_left {
+        .item_direction--left {
             @include arrows_to_the_left;
             }
-        .item_direction_right {
+        .item_direction--right {
             @include arrows_to_the_right;
             }
 

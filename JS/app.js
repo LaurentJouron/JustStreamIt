@@ -15,9 +15,10 @@ fetch('http://localhost:8000/api/v1/titles/')
     .then(reponse => reponse.json())
     .then(data => {
         console.log(data)
- //       for(i = 0; i < data.response.length; i++) {
-   //     let newItem = document.createAttribute('item');
-    //}
+
+        for(i = 0; i < data.response.length; i++) {
+        let newItem = document.createAttribute('item');   
+    }
 })
 
 /*
