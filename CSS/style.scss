@@ -248,10 +248,10 @@ body {
     background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    .box-movies__title {
+    .box_movies--title {
         @include box-movies__title;
     }
-    .box-movies__player {
+    .box_movies--play_button {
         @include button_and_hover;
     }
 }

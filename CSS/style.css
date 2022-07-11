@@ -73,7 +73,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
-#box_movies .box-movies__title {
+#box_movies .box_movies--title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   font-size: 80px;
@@ -83,7 +83,7 @@ body {
   padding-top: 50px;
   padding-left: 80px;
 }
-#box_movies .box-movies__player {
+#box_movies .box_movies--play_button {
   color: #f1f1f1;
   background: #AB060F;
   font-size: 26px;
@@ -95,7 +95,7 @@ body {
   border-radius: 50px;
   margin: 30px 0 0 100px;
 }
-#box_movies .box-movies__player:hover {
+#box_movies .box_movies--play_button:hover {
   font-size: 26px;
   transition: 0.3s ease-out;
   border: none;
