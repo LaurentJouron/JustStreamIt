@@ -3,13 +3,13 @@
 /* -------- MIXIN ALONE ---------- */
 /* ------------ MIXINS ------------ */
 /* Navigation bar */
-.nav_items, #nav .nav__nav_list .nav__nav_list__nav--item:nth-child(3) a, #nav .nav__nav_list .nav__nav_list__nav--item:nth-child(2) a, #nav .nav__nav_list .nav__nav_list__nav--item:nth-child(1) {
+.nav_items, #nav .nav__list .nav__list--item:nth-child(3) a, #nav .nav__list .nav__list--item:nth-child(2) a, #nav .nav__list .nav__list--item:nth-child(1) {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
 }
 
-.nav_items_hover, #nav .nav__nav_list .nav__nav_list__nav--item:nth-child(3) a:hover, #nav .nav__nav_list .nav__nav_list__nav--item:nth-child(2) a:hover {
+.nav_items--hover, #nav .nav__list .nav__list--item:nth-child(3) a:hover, #nav .nav__list .nav__list--item:nth-child(2) a:hover {
   transition: 0.3s ease-out;
   color: #AB060F;
 }
@@ -51,12 +51,15 @@
 /* Title of the categories aboce the boxes */
 /* Boxes for categories movies*/
 .category_boxes, .container .container_list .item:nth-child(5), .container .container_list .item:nth-child(4), .container .container_list .item:nth-child(3), .container .container_list .item:nth-child(2) {
+  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  color: #28282B;
   box-shadow: 0px 3px 3px 3px #505050;
-  background: #f1f1f1;
   border-radius: 15px;
   border: 3px solid #28282B;
-  display: flex;
-  justify-content: center;
+  background-image: linear-gradient(to right, rgb(207, 207, 240), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -107,19 +110,19 @@ body {
   box-shadow: 0px 3px 3px 3px #505050;
   height: 70px;
 }
-#nav .nav__nav_list {
+#nav .nav__list {
   list-style-type: none;
   display: flex;
   align-items: center;
 }
-#nav .nav__nav_list .nav__nav_list__nav--item {
+#nav .nav__list .nav__list--item {
   margin: 0 8px;
 }
-#nav .nav__nav_list .nav__nav_list__nav--item:nth-child(1) {
+#nav .nav__list .nav__list--item:nth-child(1) {
   font-size: 40px;
   margin-right: auto;
 }
-#nav .nav__nav_list .nav__nav_list__nav--item:nth-child(3) a {
+#nav .nav__list .nav__list--item:nth-child(3) a {
   margin-right: 30px;
 }
 /* ------- Header movie box ------- */

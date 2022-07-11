@@ -15,26 +15,38 @@ $big_border: 5px;
 $small_border: 3px;
 
 /* -------- MIXIN ALONE ---------- */
-@mixin font_family{ font-family: 'Kaushan Script', Arial, Helvetica, sans-serif};
-@mixin font_size($size) {font-size: $size};
-@mixin font_color($color) {color: $color};
-@mixin text_shadow($color) {text-shadow: $color 8px 0 10px};
-@mixin letter_spacing($spacing) {letter-spacing: $spacing};
-@mixin text_align($align) {text-align: $align};
+@mixin font_family{font-family: 'Kaushan Script', Arial, Helvetica, sans-serif};
+@mixin font_size($size) {font-size: $size;}
+@mixin font_color($color) {color: $color;}
+@mixin text_shadow($color) {text-shadow: $color 8px 0 10px;}
+@mixin letter_spacing($spacing) {letter-spacing: $spacing;}
+@mixin text_align($align) {text-align: $align;}
 
-@mixin padding_top($padding_top) {padding-top: $padding_top};
-@mixin padding_left($padding_left) {padding-left: $padding_left};
+@mixin height($height) {height: $height;}
+@mixin width($width) {width: $width;}
 
-@mixin border_box($color, $size) {color: $color, $size solid};
-@mixin play_box($color) {color: $color};
-@mixin box_shadow($color) {box-shadow: 0px 3px 3px 3px $color};
-@mixin background($color) {background: $color};
-@mixin border_radius($radius) {border-radius: $radius};
+@mixin padding($padding) {padding: $padding;}
+@mixin padding_top($padding_top) {padding-top: $padding_top;}
+@mixin padding_left($padding_left) {padding-left: $padding_left;}
+@mixin padding_bottom($padding_bottom) {padding-bottom: $padding_bottom;}
+@mixin padding_right($padding_right) {padding-right: $padding_right;}
 
-@mixin transition_transform {transition: 0.3s ease-out};
+@mixin margin($margin) {margin: $margin;}
+@mixin margin_top($margin_top) {margin-top: $margin_top;}
+@mixin margin_left($margin_left) {margin-left: $margin_left;}
+@mixin margin_bottom($margin_bottom) {margin-bottom: $margin_bottom;}
+@mixin margin_right($margin_right) {margin-right: $margin_right;}
 
-@mixin tranform_translate_left {transform: translateX(-5px)};
-@mixin tranform_translate_right {transform: translateX(5px)};
+@mixin border_box($color, $size) {color: $color, $size solid;}
+@mixin play_box($color) {color: $color;}
+@mixin box_shadow($color) {box-shadow: 0px 3px 3px 3px $color;}
+@mixin background($color) {background: $color;}
+@mixin border_radius($radius) {border-radius: $radius;}
+
+@mixin transition_transform {transition: 0.3s ease-out;}
+
+@mixin tranform_translate_left {transform: translateX(-5px);}
+@mixin tranform_translate_right {transform: translateX(5px);}
 
 /* ------------ MIXINS ------------ */
 /* Navigation bar */
@@ -43,14 +55,14 @@ $small_border: 3px;
     @include font_size($nav_font_size);
     @include font_color($nav_font_color);
 }
-.nav_items_hover {
+.nav_items--hover {
     @include transition_transform();
     @include play_box($play_button);
 }
-@mixin nav_items_and_hover {
+@mixin nav--items-and-hover {
     @extend .nav_items;
     &:hover{
-        @extend .nav_items_hover;
+        @extend .nav_items--hover;
     }
 }
 
@@ -75,9 +87,9 @@ $small_border: 3px;
     @include letter_spacing(3px);
     cursor: pointer;
     display: flexbox;
-    padding: 15px 60px;
+    @include padding(15px 60px);
     border-radius: 50px;
-    margin: 30px 0 0 100px;
+    @include margin(30px 0 0 100px);
 }
 .box_movies--play-button-hover {
     @include font_size($play_font_size);
@@ -103,17 +115,20 @@ $small_border: 3px;
     @include letter_spacing(5px);
     @include padding_top(70px);
     @include text_align(center);
-    padding-bottom: 20px;
+    @include padding_bottom(20px);
 }
 
 /* Boxes for categories movies*/
 .category_boxes {
+    @include font_family;
+    @include font_color($border_boxes);
     @include box_shadow($background_nav_bar);
-    @include background($nav_font_color);
     @include border_radius(15px);
     border: 3px solid $border_boxes;
-    display: flex;
-    justify-content: center;
+    background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    justify-content: flex-start;
     align-items: center;
 }
 .category_boxes_hover {
@@ -137,7 +152,7 @@ $small_border: 3px;
     @include background(none);
     display: flexbox;
     border: none;
-    margin: 0 15px;
+    @include margin(0 15px);
 }
 .direction_boxes_hover_left {
     @include font_color($play_button);
@@ -166,12 +181,12 @@ $small_border: 3px;
     @include font_family;
     border-top: 2px solid $border_boxes;
     @include text_align(center);
-    width: 100%;
-    margin-top: 40px;
-    padding: 10px 0 10px 0;
+    @include width(100%);
+    @include margin-top(40px);
+    @include padding(10px 0 10px 0);
     #imgCopy {
-        width: 15px;
-        height: 15px;
+        @include width(15px);
+        @include height(15px);
     }
     @media screen and (max-width: 1300px) {
         footer {
@@ -185,8 +200,8 @@ $small_border: 3px;
 
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
-    margin: 0;
-    padding: 0;
+    @include margin(0);
+    @include padding(0);
 }
 body {
     @include background($background_color_files);
@@ -197,25 +212,25 @@ body {
 #nav{
     @include background($background_nav_bar);
     @include box_shadow($background_nav_bar);
-    height: 70px;
-        .nav__nav_list {
+    @include height(70px);
+        .nav__list {
         list-style-type: none;
         display: flex;
         align-items: center;
-        .nav__nav_list__nav--item {
-            margin: 0 8px;
+        .nav__list--item {
+            @include margin(0 8px);
         }
-        .nav__nav_list__nav--item:nth-child(1) {
+        .nav__list--item:nth-child(1) {
             @extend .nav_items;
             @include font_size(40px);
-            margin-right: auto;
+            @include margin_right(auto);
         }
-        .nav__nav_list__nav--item:nth-child(2) a {
-            @include nav_items_and_hover;
+        .nav__list--item:nth-child(2) a {
+            @include nav--items-and-hover;
             }
-        .nav__nav_list__nav--item:nth-child(3) a {
-            @include nav_items_and_hover;
-            margin-right: 30px;
+        .nav__list--item:nth-child(3) a {
+            @include nav--items-and-hover;
+            @include margin_right(30px);
         }
     }
 }
@@ -225,10 +240,10 @@ body {
     @include box_shadow($background_nav_bar);
     @include border_radius(20px);
     border: 7px solid $border_boxes;
-    width: 92%;
-    height: 300px;
-    margin: auto;
-    margin-top: 3%;
+    @include width(92%);
+    @include height(300px);
+    @include margin(auto);
+    @include margin-top(3%);
     background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -253,10 +268,10 @@ body {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        width: 75%;
+        @include width(75%);
         .item {
-            height: 140px;
-            width: 250px;
+            @include height(140px);
+            @include width(250px);
             flex-shrink: 0;
         }
         

@@ -14,15 +14,27 @@ const allItemsList = document.querySelectorAll('.item');
 fetch('http://localhost:8000/api/v1/titles/')
     .then(reponse => reponse.json())
     .then(data => {
-        for(i = 0; i < data.response.length; i++) {
-        let newItem = document.createAttribute('item');
-    }
+        console.log(data)
+ //       for(i = 0; i < data.response.length; i++) {
+   //     let newItem = document.createAttribute('item');
+    //}
 })
 
-function search_selection(control) {
-    const message = control.value == "10" ? "Score" : "Common message";
-    document.getElementById("message").innerHTML = message;
-}
+/*
+let listeEl = document.querySelector("article > ul.important > li")
+
+console.log(listeEl.nextElementSibling);
+
+console.log("main-content", document.getElementById("main-content"));
+
+console.log("important", document.getElementsByClassName("important"));
+            
+const liItem = document.querySelector("article ul.important > li");
+console.log("article ul.important > li", liItem);
+
+console.log("nextElementSibling", liItem.nextElementSibling);
+*/
+
 
 /*
 chemin travail => cd C:\Users\l.jouron\PycharmProjects\OCMovies-API
