@@ -59,7 +59,6 @@ $small_border: 3px;
     @include transition_transform();
     @include play_box($play_button);
 }
-
 @mixin nav--items-and-hover {
     @include nav_items;
     &:hover{
@@ -133,10 +132,8 @@ $small_border: 3px;
     align-items: center;
 }
 @mixin category_boxes_hover {
-    @include transition_transform();
     border: 4px solid $play_button;
-    box-shadow: 0px 2px 2px 2px $play_button;
-    transform: translateY(-5px);
+    box-shadow: none
 }
 @mixin box_and_hover {
     @include category_boxes;
@@ -251,7 +248,7 @@ body {
     .box_movies--title {
         @include box-movies__title;
     }
-    .box_movies--play_button {
+    .box_movies--play-button {
         @include button_and_hover;
     }
 }
@@ -270,31 +267,31 @@ body {
         justify-content: space-evenly;
         align-items: center;
         @include width(75%);
-        .item {
+        .container_list--item {
             @include height(140px);
             @include width(250px);
             flex-shrink: 0;
         }
         
 /* Box direction */
-        .item_direction--left {
+        .container_list__direction--left {
             @include arrows_to_the_left;
             }
-        .item_direction--right {
+        .container_list__direction--right {
             @include arrows_to_the_right;
             }
 
 /* Movies box */
-        .item:nth-child(2) {
+        .container_list--item:nth-child(2) {
             @include box_and_hover;
         }
-        .item:nth-child(3)  {
+        .container_list--item:nth-child(3)  {
             @include box_and_hover;
         }
-        .item:nth-child(4)  {
+        .container_list--item:nth-child(4)  {
             @include box_and_hover;
         }
-        .item:nth-child(5)  {
+        .container_list--item:nth-child(5)  {
             @include box_and_hover;
         }
     }

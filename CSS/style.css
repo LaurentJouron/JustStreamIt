@@ -83,7 +83,7 @@ body {
   padding-top: 50px;
   padding-left: 80px;
 }
-#box_movies .box_movies--play_button {
+#box_movies .box_movies--play-button {
   color: #f1f1f1;
   background: #AB060F;
   font-size: 26px;
@@ -95,7 +95,7 @@ body {
   border-radius: 50px;
   margin: 30px 0 0 100px;
 }
-#box_movies .box_movies--play_button:hover {
+#box_movies .box_movies--play-button:hover {
   font-size: 26px;
   transition: 0.3s ease-out;
   border: none;
@@ -129,12 +129,12 @@ body {
   /* Box direction */
   /* Movies box */
 }
-.container .container_list .item {
+.container .container_list .container_list--item {
   height: 140px;
   width: 250px;
   flex-shrink: 0;
 }
-.container .container_list .item_direction--left {
+.container .container_list .container_list__direction--left {
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -143,12 +143,12 @@ body {
   border: none;
   margin: 0 15px;
 }
-.container .container_list .item_direction--left:hover {
+.container .container_list .container_list__direction--left:hover {
   color: #AB060F;
   transform: translateX(-5px);
   transition: 0.3s ease-out;
 }
-.container .container_list .item_direction--right {
+.container .container_list .container_list__direction--right {
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -157,12 +157,12 @@ body {
   border: none;
   margin: 0 15px;
 }
-.container .container_list .item_direction--right:hover {
+.container .container_list .container_list__direction--right:hover {
   color: #AB060F;
   transform: translateX(5px);
   transition: 0.3s ease-out;
 }
-.container .container_list .item:nth-child(2) {
+.container .container_list .container_list--item:nth-child(2) {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   box-shadow: 0px 3px 3px 3px #505050;
@@ -174,13 +174,11 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
-.container .container_list .item:nth-child(2):hover {
-  transition: 0.3s ease-out;
+.container .container_list .container_list--item:nth-child(2):hover {
   border: 4px solid #AB060F;
-  box-shadow: 0px 2px 2px 2px #AB060F;
-  transform: translateY(-5px);
+  box-shadow: none;
 }
-.container .container_list .item:nth-child(3) {
+.container .container_list .container_list--item:nth-child(3) {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   box-shadow: 0px 3px 3px 3px #505050;
@@ -192,13 +190,11 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
-.container .container_list .item:nth-child(3):hover {
-  transition: 0.3s ease-out;
+.container .container_list .container_list--item:nth-child(3):hover {
   border: 4px solid #AB060F;
-  box-shadow: 0px 2px 2px 2px #AB060F;
-  transform: translateY(-5px);
+  box-shadow: none;
 }
-.container .container_list .item:nth-child(4) {
+.container .container_list .container_list--item:nth-child(4) {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   box-shadow: 0px 3px 3px 3px #505050;
@@ -210,13 +206,11 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
-.container .container_list .item:nth-child(4):hover {
-  transition: 0.3s ease-out;
+.container .container_list .container_list--item:nth-child(4):hover {
   border: 4px solid #AB060F;
-  box-shadow: 0px 2px 2px 2px #AB060F;
-  transform: translateY(-5px);
+  box-shadow: none;
 }
-.container .container_list .item:nth-child(5) {
+.container .container_list .container_list--item:nth-child(5) {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   box-shadow: 0px 3px 3px 3px #505050;
@@ -228,11 +222,9 @@ body {
   justify-content: flex-start;
   align-items: center;
 }
-.container .container_list .item:nth-child(5):hover {
-  transition: 0.3s ease-out;
+.container .container_list .container_list--item:nth-child(5):hover {
   border: 4px solid #AB060F;
-  box-shadow: 0px 2px 2px 2px #AB060F;
-  transform: translateY(-5px);
+  box-shadow: none;
 }
 
 /* ------------ Footer ------------ */
