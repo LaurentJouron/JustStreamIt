@@ -132,7 +132,7 @@ $small_border: 3px;
     align-items: center;
 }
 @mixin category_boxes_hover {
-    border: 4px solid $play_button;
+    border: 3px solid $play_button;
     box-shadow: none
 }
 @mixin box_and_hover {
@@ -198,6 +198,7 @@ $small_border: 3px;
 
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
+    box-sizing: border-box;
     @include margin(0);
     @include padding(0);
 }
