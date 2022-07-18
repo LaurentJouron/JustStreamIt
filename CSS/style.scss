@@ -44,7 +44,6 @@ $small_border: 3px;
 @mixin border_radius($radius) {border-radius: $radius;}
 
 @mixin transition_transform {transition: 0.3s ease-out;}
-
 @mixin tranform_translate_left {transform: translateX(-5px);}
 @mixin tranform_translate_right {transform: translateX(5px);}
 
@@ -104,7 +103,7 @@ $small_border: 3px;
 }
 
 /* Title of the categories aboce the boxes */
-@mixin category_title {
+@mixin categories_title {
     @include font_family;
     @include font_size($title_font_size);
     @include font_color($border_boxes);
@@ -117,7 +116,7 @@ $small_border: 3px;
 }
 
 /* Boxes for categories movies*/
-@mixin category_boxes {
+@mixin categories_boxes {
     @include font_family;
     @include font_color($border_boxes);
     @include box_shadow($background_nav_bar);
@@ -129,14 +128,14 @@ $small_border: 3px;
     justify-content: flex-start;
     align-items: center;
 }
-@mixin category_boxes_hover {
+@mixin categories_boxes_hover {
     border: 3px solid $play_button;
     box-shadow: none
 }
-@mixin box_and_hover {
-    @include category_boxes;
+@mixin categories__box_and_hover {
+    @include categories_boxes;
     &:hover {
-        @include category_boxes_hover;
+        @include categories_boxes_hover;
     }
 }
 
@@ -211,8 +210,8 @@ body {
     @include box_shadow($background_nav_bar);
     @include height(70px);
         .nav__list {
-        list-style-type: none;
         display: flex;
+        list-style-type: none;
         align-items: center;
         .nav__list--item {
             @include margin(0 8px);
@@ -258,8 +257,8 @@ body {
 }
 
 /* ------- Category titles -------- */
-.category_title {
-   @include category_title
+.categorie--title {
+   @include categories_title
 }
 
 /* -------- Box management -------- */
@@ -287,16 +286,16 @@ body {
 
 /* Movies box */
         .container_list--item:nth-child(2) {
-            @include box_and_hover;
+            @include categories__box_and_hover;
         }
         .container_list--item:nth-child(3)  {
-            @include box_and_hover;
+            @include categories__box_and_hover;
         }
         .container_list--item:nth-child(4)  {
-            @include box_and_hover;
+            @include categories__box_and_hover;
         }
         .container_list--item:nth-child(5)  {
-            @include box_and_hover;
+            @include categories__box_and_hover;
         }
     }
 }
