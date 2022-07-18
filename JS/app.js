@@ -6,14 +6,12 @@ const bestMoviesPlayButton = document.querySelector(".best_movies__container__It
 const containerListDirectionLeft = document.querySelector(".container_list__direction--left");
 const containerListDirectionRight = document.querySelector(".container_list__direction--right");
 
-function getRandomCategorie (min, max) {
+function getRandomCategorie () {
     let genre = ['History', 'Drama', 'Documentary', 'Sport', 'Music', 'Animation', 'News',
     'Adventure', 'Adult', 'Sci-Fi', 'Family', 'Romance', 'Horror', 'Comedy', 'Biography',
     'Fantasy', 'Film-Noir', 'Crime', 'Action', 'Thriller', 'Western', 'Mystery', 'Reality-TV',
     'War', 'Musical'];
-    min = Math.ceil(0);
-    max = Math.floor(genre.length);
-    categorie = Math.floor(Math.random() * (min, max));
+    categorie = Math.floor(Math.random() * (Math.ceil(0), Math.floor(genre.length)));
  return genre[categorie];
 }
 
