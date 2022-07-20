@@ -244,15 +244,14 @@ body {
         @include width(100%);
         @include height(100%);
         @include border_radius(13px);
-        background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
         background-repeat: no-repeat;
         background-size: cover;
     }
-    .best_movies__container__Items--title {
-        @include best-movies__title;
-    }
-    .best_movies__container__Items--play-button {
-        @include button_and_hover;
+        .best_movies__container__Items--title {
+            @include best-movies__title;
+        }
+        .best_movies__container__Items--play-button {
+            @include button_and_hover;
     }
 }
 
