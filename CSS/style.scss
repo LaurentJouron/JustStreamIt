@@ -10,7 +10,7 @@ $play_font_size: 26px;
 $nav_font_size: 30px;
 $title_font_size: 40px;
 
-$principal_box_font_size: 80px;
+$principal_box_font_size: 50px;
 $big_border: 5px;
 $small_border: 3px;
 
@@ -66,39 +66,40 @@ $small_border: 3px;
 }
 
 /* Title movie for header box */
-@mixin best-movies--title {
+@mixin best_movie--title {
     @include font_family;
     @include font_color($border_boxes);
     @include font_size($principal_box_font_size);
-    @include letter_spacing(7px);
+    @include letter_spacing(2px);
     @include text_shadow($background_nav_bar);
     @include padding_top(20px);
     @include padding_left(30px);
+    display: inline;
 }
 
 /* Play button in movie box header */
-@mixin best_movies--play-button {
+@mixin best_movie--play {
     @include font_color($nav_font_color);
     @include background($play_button);
     @include font_size($play_font_size);
     @include border_box($border_boxes, $small_border);
-    @include letter_spacing(3px);
+    @include letter_spacing(2px);
     cursor: pointer;
     display: flexbox;
     @include padding(15px 50px);
     border-radius: 50px;
     @include margin(10px 0 0 50px);
 }
-@mixin best_movies--play-button-hover {
+@mixin best_movie__play--hover {
     @include font_size($play_font_size);
     border: none;
     font-weight: bold;
     box-shadow: 2px 2px 2px 2px $play_button;
 }
 @mixin button_and_hover {
-    @include best_movies--play-button;
+    @include best_movie--play;
     &:hover{
-        @include best_movies--play-button-hover;
+        @include best_movie__play--hover;
     }
 }
 
@@ -109,7 +110,7 @@ $small_border: 3px;
     @include font_color($border_boxes);
     @include border_box($border_boxes, $small_border);
     @include text_shadow($background_nav_bar);
-    @include letter_spacing(5px);
+    @include letter_spacing(3px);
     @include padding_top(70px);
     @include text_align(center);
     @include padding_bottom(20px);
@@ -232,7 +233,7 @@ body {
 }
 
 /* ------- Header movie box ------- */
-#best_movies {
+#best_movie {
     @include width(92%);
     @include height(300px);
     @include box_shadow($background_nav_bar);
@@ -240,17 +241,20 @@ body {
     @include margin(auto);
     @include margin-top(3%);
     border: 7px solid $border_boxes;
-    .best_movies__container{
-        @include width(100%);
-        @include height(100%);
-        @include border_radius(13px);
-        background-repeat: no-repeat;
-        background-size: cover;
+        .best_movie--title {
+            @include best_movie--title;
     }
-        .best_movies__container__Items--title {
-            @include best-movies__title;
-        }
-        .best_movies__container__Items--play-button {
+        .best_movie--picture{
+            @include width(20%);
+            @include height(286px);
+            display: inline-block;
+            justify-content: flex-end;
+            @include border_radius(13px);
+            // background-repeat: no-repeat;
+            // background-size: cover;
+            // background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
+    }
+        .best_movie--play {
             @include button_and_hover;
     }
 }
