@@ -49,19 +49,19 @@ $small_border: 3px;
 
 /* ------------ MIXINS ------------ */
 /* Navigation bar */
-@mixin nav_items {
+@mixin nav_list {
     @include font_family;
     @include font_size($nav_font_size);
     @include font_color($nav_font_color);
 }
-@mixin nav_items--hover {
+@mixin nav_list--hover {
     @include transition_transform();
     @include play_box($play_button);
 }
-@mixin nav--items-and-hover {
-    @include nav_items;
+@mixin nav_list-and-hover {
+    @include nav_list;
     &:hover{
-        @include nav_items--hover;
+        @include nav_list--hover;
     }
 }
 
@@ -87,7 +87,7 @@ $small_border: 3px;
     cursor: pointer;
     display: flexbox;
     @include padding(15px 50px);
-    border-radius: 50px;
+    @include border_radius(50px);
     @include margin(10px 0 0 50px);
 }
 @mixin best_movie__play--hover {
@@ -104,7 +104,7 @@ $small_border: 3px;
 }
 
 /* Title of the categories aboce the boxes */
-@mixin categories_title {
+@mixin categorie_title {
     @include font_family;
     @include font_size($title_font_size);
     @include font_color($border_boxes);
@@ -133,7 +133,7 @@ $small_border: 3px;
     border: 3px solid $play_button;
     box-shadow: none
 }
-@mixin categories__box_and_hover {
+@mixin categories__boxes_and_hover {
     @include categories_boxes;
     &:hover {
         @include categories_boxes_hover;
@@ -141,7 +141,7 @@ $small_border: 3px;
 }
 
 /* Directional arrows */
-@mixin direction_boxes {
+@mixin direction_arrows {
     @include font_size($title_font_size);
     @include font_color($border_boxes);
     @include border_box($border_boxes, $small_border);
@@ -150,26 +150,26 @@ $small_border: 3px;
     border: none;
     @include margin(0 15px);
 }
-@mixin direction_boxes--hover_left {
+@mixin container--hover_prev_arrows {
     @include font_color($play_button);
     @include tranform_translate_left;
     @include transition_transform;
 }
-@mixin direction_boxe--hover_right {
+@mixin container--prev_arrows {
+    @include direction_arrows;
+    &:hover{
+        @include container--hover_prev_arrows;
+    }
+}
+@mixin container--hover_next_arrows {
     @include font_color($play_button);
     @include tranform_translate_right;
     @include transition_transform;
 }
-@mixin arrows_to_the_left {
-    @include direction_boxes;
+@mixin container--next_arrows {
+    @include direction_arrows;
     &:hover{
-        @include direction_boxes--hover_left;
-    }
-}
-@mixin arrows_to_the_right {
-    @include direction_boxes;
-    &:hover{
-        @include direction_boxe--hover_right;
+        @include container--hover_next_arrows;
     }
 }
 
@@ -218,15 +218,15 @@ body {
             @include margin(0 8px);
         }
         .nav__list--item:nth-child(1) {
-            @include nav_items;
+            @include nav_list;
             @include font_size(40px);
             @include margin_right(auto);
         }
         .nav__list--item:nth-child(2) a {
-            @include nav--items-and-hover;
+            @include nav_list-and-hover;
             }
         .nav__list--item:nth-child(3) a {
-            @include nav--items-and-hover;
+            @include nav_list-and-hover;
             @include margin_right(30px);
         }
     }
@@ -261,7 +261,7 @@ body {
 
 /* ------- Category titles -------- */
 .categorie--title {
-   @include categories_title
+   @include categorie_title
 }
 
 /* -------- Box management -------- */
@@ -273,32 +273,32 @@ body {
         justify-content: space-evenly;
         align-items: center;
         @include width(75%);
-        .container_list--item {
+        .container_list--title {
             @include height(140px);
             @include width(250px);
             flex-shrink: 0;
         }
         
 /* Box direction */
-        .container_list__direction--left {
-            @include arrows_to_the_left;
+        .container--prev_arrows {
+            @include container--prev_arrows;
             }
-        .container_list__direction--right {
-            @include arrows_to_the_right;
+        .container--next_arrows {
+            @include container--next_arrows;
             }
 
 /* Movies box */
-        .container_list--item:nth-child(2) {
-            @include categories__box_and_hover;
+        .container_list--picture:nth-child(2) {
+            @include categories__boxes_and_hover;
         }
-        .container_list--item:nth-child(3)  {
-            @include categories__box_and_hover;
+        .container_list--title:nth-child(3)  {
+            @include categories__boxes_and_hover;
         }
-        .container_list--item:nth-child(4)  {
-            @include categories__box_and_hover;
+        .container_list--title:nth-child(4)  {
+            @include categories__boxes_and_hover;
         }
-        .container_list--item:nth-child(5)  {
-            @include categories__box_and_hover;
+        .container_list--title:nth-child(5)  {
+            @include categories__boxes_and_hover;
         }
     }
 }

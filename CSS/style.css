@@ -168,14 +168,14 @@ body {
   /* Movies box */
 }
 
-.container .container_list .container_list--item {
+.container .container_list .container_list--title {
   height: 140px;
   width: 250px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
 }
 
-.container .container_list .container_list__direction--left {
+.container .container_list .container--prev_arrows {
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -185,7 +185,7 @@ body {
   margin: 0 15px;
 }
 
-.container .container_list .container_list__direction--left:hover {
+.container .container_list .container--prev_arrows:hover {
   color: #AB060F;
   -webkit-transform: translateX(-5px);
           transform: translateX(-5px);
@@ -193,7 +193,7 @@ body {
   transition: 0.3s ease-out;
 }
 
-.container .container_list .container_list__direction--right {
+.container .container_list .container--next_arrows {
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -203,7 +203,7 @@ body {
   margin: 0 15px;
 }
 
-.container .container_list .container_list__direction--right:hover {
+.container .container_list .container--next_arrows:hover {
   color: #AB060F;
   -webkit-transform: translateX(5px);
           transform: translateX(5px);
@@ -211,7 +211,7 @@ body {
   transition: 0.3s ease-out;
 }
 
-.container .container_list .container_list--item:nth-child(2) {
+.container .container_list .container_list--picture:nth-child(2) {
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -230,13 +230,13 @@ body {
           align-items: center;
 }
 
-.container .container_list .container_list--item:nth-child(2):hover {
+.container .container_list .container_list--picture:nth-child(2):hover {
   border: 3px solid #AB060F;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.container .container_list .container_list--item:nth-child(3) {
+.container .container_list .container_list--title:nth-child(3) {
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -255,13 +255,13 @@ body {
           align-items: center;
 }
 
-.container .container_list .container_list--item:nth-child(3):hover {
+.container .container_list .container_list--title:nth-child(3):hover {
   border: 3px solid #AB060F;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.container .container_list .container_list--item:nth-child(4) {
+.container .container_list .container_list--title:nth-child(4) {
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -280,13 +280,13 @@ body {
           align-items: center;
 }
 
-.container .container_list .container_list--item:nth-child(4):hover {
+.container .container_list .container_list--title:nth-child(4):hover {
   border: 3px solid #AB060F;
   -webkit-box-shadow: none;
           box-shadow: none;
 }
 
-.container .container_list .container_list--item:nth-child(5) {
+.container .container_list .container_list--title:nth-child(5) {
   font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   -webkit-box-shadow: 0px 3px 3px 3px #505050;
@@ -305,7 +305,7 @@ body {
           align-items: center;
 }
 
-.container .container_list .container_list--item:nth-child(5):hover {
+.container .container_list .container_list--title:nth-child(5):hover {
   border: 3px solid #AB060F;
   -webkit-box-shadow: none;
           box-shadow: none;
