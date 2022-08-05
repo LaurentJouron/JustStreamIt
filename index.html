@@ -23,11 +23,26 @@
             </nav>
         </header>
 
+<!-- Modal windows -->
+        <div class="modal-container">
+            <div class="overlay modal-trigger"></div>
+            <div class="modal" role="dialog" aria-labelleby="modal_title">
+            <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+            <h1 id="modal_title"></h1>
+            <h4 id="modal_score"></h4>
+            <h4 id="modal_year"></h4>
+            <h4 id="modal_directors"></h4>
+            <h4 id="modal_actors"></h4>
+            <h4 id="modal_genres"></h4>
+            </div>
+        </div>
+
 <!-- Categorie movie presentation -->
         <section id="best_movie">
             <img src="" class="best_movie--picture" alt="picture"></img>
             <h1 class="best_movie--title" alt="title"></h1>
-            <button class="best_movie--play" type="button" alt="read information">Play ▶</button>
+            <button class="best_movie--play" type="button">Play ▶</button>
+            <button class="best_movie--info modal-trigger" type="button" alt="read information">More info</button>
         </section>
 
 <!-- Categorie top rated -->
@@ -36,14 +51,10 @@
             <div class="container">
                 <div class="container_list">
                     <button class="container--prev_arrows" type="button">◀</button>
-                    <!-- <div class="container_list--title"></div> -->
                     <img src="" class="container_list--picture"></img>
                     <img src="" class="container_list--picture"></img>
                     <img src="" class="container_list--picture"></img>
                     <img src="" class="container_list--picture"></img>
-                    <div class="container_list--title">2</div>
-                    <div class="container_list--title">3</div>
-                    <div class="container_list--title">4</div>
                     <button class="container--next_arrows" type="button">▶</button>
                 </div>
             </div>
@@ -51,7 +62,7 @@
 
 <!-- Categorie first category -->     
         <section id="first_categorie">
-            <h1 class="categorie--title">Catégorie 1</h1>
+            <h1 class="categorie--title"></h1>
             <div class="container">
                 <div class="container_list">
                     <button class="container--prev_arrows" type="button">◀</button>
@@ -66,7 +77,7 @@
 
 <!-- Categorie second category -->     
         <section id="second_categorie">
-            <h1 class="categorie--title">Catégorie 2</h1>
+            <h1 class="categorie--title"></h1>
             <div class="container">
                 <div class="container_list">
                     <button class="container--prev_arrows" type="button">◀</button>
@@ -81,14 +92,14 @@
 
 <!-- Categorie third category -->     
         <section id="third_categorie">
-            <h1 class="categorie--title">Catégorie 3</h1>
+            <h1 class="categorie--title"></h1>
             <div class="container">
                 <div class="container_list">
                     <button class="container--prev_arrows" type="button">◀</button>
-                    <div class="container_list--title">1</div>
-                    <div class="container_list--title">2</div>
-                    <div class="container_list--title">3</div>
-                    <div class="container_list--title">4</div>
+                    <div class="container_list--title"></div>
+                    <div class="container_list--title"></div>
+                    <div class="container_list--title"></div>
+                    <div class="container_list--title"></div>
                     <button class="container--next_arrows" type="button">▶</button>
                 </div>
             </div>

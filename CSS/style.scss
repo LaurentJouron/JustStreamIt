@@ -86,15 +86,16 @@ $small_border: 3px;
     @include letter_spacing(2px);
     cursor: pointer;
     display: flexbox;
+    min-width: 150px;
     @include padding(15px 50px);
     @include border_radius(50px);
     @include margin(10px 0 0 50px);
+    @include transition_transform();
 }
 @mixin best_movie__play--hover {
-    @include font_size($play_font_size);
+    @include transition_transform();
     border: none;
-    font-weight: bold;
-    box-shadow: 2px 2px 2px 2px $play_button;
+    box-shadow: 1px 1px 1px 1px $play_button;
 }
 @mixin button_and_hover {
     @include best_movie--play;
@@ -249,14 +250,17 @@ body {
             @include height(286px);
             display: inline-block;
             justify-content: flex-end;
-            @include border_radius(13px);
-            // background-repeat: no-repeat;
-            // background-size: cover;
-            // background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-    }
+            @include border_radius(0 13px 13px 0);
+            position: absolute;
+            margin-left: 956.8px;
+   }
         .best_movie--play {
             @include button_and_hover;
     }
+        .best_movie--info {
+            @include button_and_hover;
+    }
+
 }
 
 /* ------- Category titles -------- */
@@ -307,3 +311,74 @@ body {
 footer {
     @include footer;
 }
+
+/* --------- Modal windows -------- */
+.modal-container {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transition: visibility 0.4s;
+  }
+  .modal-container.active {
+    visibility: visible;
+  }
+  .overlay {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #333333d3;
+    transition: opacity 0.4s 0.2s ease-out;
+  }
+  .modal-container.active .overlay {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+  }
+  .modal {
+    opacity: 0;
+    width: 95%;
+    max-width: 500px;
+    min-width: 300px;
+    padding: 30px;
+    background: #fff;
+    border-radius: 5px;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, calc(-50% - 50px));
+    transition: opacity 0.4s ease-out,
+    transform 0.4s ease-out;
+  }
+  .modal-container.active .modal {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.4s 0.2s ease-out,
+    transform 0.4s 0.2s ease-out;
+  }
+  .close-modal {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    background: #AB060F;
+    color: #fff;
+  }
+  .modal h1 {
+    margin-bottom: 10px;
+    @include font_family();
+    font-weight: 500;
+  }
+  .modal h4 {
+    margin-bottom: 10px;
+    @include font_size(20px);
+  }
+  .modal p {
+    line-height: 1.4;
+    margin-bottom: 5px;
+  }
