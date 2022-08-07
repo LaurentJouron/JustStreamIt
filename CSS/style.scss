@@ -4,6 +4,7 @@ $background_nav_bar: #505050;
 $background_color_files: #969696;
 $border_boxes: #28282B;
 $play_button: #AB060F;
+$overlay: #333333d3;
 
 /* ---------- VAR SIZE ----------- */
 $play_font_size: 26px;
@@ -21,6 +22,7 @@ $small_border: 3px;
 @mixin text_shadow($color) {text-shadow: $color 8px 0 10px;}
 @mixin letter_spacing($spacing) {letter-spacing: $spacing;}
 @mixin text_align($align) {text-align: $align;}
+@mixin font_weight($weight) {font-weight: $weight;}
 
 @mixin height($height) {height: $height;}
 @mixin width($width) {width: $width;}
@@ -74,7 +76,7 @@ $small_border: 3px;
     @include text_shadow($background_nav_bar);
     @include padding_top(20px);
     @include padding_left(30px);
-    display: inline;
+    display: flexbox;
 }
 
 /* Play button in movie box header */
@@ -89,7 +91,7 @@ $small_border: 3px;
     min-width: 150px;
     @include padding(15px 50px);
     @include border_radius(50px);
-    @include margin(10px 0 0 50px);
+    @include margin(70px 0 0 50px);
     @include transition_transform();
 }
 @mixin best_movie__play--hover {
@@ -124,9 +126,6 @@ $small_border: 3px;
     @include box_shadow($background_nav_bar);
     @include border_radius(15px);
     border: 3px solid $border_boxes;
-    background-image: linear-gradient(to right, rgba(207, 207, 240, 1), rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
     justify-content: flex-start;
     align-items: center;
 }
@@ -259,6 +258,7 @@ body {
     }
         .best_movie--info {
             @include button_and_hover;
+            @include background($border_boxes);
     }
 
 }
@@ -272,38 +272,19 @@ body {
 .container {
     display: flex;
     justify-content: center;
+    .container--prev_arrows {
+        @include container--prev_arrows;
+        }
     .container_list {
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         @include width(75%);
-        .container_list--title {
-            @include height(140px);
-            @include width(250px);
-            flex-shrink: 0;
-        }
-        
-/* Box direction */
-        .container--prev_arrows {
-            @include container--prev_arrows;
-            }
-        .container--next_arrows {
-            @include container--next_arrows;
-            }
-
-/* Movies box */
-        .container_list--picture:nth-child(2) {
-            @include categories__boxes_and_hover;
-        }
-        .container_list--title:nth-child(3)  {
-            @include categories__boxes_and_hover;
-        }
-        .container_list--title:nth-child(4)  {
-            @include categories__boxes_and_hover;
-        }
-        .container_list--title:nth-child(5)  {
-            @include categories__boxes_and_hover;
-        }
+    .container_list img {
+        @include categories__boxes_and_hover;}
+    }
+    .container--next_arrows {
+        @include container--next_arrows;
     }
 }
 
@@ -317,8 +298,8 @@ footer {
     visibility: hidden;
     position: fixed;
     top: 0;
-    width: 100vw;
-    height: 100vh;
+    @include width(100vw);
+    @include height(100vh);
     transition: visibility 0.4s;
   }
   .modal-container.active {
@@ -327,9 +308,9 @@ footer {
   .overlay {
     opacity: 0;
     position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #333333d3;
+    @include width(100%);
+    @include height(100%);
+    @include background($overlay);
     transition: opacity 0.4s 0.2s ease-out;
   }
   .modal-container.active .overlay {
@@ -342,7 +323,7 @@ footer {
     max-width: 500px;
     min-width: 300px;
     padding: 30px;
-    background: #fff;
+    @include background($nav_font_color);
     border-radius: 5px;
     position: absolute;
     top: 40%;
@@ -361,24 +342,20 @@ footer {
     padding: 8px 10px;
     border: none;
     border-radius: 5px;
-    font-size: 18px;
+    @include font-weight(18px);
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
-    background: #AB060F;
-    color: #fff;
+    @include background($play_button);
+    @include font_color($nav_font_color);
   }
   .modal h1 {
-    margin-bottom: 10px;
+    @include margin_bottom(10px);
     @include font_family();
-    font-weight: 500;
+    @include font-weight(500);
   }
   .modal h4 {
-    margin-bottom: 10px;
+    @include margin_bottom(10px);
     @include font_size(20px);
-  }
-  .modal p {
-    line-height: 1.4;
-    margin-bottom: 5px;
   }

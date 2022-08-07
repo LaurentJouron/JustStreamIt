@@ -96,7 +96,7 @@ body {
   text-shadow: #505050 8px 0 10px;
   padding-top: 20px;
   padding-left: 30px;
-  display: inline;
+  display: flexbox;
 }
 
 #best_movie .best_movie--picture {
@@ -122,7 +122,7 @@ body {
   min-width: 150px;
   padding: 15px 50px;
   border-radius: 50px;
-  margin: 10px 0 0 50px;
+  margin: 70px 0 0 50px;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
@@ -146,9 +146,10 @@ body {
   min-width: 150px;
   padding: 15px 50px;
   border-radius: 50px;
-  margin: 10px 0 0 50px;
+  margin: 70px 0 0 50px;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
+  background: #28282B;
 }
 
 #best_movie .best_movie--info:hover {
@@ -182,6 +183,24 @@ body {
           justify-content: center;
 }
 
+.container .container--prev_arrows {
+  font-size: 40px;
+  color: #28282B;
+  color: #28282B, 3px solid;
+  background: none;
+  display: flexbox;
+  border: none;
+  margin: 0 15px;
+}
+
+.container .container--prev_arrows:hover {
+  color: #AB060F;
+  -webkit-transform: translateX(-5px);
+          transform: translateX(-5px);
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+}
+
 .container .container_list {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -193,18 +212,30 @@ body {
       -ms-flex-align: center;
           align-items: center;
   width: 75%;
-  /* Box direction */
-  /* Movies box */
 }
 
-.container .container_list .container_list--title {
-  height: 140px;
-  width: 250px;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+.container .container_list .container_list img {
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
+  color: #28282B;
+  -webkit-box-shadow: 0px 3px 3px 3px #505050;
+          box-shadow: 0px 3px 3px 3px #505050;
+  border-radius: 15px;
+  border: 3px solid #28282B;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.container .container_list .container--prev_arrows {
+.container .container_list .container_list img:hover {
+  border: 3px solid #AB060F;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.container .container--next_arrows {
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -214,130 +245,12 @@ body {
   margin: 0 15px;
 }
 
-.container .container_list .container--prev_arrows:hover {
-  color: #AB060F;
-  -webkit-transform: translateX(-5px);
-          transform: translateX(-5px);
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
-}
-
-.container .container_list .container--next_arrows {
-  font-size: 40px;
-  color: #28282B;
-  color: #28282B, 3px solid;
-  background: none;
-  display: flexbox;
-  border: none;
-  margin: 0 15px;
-}
-
-.container .container_list .container--next_arrows:hover {
+.container .container--next_arrows:hover {
   color: #AB060F;
   -webkit-transform: translateX(5px);
           transform: translateX(5px);
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-}
-
-.container .container_list .container_list--picture:nth-child(2) {
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-  color: #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  border-radius: 15px;
-  border: 3px solid #28282B;
-  background-image: -webkit-gradient(linear, left top, right top, from(#cfcff0), to(rgba(207, 207, 240, 0))), url(../src/index/fight-club.jpg);
-  background-image: linear-gradient(to right, #cfcff0, rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .container_list .container_list--picture:nth-child(2):hover {
-  border: 3px solid #AB060F;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.container .container_list .container_list--title:nth-child(3) {
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-  color: #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  border-radius: 15px;
-  border: 3px solid #28282B;
-  background-image: -webkit-gradient(linear, left top, right top, from(#cfcff0), to(rgba(207, 207, 240, 0))), url(../src/index/fight-club.jpg);
-  background-image: linear-gradient(to right, #cfcff0, rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .container_list .container_list--title:nth-child(3):hover {
-  border: 3px solid #AB060F;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.container .container_list .container_list--title:nth-child(4) {
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-  color: #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  border-radius: 15px;
-  border: 3px solid #28282B;
-  background-image: -webkit-gradient(linear, left top, right top, from(#cfcff0), to(rgba(207, 207, 240, 0))), url(../src/index/fight-club.jpg);
-  background-image: linear-gradient(to right, #cfcff0, rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .container_list .container_list--title:nth-child(4):hover {
-  border: 3px solid #AB060F;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.container .container_list .container_list--title:nth-child(5) {
-  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
-  color: #28282B;
-  -webkit-box-shadow: 0px 3px 3px 3px #505050;
-          box-shadow: 0px 3px 3px 3px #505050;
-  border-radius: 15px;
-  border: 3px solid #28282B;
-  background-image: -webkit-gradient(linear, left top, right top, from(#cfcff0), to(rgba(207, 207, 240, 0))), url(../src/index/fight-club.jpg);
-  background-image: linear-gradient(to right, #cfcff0, rgba(207, 207, 240, 0)), url(../src/index/fight-club.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.container .container_list .container_list--title:nth-child(5):hover {
-  border: 3px solid #AB060F;
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 /* ------------ Footer ------------ */
@@ -398,7 +311,7 @@ footer #imgCopy {
   max-width: 500px;
   min-width: 300px;
   padding: 30px;
-  background: #fff;
+  background: #f1f1f1;
   border-radius: 5px;
   position: absolute;
   top: 40%;
@@ -425,13 +338,13 @@ footer #imgCopy {
   padding: 8px 10px;
   border: none;
   border-radius: 5px;
-  font-size: 18px;
+  font-weight: 18px;
   position: absolute;
   top: 10px;
   right: 10px;
   cursor: pointer;
   background: #AB060F;
-  color: #fff;
+  color: #f1f1f1;
 }
 
 .modal h1 {
@@ -443,10 +356,5 @@ footer #imgCopy {
 .modal h4 {
   margin-bottom: 10px;
   font-size: 20px;
-}
-
-.modal p {
-  line-height: 1.4;
-  margin-bottom: 5px;
 }
 /*# sourceMappingURL=style.css.map */

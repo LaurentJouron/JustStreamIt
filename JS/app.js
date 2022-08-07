@@ -2,19 +2,6 @@
 const bestMoviePicture = document.querySelector('.best_movie--picture');
 const bestMovieTitle = document.querySelector('.best_movie--title');
 
-// Categorie boxes
-const topRated = document.getElementById('top_rated')
-const firstCategorie = document.getElementById('first_categorie')
-const secondCategorie = document.getElementById('second_categorie')
-const thirdCategorie = document.getElementById('third_categorie')
-const containerListTitle = document.querySelector(".container_list--title");
-const containerListPicture = document.querySelector(".container_list--picture");
-const categorieTitle = document.querySelector(".categorie--title");
-
-// Arrows direction
-const containerPrevArrows = document.querySelector(".container--prev_arrows");
-const containerNextArrows = document.querySelector(".container--next_arrows");
-
 // Modal windows
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -24,6 +11,19 @@ const modalYear = document.getElementById('modal_year')
 const modalDirectors = document.getElementById('modal_directors')
 const modalActors = document.getElementById('modal_actors')
 const modalGenres = document.getElementById('modal_genres')
+
+// Categorie boxes
+const topRated = document.getElementById('top_rated')
+const firstCategorie = document.getElementById('first_categorie')
+const secondCategorie = document.getElementById('second_categorie')
+const thirdCategorie = document.getElementById('third_categorie')
+const containerListTitle = document.querySelector(".container_list--title");
+const containerList = document.querySelector(".container_list");
+const categorieTitle = document.querySelector(".categorie--title");
+
+// Arrows direction
+const containerPrevArrows = document.querySelector(".container--prev_arrows");
+const containerNextArrows = document.querySelector(".container--next_arrows");
 
 // Categorie movie presentation
 fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.6&genre=Comedy`)
@@ -40,15 +40,13 @@ fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.6&genre=Comedy`)
         bestMovieTitle.textContent = movieTitle;
         bestMoviePicture.src = moviePicture;
 
-        modalTitle.textContent = movieTitle;
+        modalTitle.textContent = "Title: " + movieTitle;
         modalScore.textContent = "Score: " + movieScore;
         modalYear.textContent = "Year: " + movieYear;
         modalDirectors.textContent = "Directors: " + movieDirectors;
         modalActors.textContent = "Actors: " + movieActors;
         modalGenres.textContent = "Genres: " + movieGenre;
         })
-    } else {
-        bestMovieTitle.textContent = "Error";
     }
 })
 
@@ -66,12 +64,11 @@ fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
         for(let i = 0; i < 4; i++) {
-        let moviePicture = data.results[i].image_url;
-        containerListPicture.src = moviePicture;
+            let newPicture = document.createElement('img');
+            newPicture.src = data.results[i].image_url;
+            containerList.appendChild(newPicture);
         }
         })
-    } else {
-        containerListTitle.innerHTML = "Error";
     }
 })
 
