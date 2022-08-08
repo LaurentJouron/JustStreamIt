@@ -40,6 +40,7 @@ fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.6&genre=Comedy`)
         bestMovieTitle.textContent = movieTitle;
         bestMoviePicture.src = moviePicture;
 
+        let newH4 = document.createElement('h4');
         modalTitle.textContent = "Title: " + movieTitle;
         modalScore.textContent = "Score: " + movieScore;
         modalYear.textContent = "Year: " + movieYear;
@@ -63,7 +64,10 @@ function toggleModal() {
 fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
-        for(let i = 0; i < 4; i++) {
+        for(let i = 0; i < 7; i++) {
+            const newDiv = document.createElement('div');
+            newDiv.className = 'container_list';
+
             let newPicture = document.createElement('img');
             newPicture.src = data.results[i].image_url;
             containerList.appendChild(newPicture);
