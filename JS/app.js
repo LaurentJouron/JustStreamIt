@@ -5,18 +5,26 @@ const bestMovieTitle = document.querySelector('.best_movie--title');
 // Modal windows
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
-const modalTitle = document.getElementById('modal_title')
-const modalScore = document.getElementById('modal_score')
-const modalYear = document.getElementById('modal_year')
-const modalDirectors = document.getElementById('modal_directors')
-const modalActors = document.getElementById('modal_actors')
-const modalGenres = document.getElementById('modal_genres')
+
+const modalPicture = document.getElementById('modal_picture');
+const modalTitle = document.getElementById('modal_title');
+const modalGenres = document.getElementById('modal_genres');
+const modalDatePublished = document.getElementById('modal_date_published');
+const modalRated = document.getElementById('rated');
+const modalScore = document.getElementById('modal_score');
+const modalDirectors = document.getElementById('modal_directors');
+const modalActors = document.getElementById('modal_actors');
+const modalDuration = document.getElementById('modal_duration');
+const modalOrigineCountries = document.getElementById('modal_origine_countries');
+const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
+const modalDescription = document.getElementById('modal_Description');
 
 // Categorie boxes
 const topRated = document.getElementById('top_rated')
 const firstCategorie = document.getElementById('first_categorie')
 const secondCategorie = document.getElementById('second_categorie')
 const thirdCategorie = document.getElementById('third_categorie')
+
 const containerListTitle = document.querySelector(".container_list--title");
 const containerList = document.querySelector(".container_list");
 const categorieTitle = document.querySelector(".categorie--title");
@@ -26,28 +34,38 @@ const containerPrevArrows = document.querySelector(".container--prev_arrows");
 const containerNextArrows = document.querySelector(".container--next_arrows");
 
 // Categorie movie presentation
-fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.6&genre=Comedy`)
+fetch(`http://localhost:8000/api/v1/titles/8571428`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
-        let movieTitle = data.results[0].title;
-        let moviePicture = data.results[0].image_url;
-        let movieScore = data.results[0].imdb_score;
-        let movieYear = data.results[0].year;
-        let movieDirectors = data.results[0].directors;
-        let movieActors = data.results[0].actors;
-        let movieGenre = data.results[0].genres;
+        let moviePicture = data.image_url;
+        let movieTitle = data.title;
+        let movieGenre = data.genres;
+        let movieDatePublished = data.date_published;
+        // let movieRated = data.rated;
+        let movieScore = data.imdb_score;
+        let movieDirectors = data.directors;
+        let movieActors = data.actors;
+        // let movieDuration = data.duration;
+        let movieOrigineCountries = data.countries;
+        // let movieResultsOfBoxOffice = data.;
+        // let movieDescription = data.description;
 
-        bestMovieTitle.textContent = movieTitle;
         bestMoviePicture.src = moviePicture;
+        bestMovieTitle.textContent = movieTitle;
 
-        let newH4 = document.createElement('h4');
+        modalPicture.src = moviePicture;
         modalTitle.textContent = "Title: " + movieTitle;
+        modalGenres.textContent = "Genres: " + movieGenre;
+        modalDatePublished.textContent = "Date published: " + movieDatePublished;
+        // modalRated.textContent = "Rated: " + modalRated;
         modalScore.textContent = "Score: " + movieScore;
-        modalYear.textContent = "Year: " + movieYear;
         modalDirectors.textContent = "Directors: " + movieDirectors;
         modalActors.textContent = "Actors: " + movieActors;
-        modalGenres.textContent = "Genres: " + movieGenre;
-        })
+        // modalDuration.textContent = "Duration: " + modalDuration;
+        modalOrigineCountries.textContent = "Countrie: " + movieOrigineCountries;
+        // modalResultsOfBoxOffice.textContent = "Box Office: " + movieResultsOfBoxOffice;
+        // modalDescription.textContent = "Description: " + movieDescription;    
+    })
     }
 })
 
@@ -64,7 +82,7 @@ function toggleModal() {
 fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
-        for(let i = 0; i < 7; i++) {
+        for(let i = 0; i < 5; i++) {
             const newDiv = document.createElement('div');
             newDiv.className = 'container_list';
 

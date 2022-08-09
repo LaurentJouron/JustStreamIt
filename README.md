@@ -68,7 +68,51 @@ __________
 
 <h1 align="center">Unsallation of the API</h1>
 
-After downloading or cloning the proget follow the instructions in the OC_Movies API ReadMe.
+This locally-executable API can be installed and executed from 
+[http://localhost:8000/api/v1/titles/](http://localhost:8000/api/v1/titles/) using the following steps.
+
+### Option 1: Installation and execution with pipenv
+
+For this method, it is necessary to have pipenv already installed on your python installation. 
+If pipenv is not already installed on your computer, refer to [this page](docs/pipenv/installation-en.md).
+
+1. Clone this repository using `$ git clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git`
+(you can also download the code using [as a zip file](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR/archive/refs/heads/master.zip))
+2. Move to the ocmovies-api root folder with `$ cd ocmovies-api-en`
+3. Install project dependencies with `pipenv install` 
+4. Create and populate project database with `pipenv run python manage.py create_db`
+5. Run the server with `pipenv run python manage.py runserver`
+
+When the server is running after step 5 of the procedure, the OCMovies API can
+be requested from endpoints starting with the following base URL: 
+[http://localhost:8000/api/v1/](http://localhost:8000/api/v1/titles/).
+
+Steps 1-4 are only required for initial installation. For subsequent launches
+of the API, you only have to execute step 5 from the root folder of the project.
+
+### Option 2: Installation and execution without pipenv (using venv and pip)
+
+1. Clone this repository using 
+`$ git clone clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git`
+(you can also download the code using 
+2. [as a zip file](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR/archive/refs/heads/master.zip))
+3. Move to the ocmovies-api root folder with `$ cd ocmovies-api-en`
+4. Create a virtual environment for the project with `$ py -m venv env` 
+on windows or `$ python3 -m venv env` on macos or linux.
+5. Activate the virtual environment with `$ env\Scripts\activate` on windows or 
+6. `$ source env/bin/activate` on macos or linux.
+7. Install project dependencies with `$ pip install -r requirements.txt`
+8. Create and populate the project database with `$ python manage.py create_db`
+9. Run the server with `$ python manage.py runserver`
+
+When the server is running after step 7 of the procedure, the OCMovies API can be requested from endpoints starting 
+with the following base URL: http://localhost:8000/api/v1/titles/.
+
+Steps 1-3 and 5-6 are only required for initial installation. For subsequent launches of the API, 
+you only have to execute steps 4 and 7 from the root folder of the project.
+
+Attached is the complete API README
+
 <table>
   <tr>
     <td align="center">
@@ -112,7 +156,7 @@ To make the CSS I used the SASS compiler.
       <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">
         <img width="90px"
           src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400__340.png" /><br />
-        <sub><b>JavaScript</sub></a><br />
+        <sub><b>JavaScript</b></sub></a><br />
       <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" title="JavaScript" ></a> 
     </td>
   </tr>
@@ -122,7 +166,7 @@ ___________
 <h1 align="center">EDI</h1>
 When I use HTML, CSS or JavaScript, I have a preference for Visual studio code and its Emmet extension.
 
-https://code.visualstudio.com/docs/editor/emmet
+[Doc Emmet](https://code.visualstudio.com/docs/editor/emmet)
 
 <table>
   <tr>
@@ -226,7 +270,55 @@ __________
 
 <h1 align="center">Insallation de l'API</h1>
 
-Après avoir télécharger ou cloner le proget suivez les instruction du ReadMe de l'API OC_Movies.
+Cette API exécutable localement peut être installée en suivant les étapes décrites ci-dessous.
+L'usage de pipenv est recommandé, mais des instuctions utilisant venv et pip sont également fournies plus bas.
+Si pipenv n'est pas encore installé sur votre ordinateur, vous trouverez des instuctions d'installation détaillées
+[sur cette page](docs/pipenv/installation-fr.md).
+
+### Installation et exécution de l'application avec pipenv
+
+1. Cloner ce dépôt de code à l'aide de la commande `$ git clone clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git` 
+(vous pouvez également télécharger le code [en temps qu'archive zip](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR/archive/refs/heads/master.zip))
+2. Rendez-vous depuis un terminal à la racine du répertoire ocmovies-api-fr avec la commande `$ cd ocmovies-api-fr`
+3. Installez les dépendances du projet à l'aide de la commande `pipenv install` 
+4. Créer et alimenter la base de données à l'aide de la commande `pipenv run python manage.py create_db`
+5. Démarrer le serveur avec `pipenv run python manage.py runserver`
+
+Lorsque le serveur fonctionne, après l'étape 5 de la procédure, l'API OCMovies peut 
+être interrogée à partir des points d'entrée commençant par l'url de base 
+[http://localhost:8000/api/v1/](http://localhost:8000/api/v1/). 
+Le point d'entrée principal permettant de consulter les films est 
+[http://localhost:8000/api/v1/titles](http://localhost:8000/api/v1/titles/).
+Si vous accédez à cette url depuis un navigateur, ce dernier vous présentera une interface naviguable 
+servant de documentation et de laboratoire d'expériementation.
+
+Les étapes 1 à 4 ne sont requises que pout l'installation initiale.
+Pour les lancements ultérieurs du serveur de l'API, il suffit d'exécuter l'étape 5 à partir du répertoire racine du projet.
+
+### Installation et exécution de l'application sans pipenv (avec venv et pip)
+
+1. Cloner ce dépôt de code à l'aide de la commande 
+`$ git clone clone https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR.git` 
+ (vous pouvez également télécharger le code [en temps qu'archive zip](https://github.com/OpenClassrooms-Student-Center/OCMovies-API-EN-FR/archive/refs/heads/master.zip))
+2. Rendez-vous depuis un terminal à la racine du répertoire ocmovies-api-fr avec la commande `$ cd ocmovies-api-fr`
+3. Créer un environnement virtuel pour le projet avec `$ python -m venv env` sous windows ou 
+`$ python3 -m venv env` sous macos ou linux.
+4. Activez l'environnement virtuel avec `$ env\Scripts\activate` sous windows ou `$ source env/bin/activate` 
+sous macos ou linux.
+5. Installez les dépendances du projet avec la commande `$ pip install -r requirements.txt`
+6. Créer et alimenter la base de données avec la commande `$ python manage.py create_db`
+7. Démarrer le serveur avec `$ python manage.py runserver`
+
+Lorsque le serveur fonctionne, après l'étape 7 de la procédure, l'API OCMovies peut être interrogée à partir des points 
+d'entrée commençant par l'url de base [http://localhost:8000/api/v1/](http://localhost:8000/api/v1/). 
+Le point d'entrée principal permettant de consulter les films est [http://localhost:8000/api/v1/titles](http://localhost:8000/api/v1/titles/).
+Si vous accédez à cette url depuis un navigateur, ce dernier vous présentera une interface naviguable servant de 
+documentation et de laboratoire d'expériementation.
+Les étapes 1 à 6 ne sont requises que pout l'installation initiale.
+Pour les lancements ultérieurs du serveur de l'API, il suffit d'exécuter les étapes 4 et 7 à partir du répertoire 
+racine du projet.
+
+Ci-joint le README complet de l'API
 <table>
   <tr>
     <td align="center">
@@ -270,7 +362,7 @@ Pour réaliser le CSS j'ai utilisé le compilateur SASS.
       <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">
         <img width="90px"
           src="https://cdn.pixabay.com/photo/2015/04/23/17/41/javascript-736400__340.png" /><br />
-        <sub><b>JavaScript</sub></a><br />
+        <sub><b>JavaScript</b></sub></a><br />
       <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript" title="JavaScript" ></a> 
     </td>
   </tr>
@@ -278,9 +370,9 @@ Pour réaliser le CSS j'ai utilisé le compilateur SASS.
 
 ___________
 <h1 align="center">EDI</h1>
-Quand j'utilise HTML, CSS ou JavaScript, j'ai une préférence pour Visual studio code et son extension Emmet. 
+Quand j'utilise HTML, CSS ou JavaScript, j'ai une préférence pour Visual studio code et son extension Emmet.
 
-https://code.visualstudio.com/docs/editor/emmet
+[Doc Emmet](https://code.visualstudio.com/docs/editor/emmet)
 
 <table>
   <tr>
