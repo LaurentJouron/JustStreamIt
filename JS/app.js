@@ -146,12 +146,11 @@ fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
 // Arrows direction
 containerPrevArrows.addEventListener('click', () => {
     containerPrevArrows.getElementsByClassName("container--prev_arrows");
-    move(--currentIndex);
 })
 
 containerNextArrows.addEventListener('click', () => {
     containerNextArrows.getElementsByClassName("container--next_arrows");
-    move(++currentIndex);
+        animate({right: '100px'}, "slow");
 })
 
 
