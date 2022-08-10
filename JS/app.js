@@ -17,7 +17,7 @@ const modalActors = document.getElementById('modal_actors');
 const modalDuration = document.getElementById('modal_duration');
 const modalOrigineCountries = document.getElementById('modal_origine_countries');
 const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
-const modalDescription = document.getElementById('modal_Description');
+const modalDescription = document.getElementById('modal_description');
 
 // Categorie boxes
 const topRated = document.getElementById('top_rated')
@@ -37,34 +37,21 @@ const containerNextArrows = document.querySelector(".container--next_arrows");
 fetch(`http://localhost:8000/api/v1/titles/8571428`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
-        let moviePicture = data.image_url;
-        let movieTitle = data.title;
-        let movieGenre = data.genres;
-        let movieDatePublished = data.date_published;
-        // let movieRated = data.rated;
-        let movieScore = data.imdb_score;
-        let movieDirectors = data.directors;
-        let movieActors = data.actors;
-        // let movieDuration = data.duration;
-        let movieOrigineCountries = data.countries;
-        // let movieResultsOfBoxOffice = data.;
-        // let movieDescription = data.description;
+        modalPicture.src = data.image_url;
+        modalTitle.textContent = "Title: " + data.title;
+        modalGenres.textContent = "Genres: " + data.genres;
+        modalDatePublished.textContent = "Date published: " + data.date_published;
+        modalRated.textContent = "Rated: " + data.rated;
+        modalScore.textContent = "Score: " + data.imdb_score;
+        modalDirectors.textContent = "Directors: " + data.directors;
+        modalActors.textContent = "Actors: " + data.actors;
+        modalDuration.textContent = "Duration: " + data.duration + " min";
+        modalOrigineCountries.textContent = "Countrie: " + data.countries;
+        // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
+        modalDescription.textContent = "Description: " + data.description;
 
-        bestMoviePicture.src = moviePicture;
-        bestMovieTitle.textContent = movieTitle;
-
-        modalPicture.src = moviePicture;
-        modalTitle.textContent = "Title: " + movieTitle;
-        modalGenres.textContent = "Genres: " + movieGenre;
-        modalDatePublished.textContent = "Date published: " + movieDatePublished;
-        // modalRated.textContent = "Rated: " + modalRated;
-        modalScore.textContent = "Score: " + movieScore;
-        modalDirectors.textContent = "Directors: " + movieDirectors;
-        modalActors.textContent = "Actors: " + movieActors;
-        // modalDuration.textContent = "Duration: " + modalDuration;
-        modalOrigineCountries.textContent = "Countrie: " + movieOrigineCountries;
-        // modalResultsOfBoxOffice.textContent = "Box Office: " + movieResultsOfBoxOffice;
-        // modalDescription.textContent = "Description: " + movieDescription;    
+        bestMoviePicture.src = data.image_url;
+        bestMovieTitle.textContent = data.title;
     })
     }
 })
@@ -146,11 +133,12 @@ fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
 // Arrows direction
 containerPrevArrows.addEventListener('click', () => {
     containerPrevArrows.getElementsByClassName("container--prev_arrows");
+    move(--currentIndex);
 })
 
 containerNextArrows.addEventListener('click', () => {
     containerNextArrows.getElementsByClassName("container--next_arrows");
-        animate({right: '100px'}, "slow");
+    move(++currentIndex);
 })
 
 
