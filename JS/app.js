@@ -34,27 +34,28 @@ const containerPrevArrows = document.querySelector(".container--prev_arrows");
 const containerNextArrows = document.querySelector(".container--next_arrows");
 
 // Categorie movie presentation
-fetch(`http://localhost:8000/api/v1/titles/8571428`)
-    .then(response => {if(response.ok) {response.json()
-    .then(data => {
-        modalPicture.src = data.image_url;
-        modalTitle.textContent = "Title: " + data.title;
-        modalGenres.textContent = "Genres: " + data.genres;
-        modalDatePublished.textContent = "Date published: " + data.date_published;
-        modalRated.textContent = "Rated: " + data.rated;
-        modalScore.textContent = "Score: " + data.imdb_score;
-        modalDirectors.textContent = "Directors: " + data.directors;
-        modalActors.textContent = "Actors: " + data.actors;
-        modalDuration.textContent = "Duration: " + data.duration + " min";
-        modalOrigineCountries.textContent = "Countrie: " + data.countries;
-        // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
-        modalDescription.textContent = "Description: " + data.description;
+function modalWindows(modalRequest) {fetch(modalRequest)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            modalPicture.src = data.image_url;
+            modalTitle.textContent = "Title: " + data.title;
+            modalGenres.textContent = "Genres: " + data.genres;
+            modalDatePublished.textContent = "Date published: " + data.date_published;
+            modalRated.textContent = "Rated: " + data.rated;
+            modalScore.textContent = "Score: " + data.imdb_score;
+            modalDirectors.textContent = "Directors: " + data.directors;
+            modalActors.textContent = "Actors: " + data.actors;
+            modalDuration.textContent = "Duration: " + data.duration + " min";
+            modalOrigineCountries.textContent = "Countrie: " + data.countries;
+            // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
+            modalDescription.textContent = "Description: " + data.description;
 
-        bestMoviePicture.src = data.image_url;
-        bestMovieTitle.textContent = data.title;
+            bestMoviePicture.src = data.image_url;
+            bestMovieTitle.textContent = data.title;
+        })
+        }
     })
-    }
-})
+}
 
 // Modal windows
 modalTriggers.forEach((trigger) =>
@@ -65,6 +66,11 @@ function toggleModal() {
     modalContainer.classList.toggle("active")
 }
 
+let modalRequest = `http://localhost:8000/api/v1/titles/2646`
+modalWindows(modalRequest);
+
+// Modale windows with categorie boxe
+
 // Categorie top rated
 fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
     .then(response => {if(response.ok) {response.json()
@@ -74,8 +80,12 @@ fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
             newDiv.className = 'container_list';
 
             let newPicture = document.createElement('img');
+                                
             newPicture.src = data.results[i].image_url;
-            containerList.appendChild(newPicture);
+            containerList.appendChild(newPicture)
+                        .addEventListener("click", toggleModal);
+            let url = data.results[i].url;
+            modalWindows(url);
         }
         })
     }
