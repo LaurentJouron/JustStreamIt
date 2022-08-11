@@ -1,11 +1,4 @@
-// Best movie boxe
-const bestMoviePicture = document.querySelector('.best_movie--picture');
-const bestMovieTitle = document.querySelector('.best_movie--title');
-
 // Modal windows
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
-
 const modalPicture = document.getElementById('modal_picture');
 const modalTitle = document.getElementById('modal_title');
 const modalGenres = document.getElementById('modal_genres');
@@ -19,21 +12,6 @@ const modalOrigineCountries = document.getElementById('modal_origine_countries')
 const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
 const modalDescription = document.getElementById('modal_description');
 
-// Categorie boxes
-const topRated = document.getElementById('top_rated')
-const firstCategorie = document.getElementById('first_categorie')
-const secondCategorie = document.getElementById('second_categorie')
-const thirdCategorie = document.getElementById('third_categorie')
-
-const containerListTitle = document.querySelector(".container_list--title");
-const containerList = document.querySelector(".container_list");
-const categorieTitle = document.querySelector(".categorie--title");
-
-// Arrows direction
-const containerPrevArrows = document.querySelector(".container--prev_arrows");
-const containerNextArrows = document.querySelector(".container--next_arrows");
-
-// Categorie movie presentation
 function modalWindows(modalRequest) {fetch(modalRequest)
         .then(response => {if(response.ok) {response.json()
         .then(data => {
@@ -49,15 +27,14 @@ function modalWindows(modalRequest) {fetch(modalRequest)
             modalOrigineCountries.textContent = "Countrie: " + data.countries;
             // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
             modalDescription.textContent = "Description: " + data.description;
-
-            bestMoviePicture.src = data.image_url;
-            bestMovieTitle.textContent = data.title;
         })
         }
     })
 }
 
-// Modal windows
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");
+
 modalTriggers.forEach((trigger) =>
     trigger.addEventListener("click", toggleModal)
 )
@@ -66,12 +43,28 @@ function toggleModal() {
     modalContainer.classList.toggle("active")
 }
 
-let modalRequest = `http://localhost:8000/api/v1/titles/2646`
-modalWindows(modalRequest);
+
+// Best movie boxe
+const bestMoviePicture = document.querySelector('.best_movie--picture');
+const bestMovieTitle = document.querySelector('.best_movie--title');
+
+let bestMovieRequest = `http://localhost:8000/api/v1/titles/2646`
+function bestMovieBox(bestMovieRequest) {fetch(bestMovieRequest)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            bestMoviePicture.src = data.image_url;
+            bestMovieTitle.textContent = data.title;
+        })
+        }
+    })
+}
+bestMovieBox();
+
 
 // Modale windows with categorie boxe
-
 // Categorie top rated
+const topRated = document.getElementById('top_rated')
+
 fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
@@ -92,6 +85,11 @@ fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
 })
 
 // Categorie first category (Sport)
+const firstCategorie = document.getElementById('first_categorie')
+const containerListTitle = document.querySelector(".container_list--title");
+const containerList = document.querySelector(".container_list");
+const categorieTitle = document.querySelector(".categorie--title");
+
 fetch(`http://localhost:8000/api/v1/titles/?genre=Sport`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
@@ -109,6 +107,8 @@ fetch(`http://localhost:8000/api/v1/titles/?genre=Sport`)
 })
 
 // Categorie second category (Action)
+const secondCategorie = document.getElementById('second_categorie')
+
 fetch(`http://localhost:8000/api/v1/titles/?genre=Action`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
@@ -125,6 +125,8 @@ fetch(`http://localhost:8000/api/v1/titles/?genre=Action`)
 })
 
 // Categorie third category (Adventure)
+const thirdCategorie = document.getElementById('third_categorie')
+
 fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
     .then(response => {if(response.ok) {response.json()
     .then(data => {
@@ -141,6 +143,9 @@ fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
 })
 
 // Arrows direction
+const containerPrevArrows = document.querySelector(".container--prev_arrows");
+const containerNextArrows = document.querySelector(".container--next_arrows");
+
 containerPrevArrows.addEventListener('click', () => {
     containerPrevArrows.getElementsByClassName("container--prev_arrows");
     move(--currentIndex);
