@@ -12,135 +12,140 @@ const modalOrigineCountries = document.getElementById('modal_origine_countries')
 const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
 const modalDescription = document.getElementById('modal_description');
 
-function modalWindows(modalRequest) {fetch(modalRequest)
+// Modale windows with categorie boxe
+// function modalWindows(modalRequest) {fetch(modalRequest)
+//         .then(response => {if(response.ok) {response.json()
+//         .then(data => {
+//             modalPicture.src = data.image_url;
+//             modalTitle.textContent = "Title: " + data.title;
+//             modalGenres.textContent = "Genres: " + data.genres;
+//             modalDatePublished.textContent = "Date published: " + data.date_published;
+//             modalRated.textContent = "Rated: " + data.rated;
+//             modalScore.textContent = "Score: " + data.imdb_score;
+//             modalDirectors.textContent = "Directors: " + data.directors;
+//             modalActors.textContent = "Actors: " + data.actors;
+//             modalDuration.textContent = "Duration: " + data.duration + " min";
+//             modalOrigineCountries.textContent = "Countrie: " + data.countries;
+//             // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
+//             modalDescription.textContent = "Description: " + data.description;
+//         })
+//         }
+//     })
+// }
+
+// const modalContainer = document.querySelector(".modal-container");
+// const modalTriggers = document.querySelectorAll(".modal-trigger");
+
+// modalTriggers.forEach((trigger) =>
+//     trigger.addEventListener("click", toggleModal)
+// )
+
+// function toggleModal() {
+    //     modalContainer.classList.toggle("active")
+    // }
+    
+
+// Title function with args: request, and where he goes in document. 
+function movieTitle(request, movieTitle) {fetch(request)
         .then(response => {if(response.ok) {response.json()
         .then(data => {
-            modalPicture.src = data.image_url;
-            modalTitle.textContent = "Title: " + data.title;
-            modalGenres.textContent = "Genres: " + data.genres;
-            modalDatePublished.textContent = "Date published: " + data.date_published;
-            modalRated.textContent = "Rated: " + data.rated;
-            modalScore.textContent = "Score: " + data.imdb_score;
-            modalDirectors.textContent = "Directors: " + data.directors;
-            modalActors.textContent = "Actors: " + data.actors;
-            modalDuration.textContent = "Duration: " + data.duration + " min";
-            modalOrigineCountries.textContent = "Countrie: " + data.countries;
-            // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
-            modalDescription.textContent = "Description: " + data.description;
+            let title = data.title;
+            movieTitle.textContent = title;
         })
-        }
-    })
+    }})
+}
+// Picture function with args: request, and where he goes in document. 
+function moviePicture(request, moviePicture) {fetch(request)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            let picture = data.image_url;
+            moviePicture.src = picture;
+        })
+    }})
+}
+// Genre of movie function with args: request, and where he goes in document. 
+function movieGenre(request, movieGenre) {fetch(request)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            let genre = data.genres;
+            movieGenre.src = genre;
+        })
+    }})
 }
 
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
-
-modalTriggers.forEach((trigger) =>
-    trigger.addEventListener("click", toggleModal)
-)
-
-function toggleModal() {
-    modalContainer.classList.toggle("active")
+// Loop function for pictures boxes with args: request, and where he goes in document. 
+function request(request, categorie) {fetch(request)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            for(let i = 0; i < 5; i++) {
+                const newDiv = document.createElement('div');
+                newDiv.className = categorie;
+                
+                let newPicture = document.createElement('img');
+                
+                newPicture.src = data.results[i].image_url;
+                containerList.appendChild(newPicture)
+            }
+        })
+    }})
 }
-
 
 // Best movie boxe
 const bestMoviePicture = document.querySelector('.best_movie--picture');
 const bestMovieTitle = document.querySelector('.best_movie--title');
-
 let bestMovieRequest = `http://localhost:8000/api/v1/titles/2646`
-function bestMovieBox(bestMovieRequest) {fetch(bestMovieRequest)
-        .then(response => {if(response.ok) {response.json()
-        .then(data => {
-            bestMoviePicture.src = data.image_url;
-            bestMovieTitle.textContent = data.title;
-        })
-        }
-    })
-}
-bestMovieBox();
+moviePicture(bestMovieRequest, bestMoviePicture);
+movieTitle(bestMovieRequest, bestMovieTitle);
 
-
-// Modale windows with categorie boxe
 // Categorie top rated
-const topRated = document.getElementById('top_rated')
-
-fetch(`http://localhost:8000/api/v1/titles/?imdb_score=9.2`)
-    .then(response => {if(response.ok) {response.json()
-    .then(data => {
-        for(let i = 0; i < 5; i++) {
-            const newDiv = document.createElement('div');
-            newDiv.className = 'container_list';
-
-            let newPicture = document.createElement('img');
-                                
-            newPicture.src = data.results[i].image_url;
-            containerList.appendChild(newPicture)
-                        .addEventListener("click", toggleModal);
-            let url = data.results[i].url;
-            modalWindows(url);
-        }
-        })
-    }
-})
+const topRatedCategorie = document.getElementById('top_rated')
+const topRatedTitle = document.querySelector(".top_rated");
+const topRatedList = 'top_rated'
+const topRatedRequest = `http://localhost:8000/api/v1/titles/?imdb_score=9.2`
+request(topRatedRequest, topRatedList);
 
 // Categorie first category (Sport)
 const firstCategorie = document.getElementById('first_categorie')
-const containerListTitle = document.querySelector(".container_list--title");
-const containerList = document.querySelector(".container_list");
-const categorieTitle = document.querySelector(".categorie--title");
-
-fetch(`http://localhost:8000/api/v1/titles/?genre=Sport`)
-    .then(response => {if(response.ok) {response.json()
-    .then(data => {
-        let categorie = data.results[0].genres;
-        let genre = categorie[categorie.length - 1]
-        
-        let moviePicture = data.results[0].image_url;
-        
-        bestMoviePicture.src = moviePicture;
-        categorieTitle.innerHTML = genre;
-        })
-    } else {
-        bestMovieTitle.innerHTML = "Error";
-    }
-})
+const containerListTitle = document.querySelector(".categorie--title");
+const containerList = document.querySelector(".first_categorie");
+const firstCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Sport`
+request(firstCategorieRequest, containerListTitle);
 
 // Categorie second category (Action)
-const secondCategorie = document.getElementById('second_categorie')
+// const secondCategorie = document.getElementById('second_categorie')
 
-fetch(`http://localhost:8000/api/v1/titles/?genre=Action`)
-    .then(response => {if(response.ok) {response.json()
-    .then(data => {
-        let genre = data.results[0].genres[0];
+// fetch(`http://localhost:8000/api/v1/titles/?genre=Action`)
+//     .then(response => {if(response.ok) {response.json()
+//     .then(data => {
+//         let genre = data.results[0].genres[0];
         
-        let moviePicture = data.results[0].image_url;
+//         let moviePicture = data.results[0].image_url;
         
-        bestMoviePicture.src = moviePicture;
-        categorieTitle.innerHTML = genre;
-        })
-    } else {
-        bestMovieTitle.innerHTML = "Error";
-    }
-})
+//         bestMoviePicture.src = moviePicture;
+//         categorieTitle.innerHTML = genre;
+//         })
+//     } else {
+//         bestMovieTitle.innerHTML = "Error";
+//     }
+// })
 
 // Categorie third category (Adventure)
-const thirdCategorie = document.getElementById('third_categorie')
+// const thirdCategorie = document.getElementById('third_categorie')
 
-fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
-    .then(response => {if(response.ok) {response.json()
-    .then(data => {
-        let genre = data.results[0].genres[0];
+// fetch(`http://localhost:8000/api/v1/titles/?genre=Adventure`)
+//     .then(response => {if(response.ok) {response.json()
+//     .then(data => {
+//         let genre = data.results[0].genres[0];
         
-        let moviePicture = data.results[0].image_url;
+//         let moviePicture = data.results[0].image_url;
         
-        bestMoviePicture.src = moviePicture;
-        categorieTitle.innerHTML = genre;
-        })
-    } else {
-        bestMovieTitle.innerHTML = "Error";
-    }
-})
+//         bestMoviePicture.src = moviePicture;
+//         categorieTitle.innerHTML = genre;
+//         })
+//     } else {
+//         bestMovieTitle.innerHTML = "Error";
+//     }
+// })
 
 // Arrows direction
 const containerPrevArrows = document.querySelector(".container--prev_arrows");
