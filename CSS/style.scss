@@ -76,7 +76,7 @@ $small_border: 3px;
     @include text_shadow($background_nav_bar);
     @include padding_top(20px);
     @include padding_left(30px);
-    display: flexbox;
+    float: left;
 }
 
 /* Play button in movie box header */
@@ -251,7 +251,7 @@ body {
             justify-content: flex-end;
             @include border_radius(0 13px 13px 0);
             position: absolute;
-            margin-left: 956.8px;
+            margin-left: 754px;
    }
         .best_movie--play {
             @include button_and_hover;

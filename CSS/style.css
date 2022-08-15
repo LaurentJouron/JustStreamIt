@@ -96,7 +96,7 @@ body {
   text-shadow: #505050 8px 0 10px;
   padding-top: 20px;
   padding-left: 30px;
-  display: flexbox;
+  float: left;
 }
 
 #best_movie .best_movie--picture {
@@ -108,7 +108,7 @@ body {
           justify-content: flex-end;
   border-radius: 0 13px 13px 0;
   position: absolute;
-  margin-left: 956.8px;
+  margin-left: 754px;
 }
 
 #best_movie .best_movie--play {
