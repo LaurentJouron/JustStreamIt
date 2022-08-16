@@ -1,30 +1,44 @@
-// Best movie boxe
-function bestMovieBox(request, append) {fetch(request)
+// Fuction to fill the category of best film
+// Title
+function bestBoxeTitle(data, parent) {
+    let newTitle = document.createElement('h1');
+    newTitle.className = 'best_movie--title';
+    newTitle.textContent = data.title;
+    parent.appendChild(newTitle);
+}
+// Picture
+function bestBoxePicture(data, parent) {
+    let newPicture = document.createElement('img');
+    newPicture.className = 'best_movie--picture';
+    newPicture.src = data.image_url;
+    parent.appendChild(newPicture);
+}
+// Play button
+function bestBoxePlayButton(parent) {
+    let newMoreInformation = document.createElement('button');
+    newMoreInformation.className = 'best_movie--play';
+    newMoreInformation.textContent = 'Play ▶';
+    parent.appendChild(newMoreInformation);
+}
+// More information button
+function bestBoxeMoreInformation(parent) {
+    let newPlay = document.createElement('button');
+    newPlay.className = 'best_movie--info modal-trigger';
+    newPlay.textContent = 'More info';
+    parent.appendChild(newPlay);
+}
+// Fuction calling functions to display the best movie data
+function bestMovieBox(request, parent) {fetch(request)
         .then(response => {if(response.ok) {response.json()
         .then(data => {
             // Title of the best movie
-            let newTitle = document.createElement('h1');
-            newTitle.className = 'best_movie--title';
-            newTitle.textContent = data.title;
-            append.appendChild(newTitle);
-
+            bestBoxeTitle(data, parent);
             // Picture of the best movie
-            let newPicture = document.createElement('img');
-            newPicture.className = 'best_movie--picture';
-            newPicture.src = data.image_url;
-            append.appendChild(newPicture);
-
-            // Information button of the best movie
-            let newMoreInformation = document.createElement('button');
-            newMoreInformation.className = 'best_movie--play';
-            newMoreInformation.textContent = 'Play ▶';
-            append.appendChild(newMoreInformation);
-
+            bestBoxePicture(data, parent);
+            // More information button of the best movie
+            bestBoxePlayButton(parent);
             // Play button of the best movie
-            let newPlay = document.createElement('button');
-            newPlay.className = 'best_movie--info modal-trigger';
-            newPlay.textContent = 'More info';
-            append.appendChild(newPlay);
+            bestBoxeMoreInformation(parent);
         })
     }})
 }
@@ -32,25 +46,65 @@ const bestMovieRequest = `http://localhost:8000/api/v1/titles/2646`
 const bestMovieId = document.getElementById('best_movie')
 bestMovieBox(bestMovieRequest, bestMovieId)
 
+// CATEGORIES
+// Fuction to call the title of each category
+function categorieTitle(data, parent){
+    let newCategorieTitle = document.createElement('h1');
+    newCategorieTitle.className = 'categorie--title';
+    newCategorieTitle.textContent = data.results[0].genres[0];
+    parent.appendChild(newCategorieTitle);
+}
+
+function previewsArrows(parent) {
+    let newPreviewArrows= document.createElement('button');
+    newPreviewArrows.className = 'container--prev_arrows';
+    newPreviewArrows.textContent = '◀';
+    parent.appendChild(newPreviewArrows);
+}
+
+function nextArrows(parent) {
+    let newNextArrows= document.createElement('button');
+    newNextArrows.className = 'container--next_arrows';
+    newNextArrows.textContent = '▶';
+    parent.appendChild(newNextArrows);
+}
 
 // Function for the movie categorie
-function movieCategorie(request, append) {fetch(request)
+async function getAllPictures(request) {
+    try {
+        let response = await fetch(request)
+            if (response.ok) {
+                let data = await response.json()
+                console.log(data)
+        } else {
+            console.error('Retour du serveur : ', response.status)
+        }
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+function movieCategorie(request, parent) {fetch(request)
     .then(response => {if(response.ok) {response.json()
         .then(data => {
-            // Display the title on top the categorie
-            const newCategorieTitle = document.createElement('h1');
-            newCategorieTitle.className = 'categorie--title';
-            newCategorieTitle.textContent = data.results[0].genres[0];
-            append.appendChild(newCategorieTitle);
+            // Function call to display the title above the category
+            categorieTitle(data, parent);
+    
+            // Div creation for container
+            let newContainerDiv = document.createElement('div');
+            newContainerDiv.className = 'container';
+            parent.appendChild(newContainerDiv);
+    
+            // Add previews arrows
+            previewsArrows(newContainerDiv);
             
             for(let i = 0; i < 5; i++) {
-
-
-                // let newPicture = document.createElement('img');
-                                    
-                // newPicture.src = data.results[i].image_url;
-                // containerList.appendChild(newPicture);
+                let newPicture = document.createElement('img');
+                newPicture.className = 'container_list modal-trigger';      
+                newPicture.src = data.results[i].image_url;
+                newContainerDiv.appendChild(newPicture);
             }
+            nextArrows(newContainerDiv);
         })
     }})
 }
@@ -74,19 +128,19 @@ movieCategorie(thirdRequest, thirdCategorie)
 
 
 
-// Arrows direction
-const containerPrevArrows = document.querySelector(".container--prev_arrows");
-const containerNextArrows = document.querySelector(".container--next_arrows");
+// // Arrows direction
+// const containerPrevArrows = document.querySelector(".container--prev_arrows");
+// const containerNextArrows = document.querySelector(".container--next_arrows");
 
-containerPrevArrows.addEventListener('click', () => {
-    containerPrevArrows.getElementsByClassName("container--prev_arrows");
-    move(--currentIndex);
-})
+// containerPrevArrows.addEventListener('click', () => {
+//     containerPrevArrows.getElementsByClassName("container--prev_arrows");
+//     move(--currentIndex);
+// })
 
-containerNextArrows.addEventListener('click', () => {
-    containerNextArrows.getElementsByClassName("container--next_arrows");
-    move(++currentIndex);
-})
+// containerNextArrows.addEventListener('click', () => {
+//     containerNextArrows.getElementsByClassName("container--next_arrows");
+//     move(++currentIndex);
+// })
 
 
 // Modal windows
