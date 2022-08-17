@@ -1,5 +1,6 @@
-// Fuction to fill the category of best film
-// Title
+/* BEST MOVIE
+    Fuction to fill the category of best film
+    Title */
 function bestBoxeTitle(data, parent) {
     let newTitle = document.createElement('h1');
     newTitle.className = 'best_movie--title';
@@ -33,10 +34,13 @@ function bestMovieBox(request, parent) {fetch(request)
         .then(data => {
             // Title of the best movie
             bestBoxeTitle(data, parent);
+
             // Picture of the best movie
             bestBoxePicture(data, parent);
+
             // More information button of the best movie
             bestBoxePlayButton(parent);
+
             // Play button of the best movie
             bestBoxeMoreInformation(parent);
         })
@@ -63,25 +67,10 @@ function previewsArrows(parent) {
 }
 
 function nextArrows(parent) {
-    let newNextArrows= document.createElement('button');
+    let newNextArrows = document.createElement('button');
     newNextArrows.className = 'container--next_arrows';
     newNextArrows.textContent = '▶';
     parent.appendChild(newNextArrows);
-}
-
-// Function for the movie categorie
-async function getAllPictures(request) {
-    try {
-        let response = await fetch(request)
-            if (response.ok) {
-                let data = await response.json()
-                console.log(data)
-        } else {
-            console.error('Retour du serveur : ', response.status)
-        }
-    } catch (e) {
-        console.log(e)
-    }
 }
 
 function movieCategorie(request, parent) {fetch(request)
@@ -106,6 +95,14 @@ function movieCategorie(request, parent) {fetch(request)
             }
             nextArrows(newContainerDiv);
         })
+    }})  
+}
+function secondURLOfCategorie(request) {fetch(request)
+    .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            let secondAdresse = data.next;
+            return secondAdresse
+        })
     }})
 }
 
@@ -127,22 +124,22 @@ movieCategorie(thirdRequest, thirdCategorie)
 
 
 
-
-// // Arrows direction
+// ARROWS DIRECTION
 // const containerPrevArrows = document.querySelector(".container--prev_arrows");
 // const containerNextArrows = document.querySelector(".container--next_arrows");
 
 // containerPrevArrows.addEventListener('click', () => {
-//     containerPrevArrows.getElementsByClassName("container--prev_arrows");
-//     move(--currentIndex);
-// })
-
+    //     containerPrevArrows.getElementsByClassName("container--prev_arrows");
+    //     move(--currentIndex);
+    // })
+    
 // containerNextArrows.addEventListener('click', () => {
-//     containerNextArrows.getElementsByClassName("container--next_arrows");
-//     move(++currentIndex);
-// })
-
-
+    //     containerNextArrows.getElementsByClassName("container--next_arrows");
+    //     move(++currentIndex);
+    // })
+        
+        
+// MODAL
 // Modal windows
 // const modalPicture = document.getElementById('modal_picture');
 // const modalTitle = document.getElementById('modal_title');
@@ -198,3 +195,39 @@ movieCategorie(thirdRequest, thirdCategorie)
 //  return genre[categorie];
 // }
 // categorie = getRandomCategorie()
+
+
+// Function for the movie categorie
+// async function movieCategorie(request, parent) {
+//     try {
+//         let response =  await fetch(request)
+//             if (response.ok) {response.json()
+//                 if (response.ok) {
+//                     let data = await response.json()
+
+//                     // Function call to display the title above the category
+//                     categorieTitle(data, parent);
+
+//                     // Div creation for container
+//                     let newContainerDiv = document.createElement('div');
+//                     newContainerDiv.className = 'container';
+//                     parent.appendChild(newContainerDiv);
+
+//                     // Add previews arrows
+//                     previewsArrows(newContainerDiv);
+
+//                     for(let i = 0; i < 5; i++) {
+//                         let newPicture = document.createElement('img');
+//                         newPicture.className = 'container_list modal-trigger';      
+//                         newPicture.src = data.results[i].image_url;
+//                         newContainerDiv.appendChild(newPicture);
+//                     }
+//                     nextArrows(newContainerDiv);
+//         } else {
+//             console.error('Retour du serveur : ', response.status)
+//         }
+//     }
+//     } catch (e) {
+//         console.error(e)
+//     }
+// }

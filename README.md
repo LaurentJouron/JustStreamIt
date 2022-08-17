@@ -7,7 +7,7 @@ cd C:\Users\l.jouron\PycharmProjects\JustStreamIt\OCMovies
 env\Scripts\activate
 python manage.py runserver
 
-
+env\Scripts\deactivate
 
 <h1 align="center">Welcome to JustStreamIt 👋</h1>
 
