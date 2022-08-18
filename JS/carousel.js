@@ -4,44 +4,52 @@
 
 class Carousel {
     /**
-     * @param {HTMLElement} element 
-     * @param {Object} option 
+     * @param {HTMLElement}
      * @param {object} options.slidesToScroll number of items to scroll through
      * @param {object} options.slidesToVisible number of elements visible in the slide
      */
     constructor (element, options = {}) {
         this.element = element
         this.options = object.assign({}, {
-            slidesToScroll: 1,
+            slidesToScroll: 3,
             slidesToVisible: 4
         }, options)
-        this.children = [].slice.call(element.children)
+         let children = [].slice.call(element.children)
         let root = this.createDivWithClass('carousel')
-        let container = this.createDivWithClass('carousel__container')
-        root.appendChild(container)
+        this.container = this.createDivWithClass('carousel__container')
+        root.appendChild(this.container)
         this.element.appendChild(root)
-        this.children.forEach(function (child) {
-            container.appendChild(child)
+        this.items = children.map((child) => {
+            let item = this.createDivWithClass('carousel__item')
+            item.appendChild(child)
+            container.appendChild(item)
+            return item
         })
     }
     
+    setStyle () {
+        let ratio = this.children.length / this.options.slidesToVisible
+        this.container.style.width = (ratio * 100) + "%"
+        this.items.forEach(item => item.style.width = ((100 / this.options.slidesToVisible) / ratio) + "%")
+            
+        }
+    }
     /**
      * @param {string} 
      * @returns {HTMLElement}
      */
     createDivWithClass (className) {
-        let did = document.createElement('div')
-        dispatchEvent.setAttribute('class', className)
+        let div = document.createElement('div')
+        div.setAttribute('class', className)
         return div
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    new Carousel(document.querySelector('carousel'), {
-        slidesToScroll: 1,
+    new Carousel(document.querySelector('#carousel1'), {
+        slidesToScroll: 3,
         slidesToVisible: 4
     })
-
 })
 
 
