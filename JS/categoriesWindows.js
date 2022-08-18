@@ -1,3 +1,8 @@
+//////////////
+// REQUESTS //
+//////////////
+
+
 ////////////////
 // CATEGORIES //
 ////////////////
@@ -59,18 +64,23 @@ function movieCategorie(request, parent) {fetch(request)
                 newPicture.src = data.results[i].image_url;
                 newContainerDiv.appendChild(newPicture);
             }
-            sideArrows(newContainerDiv, '▶');
+
+        let nextPage = data.next
+            {fetch(nextPage)
+                .then(response => {if(response.ok) {response.json()
+                    .then(data => {
+                        for(let i = 0; i < 2; i++) {
+                            let newPicture = document.createElement('img');
+                            newPicture.className = 'container_list modal-trigger';      
+                            newPicture.src = data.results[i].image_url;
+                            newContainerDiv.appendChild(newPicture);
+                        }
+                        sideArrows(newContainerDiv, '▶');
+                    })
+                }})
+            }
         })
     }})  
-}
-
-function secondURLOfCategorie(request) {fetch(request)
-    .then(response => {if(response.ok) {response.json()
-        .then(data => {
-            let secondAdresse = data.next;
-            return secondAdresse
-        })
-    }})
 }
 
 const topRatedRequest = 'http://localhost:8000/api/v1/titles/?imdb_score=9.2'

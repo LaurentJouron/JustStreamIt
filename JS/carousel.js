@@ -3,18 +3,21 @@
 //////////////
 
 class Carousel {
+
     /**
      * @param {HTMLElement}
      * @param {object} options.slidesToScroll number of items to scroll through
      * @param {object} options.slidesToVisible number of elements visible in the slide
      */
+
     constructor (element, options = {}) {
         this.element = element
         this.options = object.assign({}, {
             slidesToScroll: 3,
             slidesToVisible: 4
         }, options)
-         let children = [].slice.call(element.children)
+        
+        let children = [].slice.call(element.children)
         let root = this.createDivWithClass('carousel')
         this.container = this.createDivWithClass('carousel__container')
         root.appendChild(this.container)
@@ -32,17 +35,17 @@ class Carousel {
         this.container.style.width = (ratio * 100) + "%"
         this.items.forEach(item => item.style.width = ((100 / this.options.slidesToVisible) / ratio) + "%")
             
-        }
     }
-    /**
-     * @param {string} 
-     * @returns {HTMLElement}
-     */
-    createDivWithClass (className) {
-        let div = document.createElement('div')
-        div.setAttribute('class', className)
-        return div
-    }
+}
+
+/**
+ * @param {string} 
+ * @returns {HTMLElement}
+ */
+function createDivWithClass (className) {
+    let div = document.createElement('div')
+    div.setAttribute('class', className)
+    return div
 }
 
 document.addEventListener('DOMContentLoaded', function () {

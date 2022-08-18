@@ -10,7 +10,8 @@
 /* Directional arrows */
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -23,40 +24,54 @@ body {
 /* ---------- Header NAV ---------- */
 #nav {
   background: #505050;
-  box-shadow: 0px 3px 3px 3px #505050;
+  -webkit-box-shadow: 0px 3px 3px 3px #505050;
+          box-shadow: 0px 3px 3px 3px #505050;
   height: 70px;
 }
+
 #nav .nav__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style-type: none;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #nav .nav__list .nav__list--item {
   margin: 0 8px;
 }
+
 #nav .nav__list .nav__list--item:nth-child(1) {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
   font-size: 40px;
   margin-right: auto;
 }
+
 #nav .nav__list .nav__list--item:nth-child(2) a {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
 }
+
 #nav .nav__list .nav__list--item:nth-child(2) a:hover {
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   color: #AB060F;
 }
+
 #nav .nav__list .nav__list--item:nth-child(3) a {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
   margin-right: 30px;
 }
+
 #nav .nav__list .nav__list--item:nth-child(3) a:hover {
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   color: #AB060F;
 }
@@ -65,14 +80,16 @@ body {
 #best_movie {
   width: 92%;
   height: 300px;
-  box-shadow: 0px 3px 3px 3px #505050;
+  -webkit-box-shadow: 0px 3px 3px 3px #505050;
+          box-shadow: 0px 3px 3px 3px #505050;
   border-radius: 20px;
   margin: auto;
   margin-top: 3%;
   border: 7px solid #28282B;
 }
+
 #best_movie .best_movie--title {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   color: #28282B;
   font-size: 50px;
   letter-spacing: 2px;
@@ -81,15 +98,19 @@ body {
   padding-left: 30px;
   float: left;
 }
+
 #best_movie .best_movie--picture {
   width: 20%;
   height: 286px;
   display: inline-block;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   border-radius: 0 13px 13px 0;
   position: absolute;
   margin-left: 754px;
 }
+
 #best_movie .best_movie--play {
   color: #f1f1f1;
   background: #AB060F;
@@ -99,16 +120,21 @@ body {
   padding: 15px 50px;
   border-radius: 50px;
   margin: 70px 0 0 50px;
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   cursor: pointer;
   display: flexbox;
   min-width: 150px;
 }
+
 #best_movie .best_movie--play:hover {
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border: none;
-  box-shadow: 1px 1px 1px 1px #AB060F;
+  -webkit-box-shadow: 1px 1px 1px 1px #AB060F;
+          box-shadow: 1px 1px 1px 1px #AB060F;
 }
+
 #best_movie .best_movie--info {
   color: #f1f1f1;
   background: #AB060F;
@@ -118,21 +144,25 @@ body {
   padding: 15px 50px;
   border-radius: 50px;
   margin: 70px 0 0 50px;
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   cursor: pointer;
   display: flexbox;
   min-width: 150px;
   background: #28282B;
 }
+
 #best_movie .best_movie--info:hover {
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border: none;
-  box-shadow: 1px 1px 1px 1px #AB060F;
+  -webkit-box-shadow: 1px 1px 1px 1px #AB060F;
+          box-shadow: 1px 1px 1px 1px #AB060F;
 }
 
 /* ------- Category titles -------- */
 .categorie--title {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   font-size: 40px;
   color: #28282B;
   color: #28282B, 3px solid;
@@ -145,9 +175,14 @@ body {
 
 /* -------- Box management -------- */
 .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
+
 .container .container--prev_arrows {
   font-size: 40px;
   color: #28282B;
@@ -157,26 +192,40 @@ body {
   border: none;
   margin: 0 15px;
 }
+
 .container .container--prev_arrows:hover {
   color: #AB060F;
-  transform: translateX(-5px);
+  -webkit-transform: translateX(-5px);
+          transform: translateX(-5px);
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
+
 .container .container_list {
-  box-shadow: 0px 3px 3px 3px #505050;
+  -webkit-box-shadow: 0px 3px 3px 3px #505050;
+          box-shadow: 0px 3px 3px 3px #505050;
   border-radius: 15px;
   margin: 0 10px 0 10px;
   width: 15%;
   border: 3px solid #28282B;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
 }
+
 .container .container_list:hover {
   border: 3px solid #AB060F;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
+
 .container .container--next_arrows {
   font-size: 40px;
   color: #28282B;
@@ -186,25 +235,30 @@ body {
   border: none;
   margin: 0 15px;
 }
+
 .container .container--next_arrows:hover {
   color: #AB060F;
-  transform: translateX(5px);
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
 
 /* ------------ Footer ------------ */
 footer {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   border-top: 2px solid #28282B;
   text-align: center;
   width: 100%;
   margin-top: 40px;
   padding: 10px 0 10px 0;
 }
+
 footer #imgCopy {
   width: 15px;
   height: 15px;
 }
+
 @media screen and (max-width: 1300px) {
   footer footer {
     padding-left: 0px;
@@ -218,6 +272,7 @@ footer #imgCopy {
   top: 0;
   width: 100vw;
   height: 100vh;
+  -webkit-transition: visibility 0.4s;
   transition: visibility 0.4s;
 }
 
@@ -230,12 +285,14 @@ footer #imgCopy {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(51, 51, 51, 0.8274509804);
+  background: #333333d3;
+  -webkit-transition: opacity 0.4s 0.2s ease-out;
   transition: opacity 0.4s 0.2s ease-out;
 }
 
 .modal-container.active .overlay {
   opacity: 1;
+  -webkit-transition: opacity 0.4s ease-out;
   transition: opacity 0.4s ease-out;
 }
 
@@ -250,14 +307,22 @@ footer #imgCopy {
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 50px));
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  -webkit-transform: translate(-50%, calc(-50% - 50px));
+          transform: translate(-50%, calc(-50% - 50px));
+  -webkit-transition: opacity 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
 }
 
 .modal-container.active .modal {
   opacity: 1;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: opacity 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
 }
 
 .close-modal {
@@ -275,11 +340,12 @@ footer #imgCopy {
 
 .modal h1 {
   margin-bottom: 10px;
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  font-family: 'Kaushan Script', Arial, Helvetica, sans-serif;
   font-weight: 500;
 }
 
 .modal h4 {
   margin-bottom: 10px;
   font-size: 20px;
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */
