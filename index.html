@@ -4,13 +4,22 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" href="src/index/JustStreamIt.png">
-        <link rel="stylesheet" href="CSS/style.css">
+        
         <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Poppins&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet">
+        
+        <link rel="stylesheet" href="CSS/style.css">
+
+        <script type="text/javascript" src="JS/bestMovie.js" async></script>
+        <script type="text/javascript" src="JS/categoriesWindows.js" async></script>
+        <script type="text/javascript" src="JS/modalWindows.js" async></script>
+        <script type="text/javascript" src="JS/carousel.js" async></script>
+        
+        <link rel="icon" href="src/index/JustStreamIt.png">
         <title>Just stream it</title>
     </head>
+
     <body>
 <!-- Header - Navigation bar -->
         <header>
@@ -22,6 +31,14 @@
                 </ul>
             </nav>
         </header>
+
+        <div class="carousel">
+            <div class="Item"></div>
+            <div class="Item"></div>
+            <div class="Item"></div>
+            <div class="Item"></div>
+            <div class="Item"></div>
+        </div>
 
 <!-- Categorie movie presentation -->
         <section id="best_movie"></section>
@@ -42,20 +59,19 @@
         <!-- <div class="modal-container">
             <div class="overlay modal-trigger"></div>
             <div class="modal" role="dialog" aria-labelleby="modal_title">
-            <button aria-label="close modal" class="close-modal modal-trigger">X</button>
-            <img src="" id="modal_picture">
-            <h1 id="modal_title"></h1>
-            <p id="modal_genres"></p>
-            <p id="modal_date_published"></p>
-            <p id="rated"></p>
-            <p id="modal_score"></p>
-            <p id="modal_directors"></p><br>
-            <p id="modal_actors"></p><br>
-            <p id="modal_duration"></p>
-            <p id="modal_origine_countries"></p><br>
-            <p id="modal_results_of_box_office"></p>
-            <p id="modal_description"></p>
-
+                <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+                <img src="" id="modal_picture">
+                <h1 id="modal_title"></h1>
+                <p id="modal_genres"></p>
+                <p id="modal_date_published"></p>
+                <p id="rated"></p>
+                <p id="modal_score"></p>
+                <p id="modal_directors"></p><br>
+                <p id="modal_actors"></p><br>
+                <p id="modal_duration"></p>
+                <p id="modal_origine_countries"></p><br>
+                <p id="modal_results_of_box_office"></p>
+                <p id="modal_description"></p>
             </div>
         </div> -->
 
@@ -63,7 +79,5 @@
         <footer>
             <img id="imgCopy" src="src/index/ikigai.png" type="developer logo"> Laurent Jouron - Copyright 2022 &copy; - All rights reserved
         </footer>
-
-        <script type="text/javascript" src="JS/app.js"></script>
     </body>
 </html>
