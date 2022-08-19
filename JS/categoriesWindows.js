@@ -19,6 +19,7 @@ function categorieTitle(data, parent){
     parent.appendChild(newCategorieTitle);
 }
 
+
 /**
  * Function that allows to put the arrows in one direction or the other on each side of the images.
  * @param {getElementById}
@@ -44,7 +45,7 @@ function sideArrows(parent, sense) {
  * @param {getElementById}
  * @returns {data}
  */
-function movieCategorie(request, parent) {fetch(request)
+async function movieCategorie(request, parent) {fetch(request)
     .then(response => {if(response.ok) {response.json()
         .then(data => {
             // Function call to display the title above the category
@@ -78,7 +79,7 @@ function movieCategorie(request, parent) {fetch(request)
                         sideArrows(newContainerDiv, '▶');
                     })
                 }})
-            }
+            }   
         })
     }})  
 }
@@ -104,6 +105,69 @@ movieCategorie(thirdRequest, thirdCategorie)
 //////////////////////////////////////
 // TEST CATEGORY FUNCTION GRAFIKART //
 //////////////////////////////////////
+
+
+// async function movieCategorie(request, parent) {
+// 	try{
+// 		const response = await fetch(request)
+// 			if(!response.ok) {
+// 				throw new Error(`Error: ${response.status}`)
+// 			}
+// 			if(!data.total) {
+// 				picturesList.textContent = "";
+// 				throw new Error("No results in our database. Please search more specifically.")
+// 			}
+//             if (response.ok) {response.json()
+//                 if (response.ok) {
+			
+//                 // Function call to display the title above the category
+//                     categorieTitle(data, parent);
+                
+//                 // Div creation for container
+//                     let newContainerDiv = document.createElement('div');
+//                     newContainerDiv.className = 'container';
+//                     parent.appendChild(newContainerDiv);
+                    
+//                 // Add previews arrows
+//                     sideArrows(newContainerDiv, '◀');
+                    
+//                     for(let i = 0; i < 5; i++) {
+//                         let newPicture = document.createElement('img');
+//                         newPicture.className = 'container_list modal-trigger';      
+//                         newPicture.src = data.results[i].image_url;
+//                         newContainerDiv.appendChild(newPicture);
+//                     }
+                    
+//                 let nextPage = data.next
+//                     try{
+//                         const response = await fetch(nextPage)
+//                         if(!response.ok) {
+//                             throw new Error(`Error: ${response.status}`)
+//                         }
+//                         if(!data.total) {
+//                             picturesList.textContent = "";
+//                             throw new Error("No results in our database. Please search more specifically.")
+//                         }
+//                         for(let i = 0; i < 2; i++) {
+//                             let newPicture = document.createElement('img');
+//                             newPicture.className = 'container_list modal-trigger';      
+//                             newPicture.src = data.results[i].image_url;
+//                             newContainerDiv.appendChild(newPicture);
+//                         }
+                        
+//                         }	
+//                         catch(error){
+//                             errorMsg.textContent = `${error}`
+//                         }
+//                     }	
+//             catch(error){
+//                 errorMsg.textContent = `${error}`
+//             }
+//         }
+//     }
+// }
+
+
 
 // Function for the movie categorie
 // async function movieCategorie(request, parent) {

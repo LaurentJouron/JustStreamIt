@@ -247,10 +247,13 @@ body {
             @include best_movie--title;
     }
         .best_movie--picture{
-            @include width(20%);
+            @include box_shadow($background_nav_bar);
+            @include width(15%);
+            display: flex;
+            @include width(15%);
             @include height(286px);
             display: inline-block;
-            justify-content: flex-end;
+
             @include border_radius(0 13px 13px 0);
             position: absolute;
             @include margin_left(754px);
