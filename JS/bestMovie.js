@@ -1,20 +1,27 @@
-////////////////
-// BEST MOVIE //
-////////////////
+//////////////
+// REQUESTS //
+//////////////
+function bestMovieRequest() {
+    return 'http://localhost:8000/api/v1/titles/?sort_by=-imdb_score'
+}
+
+//////////////
+// FUNCTION //
+//////////////
 
 // Fuction to fill the category of best film
 // Title
 function title(data, parent) {
     let title = document.createElement('h1');
     title.className = 'best_movie--title';
-    title.textContent = data.title;
+    title.textContent = data.results[0].title;
     parent.appendChild(title);
 }
 // Picture
 function picture(data, parent) {
     let picture = document.createElement('img');
     picture.className = 'best_movie--picture';
-    picture.src = data.image_url;
+    picture.src = data.results[0].image_url;
     parent.appendChild(picture);
 }
 // Play button
@@ -31,10 +38,21 @@ function moreInformationButton(parent) {
     moreInformationButton.textContent = 'More info';
     parent.appendChild(moreInformationButton);
 }
-// Fuction calling functions to display the best movie data
-function bestMovie(request, parent) {fetch(request)
-        .then(response => {if(response.ok) {response.json()
-        .then(data => {
+
+///////////
+// FETCH //
+///////////
+
+// // Fuction calling functions to display the best movie data
+async function bestMovie(request, parent) {
+    try {
+        const response = await fetch(request)
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`)
+        }
+        if (response.ok) {response.json()
+            .then(data => {
+
             // Title of the best movie
             title(data, parent);
 
@@ -46,9 +64,18 @@ function bestMovie(request, parent) {fetch(request)
 
             // Play button of the best movie
             moreInformationButton(parent);
-        })
-    }})
+            })
+        } else {
+            console.error('Retour du serveur : ', response.status)
+        }
+    } catch (error) {
+        errorMsg.textContent = `${error}`
+    }
 }
-const bestMovieRequest = `http://localhost:8000/api/v1/titles/2646`
+
+//////////////////
+// CALL METHODE //
+//////////////////
+
 const bestMovieId = document.getElementById('best_movie')
-bestMovie(bestMovieRequest, bestMovieId)
+bestMovie(bestMovieRequest(), bestMovieId)

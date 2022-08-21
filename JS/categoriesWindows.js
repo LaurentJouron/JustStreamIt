@@ -2,23 +2,33 @@
 // REQUESTS //
 //////////////
 // http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=
-// http://localhost:8000/api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=&imdb_score_max=&title=&title_contains=&genre=&genre_contains=&sort_by=-imdb_score&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=
-// GET /api/v1/titles/?year=&min_year=&max_year=&imdb_score=&imdb_score_min=9&imdb_score_max=10&title=&title_contains=&genre=&genre_contains=&sort_by=&director=&director_contains=&writer=&writer_contains=&actor=&actor_contains=&country=&country_contains=&lang=&lang_contains=&company=&company_contains=&rating=&rating_contains=
 
-////////////////
-// CATEGORIES //
-////////////////
+function requestConstruction (elements) {
+    const requestBase = 'http://localhost:8000/api/v1/titles/?'
+    return `${requestBase}${elements}`
+}
+
+//////////////
+// FUNCTION //
+//////////////
 /**
  * Fuction to call the title of each category
  * @param {data.response.json()}
  * @param {getElementById}
  * @returns {textContent}
  */
-function categorieTitle(data, parent){
-    let newCategorieTitle = document.createElement('h1');
-    newCategorieTitle.className = 'categorie--title';
-    newCategorieTitle.textContent = data.results[0].genres[0];
-    parent.appendChild(newCategorieTitle);
+ function categorieTitle(data, parent){
+    if (parent === document.getElementById('top_rated')) {
+        let newCategorieTitle = document.createElement('h1');
+        newCategorieTitle.className = 'categorie--title';
+        newCategorieTitle.textContent = 'Top rated';
+        parent.appendChild(newCategorieTitle);
+    } else {
+        let newCategorieTitle = document.createElement('h1');
+        newCategorieTitle.className = 'categorie--title';
+        newCategorieTitle.textContent = data.results[0].genres[0];
+        parent.appendChild(newCategorieTitle);
+    }
 }
 
 /**
@@ -40,6 +50,9 @@ function sideArrows(parent, sense) {
         parent.appendChild(newNextArrows);
 }}
 
+///////////
+// FETCH //
+///////////
 /**
  * Function that calls the other functions for creating images on the document
  * @param {request}
@@ -49,7 +62,7 @@ function sideArrows(parent, sense) {
  async function movieCategorie(request, parent) {
     try {
 		const response = await fetch(request)
-			if(!response.ok) {
+			if (!response.ok) {
 				throw new Error(`Error: ${response.status}`)
 			}
             if (response.ok) {response.json()
@@ -96,32 +109,36 @@ function sideArrows(parent, sense) {
     }
 }
 
-const topRatedRequest = 'http://localhost:8000/api/v1/titles/?imdb_score=9.2'
+//////////////////
+// CALL METHODE //
+//////////////////
+
 const topRated = document.getElementById('top_rated')
-movieCategorie(topRatedRequest, topRated)
+movieCategorie(requestConstruction('imdb_score_min=9&imdb_score_max=10'), topRated)
 
-const firstRequest = 'http://localhost:8000/api/v1/titles/?genre=Sport'
 const firstCategorie = document.getElementById('first_categorie')
-movieCategorie(firstRequest, firstCategorie)
+movieCategorie(requestConstruction(`genre=Comedy`), firstCategorie)
 
-const secondRequest = 'http://localhost:8000/api/v1/titles/?genre=Action'
 const secondCategorie = document.getElementById('second_categorie')
-movieCategorie(secondRequest, secondCategorie)
+movieCategorie(requestConstruction(`genre=Animation`), secondCategorie)
 
-const thirdRequest = 'http://localhost:8000/api/v1/titles/?genre=Adventure'
 const thirdCategorie = document.getElementById('third_categorie')
-movieCategorie(thirdRequest, thirdCategorie)
+movieCategorie(requestConstruction(`genre=War`), thirdCategorie)
+
 
 /////////////////////
 // RANDOM CATEGORY //
 /////////////////////
 
 // function getRandomCategorie () {
+//     let categorieList = [];
+//     for(let i = 0; i < 3; i++) {
 //     let genre = ['History', 'Drama', 'Documentary', 'Sport', 'Music', 'Animation', 'News',
 //     'Adventure', 'Adult', 'Sci-Fi', 'Family', 'Romance', 'Horror', 'Comedy', 'Biography',
 //     'Fantasy', 'Film-Noir', 'Crime', 'Action', 'Thriller', 'Western', 'Mystery', 'Reality-TV',
 //     'War', 'Musical'];
 //     categorie = Math.floor(Math.random() * (Math.ceil(0), Math.floor(genre.length)));
-//  return genre[categorie];
+//     categorieList.push(genre[categorie])}
+//     return categorieList
 // }
-// categorie = getRandomCategorie()
+// console.log(getRandomCategorie())
