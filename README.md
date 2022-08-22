@@ -1,6 +1,8 @@
 // MAISON
 cd C:\Users\Public.PC\PycharmProjects\JustStreamIt\OCMovies
 
+cd C:\Users\jouro\PycharmProjects\JustStreamIt\OCMovies
+
 // BUREAU
 cd C:\Users\l.jouron\PycharmProjects\JustStreamIt\OCMovies
 

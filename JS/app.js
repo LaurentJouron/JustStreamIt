@@ -88,38 +88,35 @@ bestMovie(requestConstruction('?sort_by=-imdb_score'), bestMovieId)
  * @returns {textContent}
  */
  function categorieTitle(data, parent){
+     let categorieTitle = document.createElement('h1');
+     categorieTitle.className = 'categorie--title';
     if (parent === document.getElementById('top_rated')) {
-        let newCategorieTitle = document.createElement('h1');
-        newCategorieTitle.className = 'categorie--title';
-        newCategorieTitle.textContent = 'Top rated';
-        parent.appendChild(newCategorieTitle);
+        categorieTitle.textContent = 'Top rated';
+        parent.appendChild(categorieTitle);
     } else {
-        let newCategorieTitle = document.createElement('h1');
-        newCategorieTitle.className = 'categorie--title';
-        newCategorieTitle.textContent = data.results[0].genres[0];
-        parent.appendChild(newCategorieTitle);
+        categorieTitle.textContent = data.results[0].genres[0];
+        parent.appendChild(categorieTitle);
     }
 }
-
 /**
  * Function that allows to put the arrows in one direction or the other on each side of the images.
  * @param {getElementById}
  * @param {textContent}
  * @returns {textContent}
  */
-function sideArrows(parent, sense) {
-    if (sense === '◀') {
-        let newPreviewArrows = document.createElement('button');
-        newPreviewArrows.id = 'slide-arrow-preview';
-        newPreviewArrows.className = 'container--prev_arrows';
-        newPreviewArrows.textContent = sense;
-        parent.appendChild(newPreviewArrows);}
-    if (sense === '▶') {
-        let newNextArrows = document.createElement('button');
-        newNextArrows.id = 'slide-arrow-next';
-        newNextArrows.className = 'container--next_arrows';
-        newNextArrows.textContent = sense;
-        parent.appendChild(newNextArrows);
+function sideArrows(parent, direction) {
+    if (direction === '◀') {
+        let previewArrows = document.createElement('button');
+        previewArrows.id = 'slide-arrow-preview';
+        previewArrows.className = 'container--prev_arrows';
+        previewArrows.textContent = direction;
+        parent.appendChild(previewArrows);}
+    if (direction === '▶') {
+        let nextArrows = document.createElement('button');
+        nextArrows.id = 'slide-arrow-next';
+        nextArrows.className = 'container--next_arrows';
+        nextArrows.textContent = direction;
+        parent.appendChild(nextArrows);
 }}
 
 //////////////////////////////
@@ -149,6 +146,11 @@ function sideArrows(parent, sense) {
             
                     // Add previews arrows
                     sideArrows(newContainerDiv, '◀');
+
+                    let carouselSlice = document.createElement('div');
+                    carouselSlice.id = 'carousel';
+                    carouselSlice.className = 'carousel_slice';
+                    parent.appendChild(carouselSlice);
                     
                     // First loop that recovers the first 5 elements
                     for(let i = 0; i < 5; i++) {
