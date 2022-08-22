@@ -6,6 +6,7 @@ class Carousel {
 
     /**
      * @param {HTMLElement}
+     * @param {object}
      * @param {object} options.slidesToScroll number of items to scroll through
      * @param {object} options.slidesToVisible number of elements visible in the slide
      */
@@ -21,7 +22,7 @@ class Carousel {
         let root = this.createDivWithClass('carousel')
         this.container = this.createDivWithClass('carousel__container')
         root.appendChild(this.container)
-        this.element.appendChild(root)
+        this.element.appendChild(this.root)
         this.items = children.map((child) => {
             let item = this.createDivWithClass('carousel__item')
             item.appendChild(child)
@@ -37,17 +38,17 @@ class Carousel {
             
     }
 }
-
-/**
- * @param {string} 
- * @returns {HTMLElement}
- */
-function createDivWithClass (className) {
-    let div = document.createElement('div')
-    div.setAttribute('class', className)
-    return div
-}
-
+    
+    /**
+     * @param {string} 
+     * @returns {HTMLElement}
+     */
+    function createDivWithClass (className) {
+        let div = document.createElement('div')
+        div.setAttribute('class', className)
+        return div
+    }
+    
 document.addEventListener('DOMContentLoaded', function () {
     new Carousel(document.querySelector('#carousel1'), {
         slidesToScroll: 3,

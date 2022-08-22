@@ -133,7 +133,8 @@ $small_border: 3px;
 }
 @mixin categories_boxes_hover {
     border: 3px solid $play_button;
-    box-shadow: none
+    box-shadow: none;
+    cursor: pointer;
 }
 @mixin categories__boxes_and_hover {
     @include categories_boxes;
@@ -161,6 +162,7 @@ $small_border: 3px;
     @include direction_arrows;
     &:hover{
         @include container--hover_prev_arrows;
+        cursor: pointer;
     }
 }
 @mixin container--hover_next_arrows {
@@ -172,6 +174,7 @@ $small_border: 3px;
     @include direction_arrows;
     &:hover{
         @include container--hover_next_arrows;
+        cursor: pointer;
     }
 }
 

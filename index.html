@@ -11,8 +11,7 @@
         
         <link rel="stylesheet" href="CSS/style.css">
 
-        <script type="text/javascript" src="JS/bestMovie.js" async></script>
-        <script type="text/javascript" src="JS/categoriesWindows.js" async></script>
+        <script type="text/javascript" src="JS/app.js" async></script>
         <script type="text/javascript" src="JS/modalWindows.js" async></script>
         <script type="text/javascript" src="JS/carousel.js" async></script>
         
@@ -32,8 +31,15 @@
             </nav>
         </header>
 
-        <div class="container">
-            <div id="carousel1"></div>
+        <div class="carousel">
+            <div id="carousel1">
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+                <div class="item"></div>
+            </div>
         </div>
 
 <!-- Categorie movie presentation -->
@@ -54,7 +60,7 @@
         <!-- Modal windows -->
         <!-- <div class="modal-container">
             <div class="overlay modal-trigger"></div>
-            <div class="modal" role="dialog" aria-labelleby="modal_title">
+            <div id="modal" class="modal" role="dialog" aria-labelleby="modal_title">
                 <button aria-label="close modal" class="close-modal modal-trigger">X</button>
                 <img src="" id="modal_picture">
                 <h1 id="modal_title"></h1>
