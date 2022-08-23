@@ -15,265 +15,147 @@ $principal_box_font_size: 50px;
 $big_border: 5px;
 $small_border: 3px;
 
-/* -------- MIXIN ALONE ---------- */
-@mixin font_family{font-family: 'Kaushan Script', Arial, Helvetica, sans-serif};
-@mixin font_size($size) {font-size: $size;}
-@mixin font_color($color) {color: $color;}
-@mixin text_shadow($color) {text-shadow: $color 8px 0 10px;}
-@mixin letter_spacing($spacing) {letter-spacing: $spacing;}
-@mixin text_align($align) {text-align: $align;}
-@mixin font_weight($weight) {font-weight: $weight;}
-
-@mixin height($height) {height: $height;}
-@mixin width($width) {width: $width;}
-
-@mixin padding($padding) {padding: $padding;}
-@mixin padding_top($padding_top) {padding-top: $padding_top;}
-@mixin padding_left($padding_left) {padding-left: $padding_left;}
-@mixin padding_bottom($padding_bottom) {padding-bottom: $padding_bottom;}
-@mixin padding_right($padding_right) {padding-right: $padding_right;}
-
-@mixin margin($margin) {margin: $margin;}
-@mixin margin_top($margin_top) {margin-top: $margin_top;}
-@mixin margin_left($margin_left) {margin-left: $margin_left;}
-@mixin margin_bottom($margin_bottom) {margin-bottom: $margin_bottom;}
-@mixin margin_right($margin_right) {margin-right: $margin_right;}
-
-@mixin border_box($color, $size) {color: $color, $size solid;}
-@mixin play_box($color) {color: $color;}
-@mixin box_shadow($color) {box-shadow: 0px 3px 3px 3px $color;}
-@mixin background($color) {background: $color;}
-@mixin border_radius($radius) {border-radius: $radius;}
-
-@mixin transition_transform {transition: 0.3s ease-out;}
-@mixin tranform_translate_left {transform: translateX(-5px);}
-@mixin tranform_translate_right {transform: translateX(5px);}
-
-/* ------------ MIXINS ------------ */
-/* Navigation bar */
-@mixin nav_list {
-    @include font_family;
-    @include font_size($nav_font_size);
-    @include font_color($nav_font_color);
-}
-@mixin nav_list--hover {
-    @include transition_transform();
-    @include play_box($play_button);
-}
-@mixin nav_list-and-hover {
-    @include nav_list;
-    &:hover{
-        @include nav_list--hover;
-    }
-}
-
-/* Title movie for header box */
-@mixin best_movie--title {
-    @include font_family;
-    @include font_color($border_boxes);
-    @include font_size($principal_box_font_size);
-    @include letter_spacing(2px);
-    @include text_shadow($background_nav_bar);
-    @include padding_top(20px);
-    @include padding_left(30px);
-    float: left;
-}
-
-/* Play button in movie box header */
-@mixin best_movie--play {
-    @include font_color($nav_font_color);
-    @include background($play_button);
-    @include font_size($play_font_size);
-    @include border_box($border_boxes, $small_border);
-    @include letter_spacing(2px);
-    @include padding(15px 50px);
-    @include border_radius(50px);
-    @include margin(70px 0 0 50px);
-    @include transition_transform();
-    cursor: pointer;
-    display: flexbox;
-    min-width: 150px;
-}
-@mixin best_movie__play--hover {
-    @include transition_transform();
-    border: none;
-    box-shadow: 1px 1px 1px 1px $play_button;
-}
-@mixin button_and_hover {
-    @include best_movie--play;
-    &:hover{
-        @include best_movie__play--hover;
-    }
-}
-
-/* Title of the categories aboce the boxes */
-@mixin categorie_title {
-    @include font_family;
-    @include font_size($title_font_size);
-    @include font_color($border_boxes);
-    @include border_box($border_boxes, $small_border);
-    @include text_shadow($background_nav_bar);
-    @include letter_spacing(3px);
-    @include padding_top(70px);
-    @include text_align(center);
-    @include padding_bottom(20px);
-}
-
-/* Boxes for categories movies*/
-@mixin categories_boxes {
-    @include box_shadow($background_nav_bar);
-    @include border_radius(15px);
-    @include margin(0 10px 0 10px);
-    @include width(15%);
-    border: 3px solid $border_boxes;
-    justify-content: flex-start;
-    align-items: center;
-    display: flex;
-    align-items: center;
-}
-@mixin categories_boxes_hover {
-    border: 3px solid $play_button;
-    box-shadow: none;
-    cursor: pointer;
-}
-@mixin categories__boxes_and_hover {
-    @include categories_boxes;
-    &:hover {
-        @include categories_boxes_hover;
-    }
-}
-
-/* Directional arrows */
-@mixin direction_arrows {
-    @include font_size($title_font_size);
-    @include font_color($border_boxes);
-    @include border_box($border_boxes, $small_border);
-    @include background(none);
-    display: flexbox;
-    border: none;
-    @include margin(0 15px);
-}
-@mixin container--hover_prev_arrows {
-    @include font_color($play_button);
-    @include tranform_translate_left;
-    @include transition_transform;
-}
-@mixin container--prev_arrows {
-    @include direction_arrows;
-    &:hover{
-        @include container--hover_prev_arrows;
-        cursor: pointer;
-    }
-}
-@mixin container--hover_next_arrows {
-    @include font_color($play_button);
-    @include tranform_translate_right;
-    @include transition_transform;
-}
-@mixin container--next_arrows {
-    @include direction_arrows;
-    &:hover{
-        @include container--hover_next_arrows;
-        cursor: pointer;
-    }
-}
-
-@mixin footer {
-    @include font_family;
-    border-top: 2px solid $border_boxes;
-    @include text_align(center);
-    @include width(100%);
-    @include margin-top(40px);
-    @include padding(10px 0 10px 0);
-    #imgCopy {
-        @include width(15px);
-        @include height(15px);
-    }
-    @media screen and (max-width: 1300px) {
-        footer {
-            @include padding_left(0px);
-        }
-    }
-}
-
-//////////////////////////////////////
-//////////////////////////////////////
+/* ------------ FONT -------------- */
+$font_family: 'Kaushan Script', Arial, Helvetica, sans-serif;
 
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
     box-sizing: border-box;
-    @include margin(0);
-    @include padding(0);
+    margin: 0;
+    padding: 0;
 }
 body {
-    @include background($background_color_files);
+    background-color: $background_color_files;
 }
 
-/* ------------- Body ------------- */
 /* ---------- Header NAV ---------- */
 #nav{
-    @include background($background_nav_bar);
-    @include box_shadow($background_nav_bar);
-    @include height(70px);
+    background: $background_nav_bar;
+    box-shadow: $background_nav_bar;
+    height: 70px;
         .nav__list {
-        display: flex;
-        list-style-type: none;
-        align-items: center;
+            font-family: $font_family;
+            display: flex;
+            list-style-type: none;
+            align-items: center;
+
         .nav__list--item {
-            @include margin(0 8px);
+            margin:0 8px;
         }
+
         .nav__list--item:nth-child(1) {
-            @include nav_list;
-            @include font_size(40px);
-            @include margin_right(auto);
+            color: $nav_font_color;
+            text-shadow: $nav_font_color 1px 0 2px;
+            font-size: 40px;
+            margin-right: auto;
         }
+
         .nav__list--item:nth-child(2) a {
-            @include nav_list-and-hover;
+            font-size: $nav_font_size;
+            color: $nav_font_color;
+                &:hover {
+                    transition: 0.3s ease-out;
+                    color: $play_button;
             }
+        }
+
         .nav__list--item:nth-child(3) a {
-            @include nav_list-and-hover;
-            @include margin_right(30px);
+            font-size: $nav_font_size;
+            color: $nav_font_color;
+            margin-right: 30px;
+                &:hover{
+                    transition: 0.3s ease-out;
+                    color: $play_button;
+            }
         }
     }
 }
+
 
 /* ------- Header movie box ------- */
 #best_movie {
-    @include width(92%);
-    @include height(300px);
-    @include box_shadow($background_nav_bar);
-    @include border_radius(20px);
-    @include margin(auto);
-    @include margin-top(3%);
+    width: 92%;
+    height: 300px;
+    box-shadow: $background_nav_bar;
+    border-radius: 20px;
+    margin: auto;
+    margin-top: 3%;
     border: 7px solid $border_boxes;
-        .best_movie--title {
-            @include best_movie--title;
-    }
-        .best_movie--picture{
-            @include box_shadow($background_nav_bar);
-            @include width(15%);
-            display: flex;
-            @include width(15%);
-            @include height(286px);
-            display: inline-block;
-
-            @include border_radius(0 13px 13px 0);
-            position: absolute;
-            @include margin_left(754px);
-   }
-        .best_movie--play {
-            @include button_and_hover;
-    }
-        .best_movie--info {
-            @include button_and_hover;
-            @include background($border_boxes);
+        
+    .best_movie--title {
+        font-family: $font_family;
+        color: $border_boxes;
+        font-size: $principal_box_font_size;
+        letter-spacing: 2px;
+        text-shadow: $background_nav_bar 8px 0 10px;
+        padding-top: 20px;
+        padding-left: 30px;
+        float: left;
     }
 
+    .best_movie--picture {
+        box-shadow: $background_nav_bar;
+        display: flex;
+        width: 15%;
+        height:286px;
+        display: inline-block;
+        border-radius: 0 13px 13px 0;
+        position: absolute;
+        margin-left: 754px;
+        }
+
+    .best_movie--play {
+        color: $border_boxes, $small_border solid;
+        color: $nav_font_color;
+        background: $play_button;
+        font-size: $play_font_size;
+        letter-spacing: 2px;
+        padding: 15px 50px;
+        border-radius: 50px;
+        margin: 70px 0 0 50px;
+        transition: 0.3s ease-out;
+        display: flexbox;
+        min-width: 150px;
+        &:hover {
+                cursor: pointer;
+                transition: 0.3s ease-out;;
+                border: none;
+                box-shadow: 1px 1px 1px 1px $play_button;
+            }
+        }
+
+    .best_movie--info {
+        color: $border_boxes, $small_border solid;
+        color: $nav_font_color;
+        background: $border_boxes;
+        font-size: $play_font_size;
+        letter-spacing: 2px;
+        padding: 15px 50px;
+        border-radius: 50px;
+        margin: 70px 0 0 50px;
+        transition: 0.3s ease-out;;
+        cursor: pointer;
+        display: flexbox;
+        min-width: 150px;
+            &:hover {
+                transition: 0.3s ease-out;;
+                border: none;
+                box-shadow: 1px 1px 1px 1px $play_button;
+            }
+        }
 }
 
 /* ------- Category titles -------- */
 .categorie--title {
-   @include categorie_title
+    font-family: $font_family;
+    color: $border_boxes, $small_border solid;
+    font-size: $title_font_size;
+    color: $border_boxes;
+    text-shadow: $background_nav_bar 8px 0 10px;
+    letter-spacing: 3px;
+    padding-top: 70px;
+    text-align: center;
+    padding-bottom:20px;
 }
 
 /* -------- Box management -------- */
@@ -281,28 +163,83 @@ body {
     display: flex;
     justify-content: center;
     .container--prev_arrows {
-        @include container--prev_arrows;
+        color: $border_boxes, $small_border solid;
+        font-size: $title_font_size;
+        color: $border_boxes;
+        background: none;
+        display: flexbox;
+        border: none;
+        margin: 0 15px;
+            &:hover {
+                color: $play_button;
+                transform: translateX(-5px);
+                transition: 0.3s ease-out;
+                cursor: pointer;
+            }
         }
-    .container_list{
-        @include categories__boxes_and_hover;
+
+    .container_list {
+        box-shadow: $background_nav_bar;
+        border-radius: 15px;
+        margin: 0 10px 0 10px;
+        width: 15%;
+        border: 3px solid $border_boxes;
+        justify-content: flex-start;
+        align-items: center;
+        display: flex;
+        align-items: center;
+            &:hover {
+            border: 3px solid $play_button;
+            box-shadow: none;
+            cursor: pointer;
+        }
     }
+
     .container--next_arrows {
-        @include container--next_arrows;
+        color: $border_boxes, $small_border solid;
+        font-size: $title_font_size;
+        color: $border_boxes;
+        background: none;
+        display: flexbox;
+        border: none;
+        margin: 0 15px;
+        &:hover{
+            color: $play_button;
+            transform: translateX(5px);
+            transition: 0.3s ease-out;
+            cursor: pointer;
+        }
     }
 }
 
-/* ------------ Footer ------------ */
+/* ------------ FOOTER ------------ */
 footer {
-    @include footer;
+    font-family: $font_family;
+    border-top: 2px solid $border_boxes;
+    text-align: center;
+    width: 100%;
+    margin-top: 40px;
+    padding: 10px 0 10px 0;
+
+    #imgCopy {
+        width: 15px;
+        height: 15px;
+    }
+
+    @media screen and (max-width: 1300px) {
+        footer {
+            padding-left: 0px;
+        }
+    }
 }
 
-/* --------- Modal windows -------- */
+/* ---------- MODAL WINDOW -------- */
 .modal-container {
     visibility: hidden;
     position: fixed;
     top: 0;
-    @include width(100vw);
-    @include height(100vh);
+    width:100vw;
+    height: 100vh;
     transition: visibility 0.4s;
   }
   .modal-container.active {
@@ -311,9 +248,9 @@ footer {
   .overlay {
     opacity: 0;
     position: absolute;
-    @include width(100%);
-    @include height(100%);
-    @include background($overlay);
+    width: 100%;
+    height: 100%;
+    background: $overlay;
     transition: opacity 0.4s 0.2s ease-out;
   }
   .modal-container.active .overlay {
@@ -326,7 +263,7 @@ footer {
     max-width: 500px;
     min-width: 300px;
     padding: 30px;
-    @include background($nav_font_color);
+    background: $nav_font_color;
     border-radius: 5px;
     position: absolute;
     top: 40%;
@@ -342,23 +279,23 @@ footer {
     transform 0.4s 0.2s ease-out;
   }
   .close-modal {
+    color: $nav_font_color;
     padding: 8px 10px;
     border: none;
     border-radius: 5px;
-    @include font-weight(18px);
+    font-weight: 18px;
     position: absolute;
     top: 10px;
     right: 10px;
     cursor: pointer;
-    @include background($play_button);
-    @include font_color($nav_font_color);
+    background: $play_button;
   }
   .modal h1 {
-    @include margin_bottom(10px);
-    @include font_family();
-    @include font-weight(500);
+    font-family: $font_family;
+    margin-bottom: 10px;
+    font-weight: 500;
   }
   .modal h4 {
-    @include margin_bottom(10px);
-    @include font_size(20px);
+    font-size: 20px;
+    margin-bottom: 10px;
   }

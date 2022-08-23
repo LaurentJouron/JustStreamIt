@@ -1,13 +1,6 @@
 /* --------- VAR COLOR ----------- */
 /* ---------- VAR SIZE ----------- */
-/* -------- MIXIN ALONE ---------- */
-/* ------------ MIXINS ------------ */
-/* Navigation bar */
-/* Title movie for header box */
-/* Play button in movie box header */
-/* Title of the categories aboce the boxes */
-/* Boxes for categories movies*/
-/* Directional arrows */
+/* ------------ FONT -------------- */
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
   box-sizing: border-box;
@@ -16,17 +9,17 @@
 }
 
 body {
-  background: #969696;
+  background-color: #969696;
 }
 
-/* ------------- Body ------------- */
 /* ---------- Header NAV ---------- */
 #nav {
   background: #505050;
-  box-shadow: 0px 3px 3px 3px #505050;
+  box-shadow: #505050;
   height: 70px;
 }
 #nav .nav__list {
+  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   display: flex;
   list-style-type: none;
   align-items: center;
@@ -35,14 +28,12 @@ body {
   margin: 0 8px;
 }
 #nav .nav__list .nav__list--item:nth-child(1) {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  font-size: 30px;
   color: #f1f1f1;
+  text-shadow: #f1f1f1 1px 0 2px;
   font-size: 40px;
   margin-right: auto;
 }
 #nav .nav__list .nav__list--item:nth-child(2) a {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
 }
@@ -51,7 +42,6 @@ body {
   color: #AB060F;
 }
 #nav .nav__list .nav__list--item:nth-child(3) a {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 30px;
   color: #f1f1f1;
   margin-right: 30px;
@@ -65,7 +55,7 @@ body {
 #best_movie {
   width: 92%;
   height: 300px;
-  box-shadow: 0px 3px 3px 3px #505050;
+  box-shadow: #505050;
   border-radius: 20px;
   margin: auto;
   margin-top: 3%;
@@ -82,8 +72,7 @@ body {
   float: left;
 }
 #best_movie .best_movie--picture {
-  box-shadow: 0px 3px 3px 3px #505050;
-  width: 15%;
+  box-shadow: #505050;
   display: flex;
   width: 15%;
   height: 286px;
@@ -93,29 +82,29 @@ body {
   margin-left: 754px;
 }
 #best_movie .best_movie--play {
+  color: #28282B, 3px solid;
   color: #f1f1f1;
   background: #AB060F;
   font-size: 26px;
-  color: #28282B, 3px solid;
   letter-spacing: 2px;
   padding: 15px 50px;
   border-radius: 50px;
   margin: 70px 0 0 50px;
   transition: 0.3s ease-out;
-  cursor: pointer;
   display: flexbox;
   min-width: 150px;
 }
 #best_movie .best_movie--play:hover {
+  cursor: pointer;
   transition: 0.3s ease-out;
   border: none;
   box-shadow: 1px 1px 1px 1px #AB060F;
 }
 #best_movie .best_movie--info {
-  color: #f1f1f1;
-  background: #AB060F;
-  font-size: 26px;
   color: #28282B, 3px solid;
+  color: #f1f1f1;
+  background: #28282B;
+  font-size: 26px;
   letter-spacing: 2px;
   padding: 15px 50px;
   border-radius: 50px;
@@ -124,7 +113,6 @@ body {
   cursor: pointer;
   display: flexbox;
   min-width: 150px;
-  background: #28282B;
 }
 #best_movie .best_movie--info:hover {
   transition: 0.3s ease-out;
@@ -135,9 +123,9 @@ body {
 /* ------- Category titles -------- */
 .categorie--title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
-  color: #28282B, 3px solid;
   text-shadow: #505050 8px 0 10px;
   letter-spacing: 3px;
   padding-top: 70px;
@@ -151,9 +139,9 @@ body {
   justify-content: center;
 }
 .container .container--prev_arrows {
+  color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
-  color: #28282B, 3px solid;
   background: none;
   display: flexbox;
   border: none;
@@ -166,7 +154,7 @@ body {
   cursor: pointer;
 }
 .container .container_list {
-  box-shadow: 0px 3px 3px 3px #505050;
+  box-shadow: #505050;
   border-radius: 15px;
   margin: 0 10px 0 10px;
   width: 15%;
@@ -182,9 +170,9 @@ body {
   cursor: pointer;
 }
 .container .container--next_arrows {
+  color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
-  color: #28282B, 3px solid;
   background: none;
   display: flexbox;
   border: none;
@@ -197,7 +185,7 @@ body {
   cursor: pointer;
 }
 
-/* ------------ Footer ------------ */
+/* ------------ FOOTER ------------ */
 footer {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   border-top: 2px solid #28282B;
@@ -216,7 +204,7 @@ footer #imgCopy {
   }
 }
 
-/* --------- Modal windows -------- */
+/* ---------- MODAL WINDOW -------- */
 .modal-container {
   visibility: hidden;
   position: fixed;
@@ -266,6 +254,7 @@ footer #imgCopy {
 }
 
 .close-modal {
+  color: #f1f1f1;
   padding: 8px 10px;
   border: none;
   border-radius: 5px;
@@ -275,16 +264,15 @@ footer #imgCopy {
   right: 10px;
   cursor: pointer;
   background: #AB060F;
-  color: #f1f1f1;
 }
 
 .modal h1 {
-  margin-bottom: 10px;
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  margin-bottom: 10px;
   font-weight: 500;
 }
 
 .modal h4 {
-  margin-bottom: 10px;
   font-size: 20px;
+  margin-bottom: 10px;
 }/*# sourceMappingURL=style.css.map */
