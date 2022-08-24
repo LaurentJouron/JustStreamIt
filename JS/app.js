@@ -126,7 +126,7 @@ function sideArrows(parent, direction) {
  * @param {let Variable} 
  * @param {integer} NbrLoop 
  */
-function loopForCategorieInformation(data, parent, NbrLoop){
+function loopForCategoriesInformations(data, parent, NbrLoop){
     for(let i = 0; i < NbrLoop; i++) {
         let picture = document.createElement('img');
         picture.id = data.results[i].id;     
@@ -157,8 +157,7 @@ async function movieCategorie(request, parent) {
                 // Function call to display the title above the category
                 categorieTitle(data, parent);
                 
-                // Add previews arrows
-                sideArrows(parent, '◀');
+
                     
                     // Div creation for container
                     let containerDiv = document.createElement('div');
@@ -174,17 +173,20 @@ async function movieCategorie(request, parent) {
                     carousel.appendChild(carouselPanorama);
                     
                     // First loop that recovers the first 5 elements
-                    loopForCategorieInformation(data, carouselPanorama, 5)
+                    loopForCategoriesInformations(data, carouselPanorama, 5)
                     // Recovery of the next URL to make a loop for 2 elements recovery
                     let nextPage = data.next
                     {fetch(nextPage)
                         .then(response => {if(response.ok) {response.json()
                             .then(data => {
-                                loopForCategorieInformation(data, carouselPanorama, 2)
+                                loopForCategoriesInformations(data, carouselPanorama, 2)
                             })
                         }})
                     }
-                    sideArrows(parent, '▶');
+                // Add previews arrows
+                sideArrows(parent, '◀');
+                // Add next arrows
+                sideArrows(parent, '▶');
                 })
         } else {
             console.error('Retour du serveur : ', response.status)

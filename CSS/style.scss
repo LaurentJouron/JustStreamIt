@@ -140,7 +140,7 @@ body {
             &:hover {
                 transition: 0.3s ease-out;;
                 border: none;
-                box-shadow: 1px 1px 1px 1px $play_button;
+                box-shadow: 1px 1px 1px 1px $border_boxes;
             }
         }
 }
@@ -151,11 +151,12 @@ body {
     color: $border_boxes, $small_border solid;
     font-size: $title_font_size;
     color: $border_boxes;
-    text-shadow: $background_nav_bar 8px 0 10px;
+    text-shadow: $nav_font_color 7px 0 10px;
     letter-spacing: 3px;
-    padding-top: 70px;
+    margin-top: 80px;
     text-align: center;
-    padding-bottom:20px;
+    margin-bottom:20px;
+    border-style: dotted;
 }
 
 /* -------- Box management -------- */
@@ -165,12 +166,9 @@ body {
     display: flex;
     .carousel {
         position: relative;
-        overflow: hidden;
-        .carousel--panorama::after{
-            content: '';
-            clear: both;
-            display: table;
-        }
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
         .carousel__panorama--item {
             border-radius: 15px;
             margin: 0 10px 0 10px;
@@ -190,7 +188,7 @@ body {
     font-size: $title_font_size;
     color: $border_boxes;
     background: none;
-    display: flexbox;
+    display: flex;
     border: none;
     &:hover {
         color: $play_button;
@@ -200,14 +198,14 @@ body {
 }
 .carousel__preview {
     position: absolute;
-    left: 0;
+    left: 40%;
     &:hover {
         transform: translateX(-5px);
     }
 }
 .carousel__next {
     position: absolute;
-    right: 0;
+    right: 40%;
     &:hover{
         transform: translateX(5px);
     }
@@ -219,7 +217,7 @@ footer {
     border-top: 2px solid $border_boxes;
     text-align: center;
     width: 100%;
-    margin-top: 40px;
+    margin-top: 70px;
     padding: 10px 0 10px 0;
 
     #imgCopy {

@@ -147,8 +147,8 @@ body {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border: none;
-  -webkit-box-shadow: 1px 1px 1px 1px #AB060F;
-          box-shadow: 1px 1px 1px 1px #AB060F;
+  -webkit-box-shadow: 1px 1px 1px 1px #28282B;
+          box-shadow: 1px 1px 1px 1px #28282B;
 }
 
 /* ------- Category titles -------- */
@@ -157,11 +157,12 @@ body {
   color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
-  text-shadow: #505050 8px 0 10px;
+  text-shadow: #f1f1f1 7px 0 10px;
   letter-spacing: 3px;
-  padding-top: 70px;
+  margin-top: 80px;
   text-align: center;
-  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-style: dotted;
 }
 
 /* -------- Box management -------- */
@@ -176,13 +177,10 @@ body {
 
 .container .carousel {
   position: relative;
-  overflow: hidden;
-}
-
-.container .carousel .carousel--panorama::after {
-  content: '';
-  clear: both;
-  display: table;
+  display: block;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 .container .carousel .carousel__panorama--item {
@@ -204,7 +202,9 @@ body {
   font-size: 40px;
   color: #28282B;
   background: none;
-  display: flexbox;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   border: none;
 }
 
@@ -217,7 +217,7 @@ body {
 
 .carousel__preview {
   position: absolute;
-  left: 0;
+  left: 40%;
 }
 
 .carousel__preview:hover {
@@ -227,7 +227,7 @@ body {
 
 .carousel__next {
   position: absolute;
-  right: 0;
+  right: 40%;
 }
 
 .carousel__next:hover {
@@ -241,7 +241,7 @@ footer {
   border-top: 2px solid #28282B;
   text-align: center;
   width: 100%;
-  margin-top: 40px;
+  margin-top: 70px;
   padding: 10px 0 10px 0;
 }
 
