@@ -17,6 +17,7 @@ function title(data, parent) {
     title.textContent = data.results[0].title;
     parent.appendChild(title);
 }
+
 // Picture
 function picture(data, parent) {
     let picture = document.createElement('img');
@@ -24,6 +25,7 @@ function picture(data, parent) {
     picture.src = data.results[0].image_url;
     parent.appendChild(picture);
 }
+
 // Play button and More information button
 function element(parent, newElement, className, textContent) {
     let element = document.createElement(newElement);
@@ -32,9 +34,9 @@ function element(parent, newElement, className, textContent) {
     parent.appendChild(element);
 }
 
-////////////////////
-// FETCH FUNCTION //
-////////////////////
+///////////////////////////////
+// FETCH BEST MOVIE FUNCTION //
+///////////////////////////////
 /**
  * Fuction calling functions to display the best movie data
  * @param {request}
@@ -74,9 +76,9 @@ async function bestMovie(request, parent) {
 /////////////////////////////
 // CALL BEST MOVIE METHODE //
 /////////////////////////////
-
 const bestMovieId = document.getElementById('best_movie')
 bestMovie(requestConstruction('?sort_by=-imdb_score'), bestMovieId)
+
 
 ////////////////////////
 // CATEGORIE FUNCTION //
@@ -106,18 +108,34 @@ bestMovie(requestConstruction('?sort_by=-imdb_score'), bestMovieId)
  */
 function sideArrows(parent, direction) {
     if (direction === '◀') {
-        let previewArrows = document.createElement('button');
-        previewArrows.id = 'slide-arrow-preview';
-        previewArrows.className = 'container--prev_arrows';
-        previewArrows.textContent = direction;
-        parent.appendChild(previewArrows);}
+        let carouselPreview = document.createElement('button');
+        carouselPreview.className = 'carousel__preview';
+        carouselPreview.textContent = direction;
+        parent.appendChild(carouselPreview);}
     if (direction === '▶') {
-        let nextArrows = document.createElement('button');
-        nextArrows.id = 'slide-arrow-next';
-        nextArrows.className = 'container--next_arrows';
-        nextArrows.textContent = direction;
-        parent.appendChild(nextArrows);
-}}
+        let carouselNext = document.createElement('button');
+        carouselNext.className = 'carousel__next';
+        carouselNext.textContent = direction;
+        parent.appendChild(carouselNext);
+    }
+}
+
+/**
+ * Loop function to retrieve items from categories
+ * @param {data from FETCH request}
+ * @param {let Variable} 
+ * @param {integer} NbrLoop 
+ */
+function loopForCategorieInformation(data, parent, NbrLoop){
+    for(let i = 0; i < NbrLoop; i++) {
+        let picture = document.createElement('img');
+        picture.id = data.results[i].id;     
+        picture.className = 'carousel__panorama--item modal-trigger';
+        picture.alt = data.results[i].title;
+        picture.src = data.results[i].image_url;
+        parent.appendChild(picture);
+    }
+}
 
 //////////////////////////////
 // FETCH CATEGORIE FUNCTION //
@@ -128,57 +146,46 @@ function sideArrows(parent, direction) {
  * @param {getElementById}
  * @returns {data}
  */
- async function movieCategorie(request, parent) {
+async function movieCategorie(request, parent) {
     try {
-		const response = await fetch(request)
-			if (!response.ok) {
-				throw new Error(`Error: ${response.status}`)
-			}
-            if (response.ok) {response.json()
-                .then(data => {
-                    // Function call to display the title above the category
-                    categorieTitle(data, parent);
+        const response = await fetch(request)
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`)
+        }
+        if (response.ok) {response.json()
+            .then(data => {
+                // Function call to display the title above the category
+                categorieTitle(data, parent);
                 
+                // Add previews arrows
+                sideArrows(parent, '◀');
+                    
                     // Div creation for container
-                    let newContainerDiv = document.createElement('div');
-                    newContainerDiv.className = 'container';
-                    parent.appendChild(newContainerDiv);
-            
-                    // Add previews arrows
-                    sideArrows(newContainerDiv, '◀');
-
-                    let carouselSlice = document.createElement('div');
-                    carouselSlice.id = 'carousel';
-                    carouselSlice.className = 'carousel_slice';
-                    parent.appendChild(carouselSlice);
+                    let containerDiv = document.createElement('div');
+                    containerDiv.className = 'container';
+                    parent.appendChild(containerDiv);
+                    
+                    let carousel = document.createElement('div');
+                    carousel.className = 'carousel';
+                    containerDiv.appendChild(carousel);
+                    
+                    let carouselPanorama = document.createElement('div');
+                    carouselPanorama.className = 'carousel--panorama';
+                    carousel.appendChild(carouselPanorama);
                     
                     // First loop that recovers the first 5 elements
-                    for(let i = 0; i < 5; i++) {
-                    let newPicture = document.createElement('img');
-                    newPicture.id = data.results[i].id;     
-                    newPicture.className = 'container_list modal-trigger';
-                    newPicture.alt = data.results[i].title;
-                    newPicture.src = data.results[i].image_url;
-                    newContainerDiv.appendChild(newPicture);
-                }
+                    loopForCategorieInformation(data, carouselPanorama, 5)
                     // Recovery of the next URL to make a loop for 2 elements recovery
                     let nextPage = data.next
                     {fetch(nextPage)
                         .then(response => {if(response.ok) {response.json()
                             .then(data => {
-                                for(let i = 0; i < 2; i++) {
-                                let newPicture = document.createElement('img');
-                                newPicture.id = data.results[i].id;
-                                newPicture.className = 'container_list modal-trigger';      
-                                newPicture.src = data.results[i].image_url;
-                                newPicture.alt = data.results[i].title;
-                                newContainerDiv.appendChild(newPicture);
-                                }
-                            sideArrows(newContainerDiv, '▶');
-                        })
-                    }})
-                }
-            })
+                                loopForCategorieInformation(data, carouselPanorama, 2)
+                            })
+                        }})
+                    }
+                    sideArrows(parent, '▶');
+                })
         } else {
             console.error('Retour du serveur : ', response.status)
         }
@@ -190,7 +197,6 @@ function sideArrows(parent, direction) {
 ////////////////////////////
 // CALL CATEGORIE METHODE //
 ////////////////////////////
-
 const topRated = document.getElementById('top_rated')
 movieCategorie(requestConstruction('?imdb_score_min=9&imdb_score_max=10'), topRated)
 
@@ -220,3 +226,262 @@ movieCategorie(requestConstruction(`?genre=War`), thirdCategorie)
 //     return categorieList
 // }
 // console.log(getRandomCategorie())
+
+
+//////////////
+// CAROUSEL //
+//////////////
+
+class Carousel {
+    /**
+     * @param {HTMLElement}
+     * @param {object}
+     * @param {object} options.slidesToScroll number of items to scroll through
+     * @param {object} options.slidesToVisible number of elements visible in the slide
+     * @param {boolean} options.loop should we finish the carousel
+     */
+    constructor (element, options = {}) {
+        this.element = element
+        this.options = object.assign({}, {
+            slidesToScroll: 1,
+            slidesToVisible: 4,
+            loop: false
+        }, options)
+        
+        let children = [].slice.call(element.children)
+        this.currentItem = 0
+        this.root = this.createDivWithClass('carousel')
+        this.container = this.createDivWithClass('carousel__panorama')
+        this.root.appendChild(this.container)
+        this.element.appendChild(this.root)
+        this.moveCallBacks = []
+        this.items = children.map((child) => {
+            let item = this.createDivWithClass('carousel__panorama--item')
+            item.appendChild(child)
+            this.container.appendChild(item)
+            return item
+        })
+        this.setStyle()
+        this.createNavigation()
+        this.moveCallBacks.forEach(callBack => callBack(0))
+    }
+    /**
+     * Applies the correct dimensions to the carousel elements.
+     */
+    setStyle () {
+        let ratio = this.items.length / this.options.slidesToVisible
+        this.container.style.width = (ratio * 100) + "%"
+        this.items.forEach(item => item.style.width = ((100 / this.options.slidesToVisible) / ratio) + "%")
+            
+    }
+    createNavigation() {
+        let nextButton = this.createDivWithClass('carousel__next')
+        let prevButton = this.createDivWithClass('carousel__prev')
+        this.root.appendChild(nextButton)
+        this.root.appendChild(prevButton)
+        nextButton.addEventListener('click', this.next.bind(this))
+        prevButton.addEventListener('click', this.prev.bind(this))
+        this.onMove(index => {
+            if(index === 0) {
+                prevButton.classList.add('carousel__prev--hidden')
+            } else {
+                prevButton.classList.remove('carousel__prev--hidden')
+            }
+            if (this.item[this.currentItem + this.options.slidesToVisible] === undefined){
+                nextButton.classList.add('carousel__next--hidden')
+            } else {
+                nextButton.classList.add('carousel__next--hidden')
+            }
+        })
+    }
+    next () {
+        this.gotToItem(this.currentItem + this.options.slidesToScroll)
+
+    }
+    prev () {
+        this.gotToItem(this.currentItem - this.options.slidesToScroll)
+    }
+    /**
+     * Moves the carousel to the target element
+     * @param {number} index 
+     */
+    gotToItem(index) {
+        if (index < 0) {
+            index = this.items.length - this.options.visible
+        } else if (index >= this.items.length || this.item[this.currentItem + this.options.slidesToVisible] === undefined) {
+            index = 0
+        }
+        let translateX = index * 100 / this.items.length
+        this.container.style.transfom = 'translate3d(' + translateX + ' %, 0, 0)'
+        this.currentItem = index
+        this.moveCallBacks.forEach(callBack => callBack(index))
+    }
+
+    onMove(callBack) {
+        this.moveCallBacks.push(callBack)
+    }
+
+    /**
+     * @param {string} 
+     * @returns {HTMLElement}
+     */
+    createDivWithClass (className) {
+        let div = document.createElement('div')
+        div.setAttribute('class', className)
+        return div
+    }
+}
+    
+    
+document.addEventListener('DOMContentLoaded', function () {
+    new Carousel(document.querySelector('#top_rated'), {
+        slidesToScroll: 1,
+        slidesToVisible: 4,
+        loop: false
+    })
+
+    new Carousel(document.querySelector('#first_categorie'), {
+        slidesToScroll: 3,
+        slidesToVisible: 4,
+        loop: false
+    })
+    new Carousel(document.querySelector('#second_categorie'), {
+        slidesToScroll: 3,
+        slidesToVisible: 4,
+        loop: false
+    })
+    new Carousel(document.querySelector('#third_categorie'), {
+        slidesToScroll: 3,
+        slidesToVisible: 4,
+        loop: false
+    })
+})
+
+
+///////////////////
+// MODAL WINDOWS //
+///////////////////
+
+// Modal windows
+const modalPicture = document.getElementById('modal_picture');
+const modalTitle = document.getElementById('modal_title');
+const modalGenres = document.getElementById('modal_genres');
+const modalDatePublished = document.getElementById('modal_date_published');
+const modalRated = document.getElementById('rated');
+const modalScore = document.getElementById('modal_score');
+const modalDirectors = document.getElementById('modal_directors');
+const modalActors = document.getElementById('modal_actors');
+const modalDuration = document.getElementById('modal_duration');
+const modalOrigineCountries = document.getElementById('modal_origine_countries');
+const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
+const modalDescription = document.getElementById('modal_description');
+
+function modalWindows(modalRequest) {fetch(modalRequest)
+        .then(response => {if(response.ok) {response.json()
+        .then(data => {
+            modalPicture.src = data.image_url;
+            modalTitle.textContent = "Title: " + data.title;
+            modalGenres.textContent = "Genres: " + data.genres;
+            modalDatePublished.textContent = "Date published: " + data.date_published;
+            modalRated.textContent = "Rated: " + data.rated;
+            modalScore.textContent = "Score: " + data.imdb_score;
+            modalDirectors.textContent = "Directors: " + data.directors;
+            modalActors.textContent = "Actors: " + data.actors;
+            modalDuration.textContent = "Duration: " + data.duration + " min";
+            modalOrigineCountries.textContent = "Countrie: " + data.countries;
+            // modalResultsOfBoxOffice.textContent = "Box Office: " + data.;
+            modalDescription.textContent = "Description: " + data.description;
+        })
+        }
+    })
+}
+
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");
+
+modalTriggers.forEach((trigger) =>
+    trigger.addEventListener("click", toggleModal)
+)
+
+function toggleModal() {
+     modalContainer.classList.toggle("active")
+}
+
+
+
+
+
+
+
+(function() {
+    const carousel = document.getElementsByClassName('carousel')[0],
+        slider = carousel.getElementsByClassName('carousel__slider')[0],
+        items = carousel.getElementsByClassName('carousel__slider__item'),
+        prevBtn = carousel.getElementsByClassName('carousel__prev')[0],
+        nextBtn = carousel.getElementsByClassName('carousel__next')[0];
+    
+    let width, height, totalWidth, margin = 20,
+        currIndex = 0
+    
+    function init() {
+        resize();
+        move(Math.floor(items.length / 2));
+        bindEvents();
+    }
+    
+    function resize() {
+        width = Math.max(window.innerWidth * .25, 275),
+        height = window.innerHeight * .5,
+        totalWidth = width * items.length;
+      
+        slider.style.width = totalWidth + "px";
+      
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
+            item.style.width = (width - (margin * 2)) + "px";
+            item.style.height = height + "px";
+        }
+    }
+    
+    function move(index) {
+        if(index < 1) index = items.length;
+        if(index > items.length) index = 1;
+        currIndex = index;
+      
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i],
+                box = item.getElementsByClassName('item__3d-frame')[0];
+            if(i == (index - 1)) {
+                item.classList.add('carousel__slider__item--active');
+                box.style.transform = "perspective(1200px)"; 
+            } else {
+              item.classList.remove('carousel__slider__item--active');
+                box.style.transform = "perspective(1200px) rotateY(" + (i < (index - 1) ? 40 : -40) + "deg)";
+            }
+        }
+      
+        slider.style.transform = "translate3d(" + ((index * -width) + (width / 2) + window.innerWidth / 2) + "px, 0, 0)";
+    }
+    
+    function timer() {
+        clearInterval(interval);    
+        interval = setInterval(() => {
+          move(++currIndex);
+        }, intervalTime);    
+    }
+    
+    function prev() {
+      move(--currIndex);
+    }
+    
+    function next() {
+      move(++currIndex);    
+    }
+  
+    function bindEvents() {
+        window.onresize = resize;
+        prevBtn.addEventListener('click', () => {prev(); });
+        nextBtn.addEventListener('click', () => {next(); });    
+    }
+    init();
+  })();
