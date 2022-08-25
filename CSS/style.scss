@@ -74,76 +74,74 @@ body {
 
 /* ------- Header movie box ------- */
 #best_movie {
-    width: 92%;
-    height: 300px;
-    box-shadow: $background_nav_bar;
+    width: 100%;
+    height: 400px;
+    display: flex;
+}
+.best_movie--container {
     border-radius: 20px;
+    width: 900px;
+    height:300px;
     margin: auto;
     margin-top: 3%;
     border: 7px solid $border_boxes;
-        
-    .best_movie--title {
-        font-family: $font_family;
-        color: $border_boxes;
-        font-size: $principal_box_font_size;
-        letter-spacing: 2px;
-        text-shadow: $background_nav_bar 8px 0 10px;
-        padding-top: 20px;
-        padding-left: 30px;
-        float: left;
-    }
-
-    .best_movie--picture {
-        box-shadow: $background_nav_bar;
-        display: flex;
-        width: 15%;
-        height:286px;
-        display: inline-block;
-        border-radius: 0 13px 13px 0;
-        position: absolute;
-        margin-left: 754px;
-        }
-
-    .best_movie--play {
-        color: $border_boxes, $small_border solid;
-        color: $nav_font_color;
-        background: $play_button;
-        font-size: $play_font_size;
-        letter-spacing: 2px;
-        padding: 15px 50px;
-        border-radius: 50px;
-        margin: 70px 0 0 50px;
-        transition: 0.3s ease-out;
-        display: flexbox;
-        min-width: 150px;
-        &:hover {
-                cursor: pointer;
-                transition: 0.3s ease-out;;
-                border: none;
-                box-shadow: 1px 1px 1px 1px $play_button;
-            }
-        }
-
-    .best_movie--info {
-        color: $border_boxes, $small_border solid;
-        color: $nav_font_color;
-        background: $border_boxes;
-        font-size: $play_font_size;
-        letter-spacing: 2px;
-        padding: 15px 50px;
-        border-radius: 50px;
-        margin: 70px 0 0 50px;
-        transition: 0.3s ease-out;;
-        cursor: pointer;
-        display: flexbox;
-        min-width: 150px;
-            &:hover {
-                transition: 0.3s ease-out;;
-                border: none;
-                box-shadow: 1px 1px 1px 1px $border_boxes;
-            }
-        }
 }
+.best_movie--title {
+    font-family: $font_family;
+    color: $border_boxes;
+    font-size: $principal_box_font_size;
+    letter-spacing: 2px;
+    text-shadow: $nav_font_color 8px 0 10px;
+    padding-top: 20px;
+    padding-left: 30px;
+    float: left;
+}      
+.best_movie--picture {
+    box-shadow: $background_nav_bar;
+    width: 14.3%;
+    border-radius: 0 13px 13px 0;
+    position: absolute;
+    margin-left: 26.4%;
+}
+        
+.best_movie--play {
+    color: $border_boxes, $small_border solid;
+    color: $nav_font_color;
+    background: $play_button;
+    font-size: $play_font_size;
+    letter-spacing: 2px;
+    padding: 15px 50px;
+    border-radius: 50px;
+    margin: 70px;
+    transition: 0.3s ease-out;
+    &:hover {
+        cursor: pointer;
+        transition: 0.3s ease-out;;
+        border: none;
+        box-shadow: 1px 1px 1px 1px $play_button;
+    }
+}
+
+.best_movie--info {
+    color: $border_boxes, $small_border solid;
+    color: $nav_font_color;
+    background: $border_boxes;
+    font-size: $play_font_size;
+    letter-spacing: 2px;
+    padding: 15px 50px;
+    border-radius: 50px;
+    margin: 70px 0 0 50px;
+    transition: 0.3s ease-out;;
+    cursor: pointer;
+    display: flex;
+    min-width: 150px;
+    &:hover {
+        transition: 0.3s ease-out;;
+        border: none;
+        box-shadow: 1px 1px 1px 1px $border_boxes;
+    }
+}
+
 
 /* ------- Category titles -------- */
 .categorie--title {

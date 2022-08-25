@@ -68,42 +68,43 @@ body {
 
 /* ------- Header movie box ------- */
 #best_movie {
-  width: 92%;
-  height: 300px;
-  -webkit-box-shadow: #505050;
-          box-shadow: #505050;
+  width: 100%;
+  height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.best_movie--container {
   border-radius: 20px;
+  width: 900px;
+  height: 300px;
   margin: auto;
   margin-top: 3%;
   border: 7px solid #28282B;
 }
 
-#best_movie .best_movie--title {
+.best_movie--title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B;
   font-size: 50px;
   letter-spacing: 2px;
-  text-shadow: #505050 8px 0 10px;
+  text-shadow: #f1f1f1 8px 0 10px;
   padding-top: 20px;
   padding-left: 30px;
   float: left;
 }
 
-#best_movie .best_movie--picture {
+.best_movie--picture {
   -webkit-box-shadow: #505050;
           box-shadow: #505050;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 15%;
-  height: 286px;
-  display: inline-block;
+  width: 14.3%;
   border-radius: 0 13px 13px 0;
   position: absolute;
-  margin-left: 754px;
+  margin-left: 26.4%;
 }
 
-#best_movie .best_movie--play {
+.best_movie--play {
   color: #28282B, 3px solid;
   color: #f1f1f1;
   background: #AB060F;
@@ -111,14 +112,12 @@ body {
   letter-spacing: 2px;
   padding: 15px 50px;
   border-radius: 50px;
-  margin: 70px 0 0 50px;
+  margin: 70px;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-  display: flexbox;
-  min-width: 150px;
 }
 
-#best_movie .best_movie--play:hover {
+.best_movie--play:hover {
   cursor: pointer;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
@@ -127,7 +126,7 @@ body {
           box-shadow: 1px 1px 1px 1px #AB060F;
 }
 
-#best_movie .best_movie--info {
+.best_movie--info {
   color: #28282B, 3px solid;
   color: #f1f1f1;
   background: #28282B;
@@ -139,11 +138,13 @@ body {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   cursor: pointer;
-  display: flexbox;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   min-width: 150px;
 }
 
-#best_movie .best_movie--info:hover {
+.best_movie--info:hover {
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border: none;

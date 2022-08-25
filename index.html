@@ -12,9 +12,7 @@
         <link rel="stylesheet" href="CSS/style.css">
 
         <script type="text/javascript" src="JS/app.js" async></script>
-        <script type="text/javascript" src="JS/modalWindows.js" async></script>
-        <script type="text/javascript" src="JS/carousel.js" async></script>
-        
+
         <link rel="icon" href="src/index/JustStreamIt.png">
         <title>Just stream it</title>
     </head>
@@ -32,7 +30,14 @@
         </header>
 
 <!-- Categorie movie presentation -->
-        <section id="best_movie"></section>
+        <section id="best_movie">
+            <div class="best_movie--container">
+                <img src="" class="best_movie--picture" alt="picture"></img>
+                <h1 class="best_movie--title" alt="title"></h1>
+                <button class="best_movie--play" type="button">Play ▶</button>
+                <button class="best_movie--info modal-trigger" type="button" alt="read information">More info</button>
+            </div>
+        </section>
 
 <!-- Categorie top rated -->
         <section id="top_rated"></section>
