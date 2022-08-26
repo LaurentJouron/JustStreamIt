@@ -77,68 +77,69 @@ body {
     width: 100%;
     height: 400px;
     display: flex;
-}
-.best_movie--container {
-    border-radius: 20px;
-    width: 900px;
-    height:300px;
-    margin: auto;
-    margin-top: 3%;
-    border: 7px solid $border_boxes;
-}
-.best_movie--title {
-    font-family: $font_family;
-    color: $border_boxes;
-    font-size: $principal_box_font_size;
-    letter-spacing: 2px;
-    text-shadow: $nav_font_color 8px 0 10px;
-    padding-top: 20px;
-    padding-left: 30px;
-    float: left;
-}      
-.best_movie--picture {
-    box-shadow: $background_nav_bar;
-    width: 14.3%;
-    border-radius: 0 13px 13px 0;
-    position: absolute;
-    margin-left: 26.4%;
-}
-        
-.best_movie--play {
-    color: $border_boxes, $small_border solid;
-    color: $nav_font_color;
-    background: $play_button;
-    font-size: $play_font_size;
-    letter-spacing: 2px;
-    padding: 15px 50px;
-    border-radius: 50px;
-    margin: 70px;
-    transition: 0.3s ease-out;
-    &:hover {
-        cursor: pointer;
-        transition: 0.3s ease-out;;
-        border: none;
-        box-shadow: 1px 1px 1px 1px $play_button;
-    }
-}
+    .best_movie--container {
+        width: 950px;
+        height:300px;
+        border-radius: 20px;
+        margin: auto;
+        border: 7px solid $border_boxes;
+        .best_movie--picture {
+            box-shadow: $background_nav_bar;
+            width: 10.2%;
+            border-radius: 0 13px 13px 0;
+            position: absolute;
+            margin-left: 38.6%;
+            justify-content: flex-end;
+        }
+        .best_movie--title {
+            font-family: $font_family;
+            font-size: $principal_box_font_size;
+            color: $border_boxes;
+            letter-spacing: 2px;
+            text-shadow: $nav_font_color 8px 0 10px;
+            padding-top: 20px;
+            padding-left: 30px;
+        }      
 
-.best_movie--info {
-    color: $border_boxes, $small_border solid;
-    color: $nav_font_color;
-    background: $border_boxes;
-    font-size: $play_font_size;
-    letter-spacing: 2px;
-    padding: 15px 50px;
-    border-radius: 50px;
-    margin: 70px 0 0 50px;
-    transition: 0.3s ease-out;;
-    cursor: pointer;
-    display: flex;
-    min-width: 150px;
-    &:hover {
-        transition: 0.3s ease-out;;
-        border: none;
-        box-shadow: 1px 1px 1px 1px $border_boxes;
+        .best_movie--play {
+            color: $border_boxes, $small_border solid;
+            color: $nav_font_color;
+            background: $play_button;
+            font-size: $play_font_size;
+            letter-spacing: 2px;
+            padding: 15px 50px;
+            border-radius: 50px;
+            transition: 0.3s ease-out;
+            justify-content: space-around;
+            display: flexbox;
+            margin-top: 70px;
+            margin-left: 30px;
+            &:hover {
+                cursor: pointer;
+                transition: 0.3s ease-out;
+                border: none;
+                box-shadow: 1px 1px 1px 1px $play_button;
+            }
+        }
+        
+        .best_movie--info {
+            color: $border_boxes, $small_border solid;
+            color: $nav_font_color;
+            background: $border_boxes;
+            font-size: $play_font_size;
+            letter-spacing: 2px;
+            padding: 15px 50px;
+            border-radius: 50px;
+            transition: 0.3s ease-out;
+            cursor: pointer;
+            min-width: 150px;
+            margin-left: 30px;
+            &:hover {
+                transition: 0.3s ease-out;
+                border: none;
+                box-shadow: 1px 1px 1px 1px $border_boxes;
+            }
+        }
     }
 }
 
@@ -159,15 +160,15 @@ body {
 
 /* -------- Box management -------- */
 
-.container {
+.carousel {
     justify-content: center;
     display: flex;
-    .carousel {
+    #id_carousel--container {
         position: relative;
         display: block;
         width: 100%;
         box-sizing: border-box;
-        .carousel__panorama--item {
+        .slide__banner--item {
             border-radius: 15px;
             margin: 0 10px 0 10px;
             border: 3px solid $border_boxes;
@@ -188,6 +189,7 @@ body {
     background: none;
     display: flex;
     border: none;
+
     &:hover {
         color: $play_button;
         transition: 0.3s ease-out;

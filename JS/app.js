@@ -1,17 +1,7 @@
-///////////////////////////////
-// FETCH BEST MOVIE FUNCTION //
-///////////////////////////////
-/**
- * Fuction calling functions to display the best movie data
- * @param {request}
- * @param {getElementById}
- * @returns {data}
- */
  const bestMoviePicture = document.querySelector('.best_movie--picture');
  const bestMovieTitle = document.querySelector('.best_movie--title');
 
-
-async function bestMovie(request) {
+async function getBestMovie(request) {
     try {
         const response = await fetch(request)
         if (!response.ok) {
@@ -36,143 +26,81 @@ async function bestMovie(request) {
 /////////////////////////////
 const bestMovieId = document.getElementById('best_movie')
 let bestMovieRequest = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score`
-bestMovie(bestMovieRequest)
+getBestMovie(bestMovieRequest)
 
 
-// ////////////////////////
-// // CATEGORIE FUNCTION //
-// ////////////////////////
-// /**
-//  * Fuction to call the title of each category
-//  * @param {data.response.json()}
-//  * @param {getElementById}
-//  * @returns {textContent}
-//  */
-//  function categorieTitle(data, parent){
-//      let categorieTitle = document.createElement('h1');
-//      categorieTitle.className = 'categorie--title';
-//     if (parent === document.getElementById('top_rated')) {
-//         categorieTitle.textContent = 'Top rated';
-//         parent.appendChild(categorieTitle);
-//     } else {
-//         categorieTitle.textContent = data.results[0].genres[0];
-//         parent.appendChild(categorieTitle);
-//     }
-// }
-// /**
-//  * Function that allows to put the arrows in one direction or the other on each side of the images.
-//  * @param {getElementById}
-//  * @param {textContent}
-//  * @returns {textContent}
-//  */
-// function sideArrows(parent, direction) {
-//     if (direction === '◀') {
-//         let carouselPreview = document.createElement('button');
-//         carouselPreview.className = 'carousel__preview';
-//         carouselPreview.textContent = direction;
-//         parent.appendChild(carouselPreview);}
-//     if (direction === '▶') {
-//         let carouselNext = document.createElement('button');
-//         carouselNext.className = 'carousel__next';
-//         carouselNext.textContent = direction;
-//         parent.appendChild(carouselNext);
-//     }
-// }
+//////////////////////////////
+// FETCH CATEGORIE FUNCTION //
+//////////////////////////////
+const categortieTitle = document.querySelector('.categorie--title');
 
-// /**
-//  * Loop function to retrieve items from categories
-//  * @param {data from FETCH request}
-//  * @param {let Variable} 
-//  * @param {integer} NbrLoop 
-//  */
-// function loopForCategoriesInformations(data, parent, NbrLoop){
-//     for(let i = 0; i < NbrLoop; i++) {
-//         let picture = document.createElement('img');
-//         picture.id = data.results[i].id;     
-//         picture.className = 'carousel__panorama--item modal-trigger';
-//         picture.alt = data.results[i].title;
-//         picture.src = data.results[i].image_url;
-//         parent.appendChild(picture);
-//     }
-// }
 
-// //////////////////////////////
-// // FETCH CATEGORIE FUNCTION //
-// //////////////////////////////
-// /**
-//  * Function that calls the other functions for creating images on the document
-//  * @param {request}
-//  * @param {getElementById}
-//  * @returns {data}
-//  */
-// async function movieCategorie(request, parent) {
-//     try {
-//         const response = await fetch(request)
-//         if (!response.ok) {
-//             throw new Error(`Error: ${response.status}`)
-//         }
-//         if (response.ok) {response.json()
-//             .then(data => {
-//                 // Function call to display the title above the category
-//                 categorieTitle(data, parent);
-                
+async function getMovieCategorie(request, parent) {
+    try {
+        const response = await fetch(request)
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`)
+        }
+        if (response.ok) {response.json()
+            .then(data => { 
+                categortieTitle.textContent = data.results[0].genres[0]
+                let carouselCourant = document.getElementById(`id_carousel__${parent}`)
 
+                    let slide = document.createElement('div');
+                    slide.className = 'slide';
+                    carouselCourant.appendChild(slide);
                     
-//                     // Div creation for container
-//                     let containerDiv = document.createElement('div');
-//                     containerDiv.className = 'container';
-//                     parent.appendChild(containerDiv);
-                    
-//                     let carousel = document.createElement('div');
-//                     carousel.className = 'carousel';
-//                     containerDiv.appendChild(carousel);
-                    
-//                     let carouselPanorama = document.createElement('div');
-//                     carouselPanorama.className = 'carousel--panorama';
-//                     carousel.appendChild(carouselPanorama);
-                    
-//                     // First loop that recovers the first 5 elements
-//                     loopForCategoriesInformations(data, carouselPanorama, 5)
-//                     // Recovery of the next URL to make a loop for 2 elements recovery
-//                     let nextPage = data.next
-//                     {fetch(nextPage)
-//                         .then(response => {if(response.ok) {response.json()
-//                             .then(data => {
-//                                 loopForCategoriesInformations(data, carouselPanorama, 2)
-//                             })
-//                         }})
-//                     }
-//                 // Add previews arrows
-//                 sideArrows(parent, '◀');
-//                 // Add next arrows
-//                 sideArrows(parent, '▶');
-//                 })
-//         } else {
-//             console.error('Retour du serveur : ', response.status)
-//         }
-//     } catch(error) {
-//         errorMsg.textContent = `${error}`
-//     }
-// }
+                    let slideBanner = document.createElement('div');
+                    slideBanner.className = 'slide--banner';
+                    slide.appendChild(slideBanner);
 
-// ////////////////////////////
-// // CALL CATEGORIE METHODE //
-// ////////////////////////////
-// const topRated = document.getElementById('top_rated')
-// let topRatedRequest = `http://localhost:8000/api/v1/titles/?imdb_score_min=9&imdb_score_max=10`
-// movieCategorie(topRatedRequest, topRated)
+                    // First loop that recovers the first 5 elements
+                    for(let i = 0; i < 5; i++) {
+                        let picture = document.createElement('img');
+                        picture.id = data.results[i].id;     
+                        picture.className = 'slide__banner--item modal-trigger';
+                        picture.alt = data.results[i].title;
+                        picture.src = data.results[i].image_url;
+                        slide.appendChild(picture);
+                    }
+                    // Recovery of the next URL to make a loop for 2 elements recovery
+                    let nextPage = data.next
+                    {fetch(nextPage)
+                        .then(response => {if(response.ok) {response.json()
+                            .then(data => {
+                                for(let i = 0; i < 2; i++) {
+                                    let picture = document.createElement('img');
+                                    picture.id = data.results[i].id;     
+                                    picture.className = 'slide__banner--item modal-trigger';
+                                    picture.alt = data.results[i].title;
+                                    picture.src = data.results[i].image_url;
+                                    slide.appendChild(picture);
+                            }})
+                        }})
+                    }
+                })
+        } else {
+            console.error('Retour du serveur : ', response.status)
+        }
+    } catch(error) {
+        errorMsg.textContent = `${error}`
+    }
+}
 
-// const firstCategorie = document.getElementById('first_categorie')
-// let firstCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Comedy`
-// movieCategorie(firstCategorieRequest, firstCategorie)
+////////////////////////////
+// CALL CATEGORIE METHODE //
+////////////////////////////
+const topRatedRequest = `http://localhost:8000/api/v1/titles/?imdb_score_min=9&imdb_score_max=10`
+getMovieCategorie(topRatedRequest, 'top_rated')
 
-// const secondCategorie = document.getElementById('second_categorie')
-// let secondCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Animation`
-// movieCategorie(secondCategorieRequest, secondCategorie)
+let firstCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Comedy`
+getMovieCategorie(firstCategorieRequest, 'first_categorie')
 
-// const thirdCategorie = document.getElementById('third_categorie')
-// let thirdCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=War`
-// movieCategorie(thirdCategorieRequest, thirdCategorie)
+let secondCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Animation`
+getMovieCategorie(secondCategorieRequest, 'second_categorie')
+
+let thirdCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=War`
+getMovieCategorie(thirdCategorieRequest, 'third_categorie')
 
 
 // /////////////////////
