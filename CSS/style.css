@@ -3,7 +3,8 @@
 /* ------------ FONT -------------- */
 /* ----------- GLOBAL ------------- */
 *, ::before, ::after {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -15,64 +16,78 @@ body {
 /* ---------- Header NAV ---------- */
 #nav {
   background: #505050;
-  box-shadow: #505050;
+  -webkit-box-shadow: #505050;
+          box-shadow: #505050;
   height: 70px;
 }
+
 #nav .nav__list {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   list-style-type: none;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 #nav .nav__list .nav__list--item {
   margin: 0 8px;
 }
+
 #nav .nav__list .nav__list--item:nth-child(1) {
   color: #f1f1f1;
   text-shadow: #f1f1f1 1px 0 2px;
   font-size: 40px;
   margin-right: auto;
 }
-#nav .nav__list .nav__list--item:nth-child(2) a {
+
+#nav .nav__list .nav__list--item:nth-child(2) a, #nav .nav__list .nav__list--item:nth-child(3) a {
   font-size: 30px;
   color: #f1f1f1;
 }
-#nav .nav__list .nav__list--item:nth-child(2) a:hover {
-  transition: 0.3s ease-out;
+
+#nav .nav__list .nav__list--item:nth-child(2) a:hover, #nav .nav__list .nav__list--item:nth-child(3) a:hover {
   color: #AB060F;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
+
 #nav .nav__list .nav__list--item:nth-child(3) a {
-  font-size: 30px;
-  color: #f1f1f1;
   margin-right: 30px;
-}
-#nav .nav__list .nav__list--item:nth-child(3) a:hover {
-  transition: 0.3s ease-out;
-  color: #AB060F;
 }
 
 /* ------- Header movie box ------- */
 #best_movie {
   width: 100%;
   height: 400px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
-#best_movie .best_movie--container {
+
+#best_movie .container {
   width: 950px;
   height: 300px;
   border-radius: 20px;
   margin: auto;
   border: 7px solid #28282B;
 }
-#best_movie .best_movie--container .best_movie--picture {
-  box-shadow: #505050;
-  width: 10.2%;
+
+#best_movie .container .movie_picture {
+  -webkit-box-shadow: #505050;
+          box-shadow: #505050;
+  width: 14.5%;
   border-radius: 0 13px 13px 0;
   position: absolute;
-  margin-left: 38.6%;
-  justify-content: flex-end;
+  margin-left: 54.9%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
-#best_movie .best_movie--container .best_movie--title {
+
+#best_movie .container .movie_title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   font-size: 50px;
   color: #28282B;
@@ -81,47 +96,47 @@ body {
   padding-top: 20px;
   padding-left: 30px;
 }
-#best_movie .best_movie--container .best_movie--play {
-  color: #28282B, 3px solid;
+
+#best_movie .container .play, #best_movie .container .info {
   color: #f1f1f1;
-  background: #AB060F;
   font-size: 26px;
   letter-spacing: 2px;
   padding: 15px 50px;
   border-radius: 50px;
-  transition: 0.3s ease-out;
-  justify-content: space-around;
   display: flexbox;
   margin-top: 70px;
   margin-left: 30px;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
 }
-#best_movie .best_movie--container .best_movie--play:hover {
+
+#best_movie .container .play:hover, #best_movie .container .info:hover {
   cursor: pointer;
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   border: none;
-  box-shadow: 1px 1px 1px 1px #AB060F;
 }
-#best_movie .best_movie--container .best_movie--info {
-  color: #28282B, 3px solid;
-  color: #f1f1f1;
+
+#best_movie .container .play {
+  background: #AB060F;
+}
+
+#best_movie .container .play:hover {
+  -webkit-box-shadow: 1px 1px 1px 1px #AB060F;
+          box-shadow: 1px 1px 1px 1px #AB060F;
+}
+
+#best_movie .container .info {
   background: #28282B;
-  font-size: 26px;
-  letter-spacing: 2px;
-  padding: 15px 50px;
-  border-radius: 50px;
-  transition: 0.3s ease-out;
-  cursor: pointer;
-  min-width: 150px;
-  margin-left: 30px;
 }
-#best_movie .best_movie--container .best_movie--info:hover {
-  transition: 0.3s ease-out;
-  border: none;
-  box-shadow: 1px 1px 1px 1px #28282B;
+
+#best_movie .container .info:hover {
+  -webkit-box-shadow: 1px 1px 1px 1px #28282B;
+          box-shadow: 1px 1px 1px 1px #28282B;
 }
 
 /* ------- Category titles -------- */
-.categorie--title {
+.categorie_title {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B, 3px solid;
   font-size: 40px;
@@ -134,57 +149,69 @@ body {
   border-style: dotted;
 }
 
-/* -------- Box management -------- */
-.carousel {
-  justify-content: center;
+/* ------ Carousel management ----- */
+#id_carousel {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-}
-.carousel #id_carousel--container {
-  position: relative;
-  display: block;
   width: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
-.carousel #id_carousel--container .slide__banner--item {
+
+#id_carousel .slide--item {
   border-radius: 15px;
   margin: 0 10px 0 10px;
   border: 3px solid #28282B;
   float: left;
 }
-.carousel #id_carousel--container .slide__banner--item:hover {
+
+#id_carousel .slide--item:hover {
   border: 3px solid #AB060F;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   cursor: pointer;
 }
 
+/* -- Arrows direction management -- */
 .carousel__preview, .carousel__next {
   color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
   background: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   border: none;
+  position: absolute;
 }
+
 .carousel__preview:hover, .carousel__next:hover {
   color: #AB060F;
+  -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
   cursor: pointer;
 }
 
 .carousel__preview {
-  position: absolute;
   left: 40%;
 }
+
 .carousel__preview:hover {
-  transform: translateX(-5px);
+  -webkit-transform: translateX(-5px);
+          transform: translateX(-5px);
 }
 
 .carousel__next {
-  position: absolute;
   right: 40%;
 }
+
 .carousel__next:hover {
-  transform: translateX(5px);
+  -webkit-transform: translateX(5px);
+          transform: translateX(5px);
 }
 
 /* ------------ FOOTER ------------ */
@@ -196,10 +223,12 @@ footer {
   margin-top: 70px;
   padding: 10px 0 10px 0;
 }
+
 footer #imgCopy {
   width: 15px;
   height: 15px;
 }
+
 @media screen and (max-width: 1300px) {
   footer footer {
     padding-left: 0px;
@@ -213,6 +242,7 @@ footer #imgCopy {
   top: 0;
   width: 100vw;
   height: 100vh;
+  -webkit-transition: visibility 0.4s;
   transition: visibility 0.4s;
 }
 
@@ -225,12 +255,14 @@ footer #imgCopy {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(51, 51, 51, 0.8274509804);
+  background: #333333d3;
+  -webkit-transition: opacity 0.4s 0.2s ease-out;
   transition: opacity 0.4s 0.2s ease-out;
 }
 
 .modal-container.active .overlay {
   opacity: 1;
+  -webkit-transition: opacity 0.4s ease-out;
   transition: opacity 0.4s ease-out;
 }
 
@@ -245,14 +277,22 @@ footer #imgCopy {
   position: absolute;
   top: 40%;
   left: 50%;
-  transform: translate(-50%, calc(-50% - 50px));
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  -webkit-transform: translate(-50%, calc(-50% - 50px));
+          transform: translate(-50%, calc(-50% - 50px));
+  -webkit-transition: opacity 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, -webkit-transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out, -webkit-transform 0.4s ease-out;
 }
 
 .modal-container.active .modal {
   opacity: 1;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transition: opacity 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out, -webkit-transform 0.4s 0.2s ease-out;
 }
 
 .close-modal {
@@ -277,4 +317,5 @@ footer #imgCopy {
 .modal h4 {
   font-size: 20px;
   margin-bottom: 10px;
-}/*# sourceMappingURL=style.css.map */
+}
+/*# sourceMappingURL=style.css.map */

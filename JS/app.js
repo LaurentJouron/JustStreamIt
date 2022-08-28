@@ -1,18 +1,39 @@
- const bestMoviePicture = document.querySelector('.best_movie--picture');
- const bestMovieTitle = document.querySelector('.best_movie--title');
-
-async function getBestMovie(request) {
+async function getMovie(idParent, getElement) {
+    const APIUrl = `http://localhost:8000/api/v1/titles/?`
+    const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
+    const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
+    const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
+    const slideParentElement = document.querySelector(`.slide__${idParent}`)
     try {
-        const response = await fetch(request)
+        const response = await fetch(APIUrl+getElement)
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`)
         }
         if (response.ok) {response.json()
             .then(data => {
-                bestMovieTitle.textContent = data.results[0].title
-                bestMoviePicture.src = data.results[0].image_url
-            })
+                if (idParent === `best_movie`) {
+                    getMovieTitle.textContent = data.results[0].title
+                    getMoviePicture.src = data.results[0].image_url
+                } else {
+                    getCategortieTitle.textContent = data.results[0].genres[0]
+                    
+                    // First loop that recovers the first 5 elements
+                    for(let i = 0; i < 5; i++) {                   
+                    let slideBanner = document.createElement('div')
+                    slideBanner.className = `slide--banner`
+                    slideParentElement.appendChild(slideBanner)
 
+                    let picture = document.createElement('img')
+                    picture.id = data.results[i].id
+                    picture.className = 'slide--item modal-trigger'
+                    picture.alt = data.results[i].title
+                    picture.src = data.results[i].image_url
+                    slideParentElement.appendChild(picture)
+                }
+                let nextPage = data.next
+fetch(nextPage)
+                }
+            })
         } else {
             console.error('Retour du serveur : ', response.status)
         }
@@ -20,48 +41,41 @@ async function getBestMovie(request) {
         errorMsg.textContent = `${error}`
     }
 }
-
-/////////////////////////////
-// CALL BEST MOVIE METHODE //
-/////////////////////////////
-const bestMovieId = document.getElementById('best_movie')
-let bestMovieRequest = `http://localhost:8000/api/v1/titles/?sort_by=-imdb_score`
-getBestMovie(bestMovieRequest)
+getMovie(`best_movie`, `sort_by=-imdb_score`)
 
 
-//////////////////////////////
-// FETCH CATEGORIE FUNCTION //
-//////////////////////////////
-const categortieTitle = document.querySelector('.categorie--title');
 
+async function getMovieCategorie(idParent, getCategorie) {
+    const APIUrl = `http://localhost:8000/api/v1/titles/?`
+    const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`);
 
-async function getMovieCategorie(request, parent) {
     try {
-        const response = await fetch(request)
+        const response = await fetch(APIUrl+getCategorie)
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`)
         }
         if (response.ok) {response.json()
             .then(data => { 
-                categortieTitle.textContent = data.results[0].genres[0]
-                let carouselCourant = document.getElementById(`id_carousel__${parent}`)
-
-                    let slide = document.createElement('div');
-                    slide.className = 'slide';
-                    carouselCourant.appendChild(slide);
-                    
-                    let slideBanner = document.createElement('div');
-                    slideBanner.className = 'slide--banner';
-                    slide.appendChild(slideBanner);
+                getCategortieTitle.textContent = data.results[0].genres[0]
+                let idCarousel = document.getElementById(`id_carousel__${idParent}`)
 
                     // First loop that recovers the first 5 elements
                     for(let i = 0; i < 5; i++) {
-                        let picture = document.createElement('img');
-                        picture.id = data.results[i].id;     
-                        picture.className = 'slide__banner--item modal-trigger';
-                        picture.alt = data.results[i].title;
-                        picture.src = data.results[i].image_url;
-                        slide.appendChild(picture);
+                        let slide = document.createElement('div')
+                        slide.className = `slide slide__${idParent}`
+                        slide.tabIndex = [i]
+                        idCarousel.appendChild(slide)
+
+                        let slideBanner = document.createElement('div')
+                        slideBanner.className = `slide--banner`
+                        slide.appendChild(slideBanner)
+
+                        let picture = document.createElement('img')
+                        picture.id = data.results[i].id
+                        picture.className = 'slide--item modal-trigger'
+                        picture.alt = data.results[i].title
+                        picture.src = data.results[i].image_url
+                        slide.appendChild(picture)
                     }
                     // Recovery of the next URL to make a loop for 2 elements recovery
                     let nextPage = data.next
@@ -69,12 +83,20 @@ async function getMovieCategorie(request, parent) {
                         .then(response => {if(response.ok) {response.json()
                             .then(data => {
                                 for(let i = 0; i < 2; i++) {
-                                    let picture = document.createElement('img');
-                                    picture.id = data.results[i].id;     
-                                    picture.className = 'slide__banner--item modal-trigger';
-                                    picture.alt = data.results[i].title;
-                                    picture.src = data.results[i].image_url;
-                                    slide.appendChild(picture);
+                                    let slide = document.createElement('div')
+                                    slide.className = `slide slide__${idParent}`
+                                    idCarousel.appendChild(slide)
+            
+                                    let slideBanner = document.createElement('div')
+                                    slideBanner.className = `slide--banner`
+                                    slide.appendChild(slideBanner)
+            
+                                    let picture = document.createElement('img')
+                                    picture.id = data.results[i].id
+                                    picture.className = 'slide--item modal-trigger'
+                                    picture.alt = data.results[i].title
+                                    picture.src = data.results[i].image_url
+                                    slide.appendChild(picture)
                             }})
                         }})
                     }
@@ -87,20 +109,10 @@ async function getMovieCategorie(request, parent) {
     }
 }
 
-////////////////////////////
-// CALL CATEGORIE METHODE //
-////////////////////////////
-const topRatedRequest = `http://localhost:8000/api/v1/titles/?imdb_score_min=9&imdb_score_max=10`
-getMovieCategorie(topRatedRequest, 'top_rated')
-
-let firstCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Comedy`
-getMovieCategorie(firstCategorieRequest, 'first_categorie')
-
-let secondCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=Animation`
-getMovieCategorie(secondCategorieRequest, 'second_categorie')
-
-let thirdCategorieRequest = `http://localhost:8000/api/v1/titles/?genre=War`
-getMovieCategorie(thirdCategorieRequest, 'third_categorie')
+getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
+getMovie(`first_categorie`, `genre=Comedy`)
+getMovie(`second_categorie`, `genre=Animation`)
+getMovie(`third_categorie`, `genre=War`)
 
 
 // /////////////////////
