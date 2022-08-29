@@ -1,9 +1,47 @@
-async function getMovie(idParent, getCategorie) {
-    const APIUrl = `http://localhost:8000/api/v1/titles/?`
+/**
+ * Function that feeds the whole box at the top and represents the best film.
+ * @param {ID from HTML file} idParent 
+ * @param {Results from the fetch} data 
+ */
+ function bestMovie(idParent, data) {
     const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
     const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
+    const playLink = document.querySelector(`play`)
+
+    getMovieTitle.textContent = data.results[0].title
+    getMoviePicture.src = data.results[0].image_url
+// data.results[0].imdb_url
+}
+
+/**
+ * This function allows to assign the title of each category, while assigning the name best rated first.
+ * @param {ID from HTML file} idParent 
+ * @param {Results from the fetch} data 
+ */
+function categorieTitle (idParent, data) {
     const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
+    if (idParent === "top_rated") {
+        getCategortieTitle.textContent = `Top rated`
+     } else {
+        getCategortieTitle.textContent = data.results[0].genres[0]
+    }
+}
+
+/**
+ * @param {querySelector} 
+ * @param {string} 
+ */
+ function createDivWithClass (parentElement, className) {
+    let div = document.createElement('div')
+    div.className = className
+    parentElement.appendChild(div)
+}
+
+
+async function getMovie(idParent, getCategorie) {
+    const APIUrl = `http://localhost:8000/api/v1/titles/?`
     const slideParentElement = document.querySelector(`.slide__${idParent}`)
+    const slideIndicators = document.querySelector(`.slide-indicators__${idParent}`)
     let item = 0
     let j = 1
     try {
@@ -12,23 +50,14 @@ async function getMovie(idParent, getCategorie) {
             throw new Error(`Error: ${response.status}`)
         }
         if (response.ok) {response.json()
-            .then(data => { 
+            .then(data => {
                 if (idParent === `best_movie`) {
-                    const playLink = document.querySelector(`play_link`)
-                    getMovieTitle.textContent = data.results[0].title
-                    getMoviePicture.src = data.results[0].image_url
-// data.results[0].imdb_url
-
+                    bestMovie(idParent, data) 
                 } else {
-                    if (idParent === "top_rated") {
-                        getCategortieTitle.textContent = `Top rated`
-                     } else {
-                        getCategortieTitle.textContent = data.results[0].genres[0]
-                    }
-                    while (item <= 4) {
-                        let slideBanner = document.createElement('div')
-                        slideBanner.className = `slide--banner`
-                        slideParentElement.appendChild(slideBanner)
+                    categorieTitle(idParent, data)
+                    while (item <= 7) {
+
+                        createDivWithClass(slideParentElement, `slide--banner`)
 
                         let picture = document.createElement('img')
                         picture.id = data.results[item].id
@@ -36,9 +65,11 @@ async function getMovie(idParent, getCategorie) {
                         picture.alt = data.results[item].title
                         picture.src = data.results[item].image_url
                         slideParentElement.appendChild(picture)
+                        
+                        createDivWithClass(slideIndicators, `slide-indicator`)
+
                         if (item === 4) {j++}
                         item++
-                        console.log(item, j)
                     }
                 }
             })
@@ -57,10 +88,10 @@ const playButton = document.querySelector(".play");
 })
 
 getMovie(`best_movie`, `sort_by=-imdb_score`)
-getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`, 1)
-getMovie(`first_categorie`, `genre=Comedy`, 1)
-getMovie(`second_categorie`, `genre=Animation`, 1)
-getMovie(`third_categorie`, `genre=War`, 1)
+getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
+getMovie(`first_categorie`, `genre=Comedy`)
+getMovie(`second_categorie`, `genre=Animation`)
+getMovie(`third_categorie`, `genre=War`)
 
 
 
