@@ -32,11 +32,9 @@ async function getMovie(idParent, getCategorie) {
                      } else {
                         getCategortieTitle.textContent = data.results[0].genres[0]
                     }
-/// On itère sur les 5 films du paquet
+                    /// We read about the five films in the package
                     for(let i = 0; i < 5; i++) {
-
-                        createElementWithClass(slideParentElement, `div`, `slide-banner`)
-
+                        
                         let picture = document.createElement('img');
                         picture.id = data.results[i].id;     
                         picture.className = 'carousel--item modal-trigger';
@@ -44,7 +42,8 @@ async function getMovie(idParent, getCategorie) {
                         picture.src = data.results[i].image_url;
                         picture.tabIndex = [i];
                         slideParentElement.appendChild(picture);
-
+                        
+                        createElementWithClass(slideParentElement, `div`, `slide-banner slide-banner__${idParent}`)
                         createElementWithClass(slideIndicators, `div`, `slide-indicator`)
                     }
 
@@ -52,9 +51,8 @@ async function getMovie(idParent, getCategorie) {
                     {fetch(nextPage)
                         .then(response => {if(response.ok) {response.json()
                             .then(data => {
+                                /// We read about the first 2 films of the package
                                 for(let i = 0; i < 2; i++) {
-                                    createElementWithClass(slideParentElement, `div`, `slide-banner`)
-
                                     let picture = document.createElement('img');
                                     picture.id = data.results[i].id;     
                                     picture.className = 'carousel--item modal-trigger';
@@ -62,7 +60,8 @@ async function getMovie(idParent, getCategorie) {
                                     picture.src = data.results[i].image_url;
                                     picture.tabIndex = [i];
                                     slideParentElement.appendChild(picture);
-
+                                    
+                                    createElementWithClass(slideParentElement, `div`, `slide-banner slide-banner__${idParent}`)
                                     createElementWithClass(slideIndicators, `div`, `slide-indicator`)
                                 }
                             })
@@ -213,3 +212,78 @@ autoplayCarousel(`third_categorie`)
 //      modalContainer.classList.toggle("active")
 // }
 
+
+
+
+
+
+
+
+
+
+
+function autoplayCarousel() {
+    const carouselEl = document.getElementById("carousel");
+    const slideContainerEl = carouselEl.querySelector("#slide-container");
+    const slideEl = carouselEl.querySelector(".slide");
+    let slideWidth = slideEl.offsetWidth;
+    // Add click handlers
+    document.querySelector("#back-button")
+        .addEventListener("click", () => navigate("backward"));
+    document.querySelector("#forward-button")
+        .addEventListener("click", () => navigate("forward"));
+    document.querySelectorAll(".slide-indicator")
+        .forEach((dot, index) => {
+            dot.addEventListener("click", () => navigate(index));
+            dot.addEventListener("mouseenter", () => clearInterval(autoplay));
+        });
+    // Add keyboard handlers
+    document.addEventListener('keydown', (e) => {
+        if (e.code === 'ArrowLeft') {
+            clearInterval(autoplay);
+            navigate("backward");
+        } else if (e.code === 'ArrowRight') {
+            clearInterval(autoplay);
+            navigate("forward");
+        }
+    });
+    // Add resize handler
+    window.addEventListener('resize', () => {
+        slideWidth = slideEl.offsetWidth;
+    });
+    // Autoplay
+    const autoplay = setInterval(() => navigate("forward"), 3000);
+    slideContainerEl.addEventListener("mouseenter", () => clearInterval(autoplay));
+    // Slide transition
+    const getNewScrollPosition = (arg) => {
+        const gap = 10;
+        const maxScrollLeft = slideContainerEl.scrollWidth - slideWidth;
+        if (arg === "forward") {
+            const x = slideContainerEl.scrollLeft + slideWidth + gap;
+            return x <= maxScrollLeft ? x : 0;
+        } else if (arg === "backward") {
+            const x = slideContainerEl.scrollLeft - slideWidth - gap;
+            return x >= 0 ? x : maxScrollLeft;
+        } else if (typeof arg === "number") {
+            const x = arg * (slideWidth + gap);
+            return x;
+        }
+    }
+    const navigate = (arg) => {
+        slideContainerEl.scrollLeft = getNewScrollPosition(arg);
+    }
+    // Slide indicators
+    const slideObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const slideIndex = entry.target.dataset.slideindex;
+                carouselEl.querySelector('.slide-indicator.active').classList.remove('active');
+                carouselEl.querySelectorAll('.slide-indicator')[slideIndex].classList.add('active');
+            }
+        });
+    }, { root: slideContainerEl, threshold: .1 });
+    document.querySelectorAll('.slide').forEach((slide) => {
+        slideObserver.observe(slide);
+    });
+}
+autoplayCarousel();
