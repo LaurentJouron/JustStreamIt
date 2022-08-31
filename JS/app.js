@@ -1,5 +1,5 @@
- function createElementWithClass (parentElement, curentElement, className) {
-    let element = document.createElement(curentElement)
+ function createDivWithClass (parentElement, className) {
+    let element = document.createElement(`div`)
     element.className = className
     parentElement.appendChild(element)
 }
@@ -42,9 +42,13 @@ async function getMovie(idParent, getCategorie) {
                         picture.src = data.results[i].image_url;
                         picture.tabIndex = [i];
                         slideParentElement.appendChild(picture);
+
+                        let slideBanner = document.createElement(`div`)
+                        slideBanner.className = `slide-banner slide-banner__${idParent}`
+                        slideBanner.textContent = data.results[i].title;
+                        slideParentElement.appendChild(slideBanner)
                         
-                        createElementWithClass(slideParentElement, `div`, `slide-banner slide-banner__${idParent}`)
-                        createElementWithClass(slideIndicators, `div`, `slide-indicator`)
+                        createDivWithClass(slideIndicators, `slide-indicator`)
                     }
 
                     let nextPage = data.next
@@ -52,7 +56,7 @@ async function getMovie(idParent, getCategorie) {
                         .then(response => {if(response.ok) {response.json()
                             .then(data => {
                                 /// We read about the first 2 films of the package
-                                for(let i = 0; i < 2; i++) {
+                                for(i = 0; i < 2; i++) {
                                     let picture = document.createElement('img');
                                     picture.id = data.results[i].id;     
                                     picture.className = 'carousel--item modal-trigger';
@@ -60,9 +64,13 @@ async function getMovie(idParent, getCategorie) {
                                     picture.src = data.results[i].image_url;
                                     picture.tabIndex = [i];
                                     slideParentElement.appendChild(picture);
-                                    
-                                    createElementWithClass(slideParentElement, `div`, `slide-banner slide-banner__${idParent}`)
-                                    createElementWithClass(slideIndicators, `div`, `slide-indicator`)
+
+                                    let slideBanner = document.createElement(`div`)
+                                    slideBanner.className = `slide-banner slide-banner__${idParent}`
+                                    slideBanner.textContent = data.results[i].title;
+                                    slideParentElement.appendChild(slideBanner)
+
+                                    createDivWithClass(slideIndicators, `slide-indicator`)
                                 }
                             })
 
@@ -220,70 +228,9 @@ autoplayCarousel(`third_categorie`)
 
 
 
-
-
-function autoplayCarousel() {
-    const carouselEl = document.getElementById("carousel");
-    const slideContainerEl = carouselEl.querySelector("#slide-container");
-    const slideEl = carouselEl.querySelector(".slide");
-    let slideWidth = slideEl.offsetWidth;
-    // Add click handlers
-    document.querySelector("#back-button")
-        .addEventListener("click", () => navigate("backward"));
-    document.querySelector("#forward-button")
-        .addEventListener("click", () => navigate("forward"));
-    document.querySelectorAll(".slide-indicator")
-        .forEach((dot, index) => {
-            dot.addEventListener("click", () => navigate(index));
-            dot.addEventListener("mouseenter", () => clearInterval(autoplay));
-        });
-    // Add keyboard handlers
-    document.addEventListener('keydown', (e) => {
-        if (e.code === 'ArrowLeft') {
-            clearInterval(autoplay);
-            navigate("backward");
-        } else if (e.code === 'ArrowRight') {
-            clearInterval(autoplay);
-            navigate("forward");
-        }
-    });
-    // Add resize handler
-    window.addEventListener('resize', () => {
-        slideWidth = slideEl.offsetWidth;
-    });
-    // Autoplay
-    const autoplay = setInterval(() => navigate("forward"), 3000);
-    slideContainerEl.addEventListener("mouseenter", () => clearInterval(autoplay));
-    // Slide transition
-    const getNewScrollPosition = (arg) => {
-        const gap = 10;
-        const maxScrollLeft = slideContainerEl.scrollWidth - slideWidth;
-        if (arg === "forward") {
-            const x = slideContainerEl.scrollLeft + slideWidth + gap;
-            return x <= maxScrollLeft ? x : 0;
-        } else if (arg === "backward") {
-            const x = slideContainerEl.scrollLeft - slideWidth - gap;
-            return x >= 0 ? x : maxScrollLeft;
-        } else if (typeof arg === "number") {
-            const x = arg * (slideWidth + gap);
-            return x;
-        }
-    }
-    const navigate = (arg) => {
-        slideContainerEl.scrollLeft = getNewScrollPosition(arg);
-    }
-    // Slide indicators
-    const slideObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const slideIndex = entry.target.dataset.slideindex;
-                carouselEl.querySelector('.slide-indicator.active').classList.remove('active');
-                carouselEl.querySelectorAll('.slide-indicator')[slideIndex].classList.add('active');
-            }
-        });
-    }, { root: slideContainerEl, threshold: .1 });
-    document.querySelectorAll('.slide').forEach((slide) => {
-        slideObserver.observe(slide);
-    });
-}
-autoplayCarousel();
+// var angle = 0;
+// function galleryspin(sign) { 
+// spinner = document.querySelector("#spinner");
+// if (!sign) { angle = angle + 45; } else { angle = angle - 45; }
+// spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
+// }
