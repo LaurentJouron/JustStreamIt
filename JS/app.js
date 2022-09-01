@@ -1,13 +1,6 @@
- function createDivWithClass (parentElement, className) {
-    let element = document.createElement(`div`)
-    element.className = className
-    parentElement.appendChild(element)
-}
-
 async function getMovie(idParent, getCategorie) {
     const APIUrl = `http://localhost:8000/api/v1/titles/?`
-    const slideParentElement = document.querySelector(`.slide__${idParent}`)
-    const slideIndicators = document.querySelector(`.slide-indicators__${idParent}`)
+    const spinner = document.querySelector(`.spinner__${idParent}`)
     try {
         const response = await fetch(APIUrl+getCategorie)
         if (!response.ok) {
@@ -18,7 +11,7 @@ async function getMovie(idParent, getCategorie) {
                 if (idParent === `best_movie`) {
                     const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
                     const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
-                    // const playLink = document.querySelector(`play`)
+                // const playLink = document.querySelector(`play`)
                 
                     getMovieTitle.textContent = data.results[0].title
                     getMoviePicture.src = data.results[0].image_url
@@ -34,23 +27,14 @@ async function getMovie(idParent, getCategorie) {
                     }
                     /// We read about the five films in the package
                     for(let i = 0; i < 5; i++) {
-                        
                         let picture = document.createElement('img');
                         picture.id = data.results[i].id;     
-                        picture.className = 'carousel--item modal-trigger';
+                        picture.className = 'spinner--item modal-trigger';
                         picture.alt = data.results[i].title;
                         picture.src = data.results[i].image_url;
                         picture.tabIndex = [i];
-                        slideParentElement.appendChild(picture);
-
-                        let slideBanner = document.createElement(`div`)
-                        slideBanner.className = `slide-banner slide-banner__${idParent}`
-                        slideBanner.textContent = data.results[i].title;
-                        slideParentElement.appendChild(slideBanner)
-                        
-                        createDivWithClass(slideIndicators, `slide-indicator`)
+                        spinner.appendChild(picture);
                     }
-
                     let nextPage = data.next
                     {fetch(nextPage)
                         .then(response => {if(response.ok) {response.json()
@@ -59,18 +43,11 @@ async function getMovie(idParent, getCategorie) {
                                 for(i = 0; i < 2; i++) {
                                     let picture = document.createElement('img');
                                     picture.id = data.results[i].id;     
-                                    picture.className = 'carousel--item modal-trigger';
+                                    picture.className = 'spinner--item modal-trigger';
                                     picture.alt = data.results[i].title;
                                     picture.src = data.results[i].image_url;
                                     picture.tabIndex = [i];
-                                    slideParentElement.appendChild(picture);
-
-                                    let slideBanner = document.createElement(`div`)
-                                    slideBanner.className = `slide-banner slide-banner__${idParent}`
-                                    slideBanner.textContent = data.results[i].title;
-                                    slideParentElement.appendChild(slideBanner)
-
-                                    createDivWithClass(slideIndicators, `slide-indicator`)
+                                    spinner.appendChild(picture);
                                 }
                             })
 
@@ -93,83 +70,121 @@ const playButton = document.querySelector(".play");
     }
 )
 
-getMovie(`best_movie`, `sort_by=-imdb_score`)
-getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
-getMovie(`first_categorie`, `genre=Comedy`)
-getMovie(`second_categorie`, `genre=Animation`)
-getMovie(`third_categorie`, `genre=War`)
-
-
-function autoplayCarousel(idParent) {
-    const carousel = document.getElementById(`carousel__${idParent}`)
-    const slideContainer = carousel.querySelector(`.slide_container__${idParent}`)
-    const slide = carousel.querySelector(`.slide`)
-    let slideWidth = slide.offsetWidth;
-
-    document.querySelector(`.preview__${idParent}`)
-        .addEventListener("click", () => navigate("backward"))
-
-    document.querySelector(`.next__${idParent}`)
-        .addEventListener("click", () => navigate("forward"))
-
-    document.querySelectorAll(".slide-indicator")
-        .forEach((dot, index) => {
-            dot.addEventListener("click", () => navigate(index))
-    })
-
-    // Add keyboard handlers
-    document.addEventListener('keydown', (e) => {
-        if (e.code === 'ArrowLeft') {
-            clearInterval(autoplay)
-            navigate("backward")
-        } else if (e.code === 'ArrowRight') {
-            clearInterval(autoplay)
-            navigate("forward")
-        }
-    })
-
-    // Add resize handler
-    window.addEventListener('resize', () => {
-        slideWidth = slide.offsetWidth;
-    })
-
-    const getNewScrollPosition = (arg) => {
-        const gap = 10
-        const maxScrollLeft = slideContainer.scrollWidth - slideWidth
-        if (arg === "forward") {
-            const x = slideContainer.scrollLeft + slideWidth + gap
-            return x <= maxScrollLeft ? x : 0
-        } else if (arg === "backward") {
-            const x = slideContainer.scrollLeft - slideWidth - gap
-            return x >= 0 ? x : maxScrollLeft
-        } else if (typeof arg === "number") {
-            const x = arg * (slideWidth + gap)
-            return x
-        }
-    }
-    const navigate = (arg) => {
-        slideContainer.scrollLeft = getNewScrollPosition(arg)
-    }
-
-    // Slide indicators
-    const slideObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const slideIndex = entry.target.dataset.slideindex;
-
-            }
-        })
-    }, 
-    { root: slideContainer, threshold: .1 })
-    document.querySelectorAll('.slide').forEach((slide) => {
-        slideObserver.observe(slide)
+function previewItem(idParent) {
+    const preview = document.querySelector(`.preview__${idParent}`);
+    preview.addEventListener('click', (idParent) => {
+        preview.querySelector(`.preview__${idParent}`)
+        picturesGallery('')
     })
 }
 
-autoplayCarousel(`top_rated`)
-autoplayCarousel(`first_categorie`)
-autoplayCarousel(`second_categorie`)
-autoplayCarousel(`third_categorie`)
+function nextItem(idParent) {
+    const next = document.querySelector(`.next__${idParent}`);
+        next.addEventListener('click', (idParent) => {
+            next.querySelector(`.next__${idParent}`)
+            picturesGallery(`-`)
+    })
+}
+
+function picturesGallery(sign) { 
+    let angle = 0
+    spinner = document.querySelector(`.spinner`);
+    if (!sign) { angle = angle + 51.428 
+    } else { 
+        angle = angle - 51.428
+    }
+    spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
+}
+
+getMovie(`best_movie`, `sort_by=-imdb_score`)
+
+getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
+previewItem(`top_rated`)
+nextItem(`top_rated`)
+
+getMovie(`first_categorie`, `genre=Comedy`)
+previewItem(`first_categorie`)
+nextItem(`first_categorie`)
+
+getMovie(`second_categorie`, `genre=Animation`)
+previewItem(`second_categorie`)
+nextItem(`second_categorie`)
+
+getMovie(`third_categorie`, `genre=War`)
+previewItem(`third_categorie`)
+nextItem(`third_categorie`)
+
+
+// function autoplayCarousel(idParent) {
+//     const carousel = document.getElementById(`carousel__${idParent}`)
+//     const slideContainer = carousel.querySelector(`.slide_container__${idParent}`)
+//     const slide = carousel.querySelector(`.slide`)
+//     let slideWidth = slide.offsetWidth;
+
+//     document.querySelector(`.preview__${idParent}`)
+//         .addEventListener("click", () => navigate("backward"))
+
+//     document.querySelector(`.next__${idParent}`)
+//         .addEventListener("click", () => navigate("forward"))
+
+//     document.querySelectorAll(".slide-indicator")
+//         .forEach((dot, index) => {
+//             dot.addEventListener("click", () => navigate(index))
+//     })
+
+//     // Add keyboard handlers
+//     document.addEventListener('keydown', (e) => {
+//         if (e.code === 'ArrowLeft') {
+//             clearInterval(autoplay)
+//             navigate("backward")
+//         } else if (e.code === 'ArrowRight') {
+//             clearInterval(autoplay)
+//             navigate("forward")
+//         }
+//     })
+
+//     // Add resize handler
+//     window.addEventListener('resize', () => {
+//         slideWidth = slide.offsetWidth;
+//     })
+
+//     const getNewScrollPosition = (arg) => {
+//         const gap = 10
+//         const maxScrollLeft = slideContainer.scrollWidth - slideWidth
+//         if (arg === "forward") {
+//             const x = slideContainer.scrollLeft + slideWidth + gap
+//             return x <= maxScrollLeft ? x : 0
+//         } else if (arg === "backward") {
+//             const x = slideContainer.scrollLeft - slideWidth - gap
+//             return x >= 0 ? x : maxScrollLeft
+//         } else if (typeof arg === "number") {
+//             const x = arg * (slideWidth + gap)
+//             return x
+//         }
+//     }
+//     const navigate = (arg) => {
+//         slideContainer.scrollLeft = getNewScrollPosition(arg)
+//     }
+
+//     // Slide indicators
+//     const slideObserver = new IntersectionObserver((entries, observer) => {
+//         entries.forEach(entry => {
+//             if (entry.isIntersecting) {
+//                 const slideIndex = entry.target.dataset.slideindex;
+
+//             }
+//         })
+//     }, 
+//     { root: slideContainer, threshold: .1 })
+//     document.querySelectorAll('.slide').forEach((slide) => {
+//         slideObserver.observe(slide)
+//     })
+// }
+
+// autoplayCarousel(`top_rated`)
+// autoplayCarousel(`first_categorie`)
+// autoplayCarousel(`second_categorie`)
+// autoplayCarousel(`third_categorie`)
 
 // ///////////////////
 // // MODAL WINDOWS //
@@ -218,19 +233,4 @@ autoplayCarousel(`third_categorie`)
 
 // function toggleModal() {
 //      modalContainer.classList.toggle("active")
-// }
-
-
-
-
-
-
-
-
-
-// var angle = 0;
-// function galleryspin(sign) { 
-// spinner = document.querySelector("#spinner");
-// if (!sign) { angle = angle + 45; } else { angle = angle - 45; }
-// spinner.setAttribute("style","-webkit-transform: rotateY("+ angle +"deg); -moz-transform: rotateY("+ angle +"deg); transform: rotateY("+ angle +"deg);");
 // }
