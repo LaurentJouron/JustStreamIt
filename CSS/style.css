@@ -61,27 +61,23 @@ body {
 /* ------- Header movie box ------- */
 #best_movie {
   width: 100%;
-  height: 400px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  height: 500px;
+  padding-top: 100px;
 }
 
 #best_movie .container {
   width: 950px;
   height: 300px;
-  border-radius: 20px;
   margin: auto;
-  border: 7px solid #28282B;
 }
 
 #best_movie .container .movie_picture {
   -webkit-box-shadow: #505050;
           box-shadow: #505050;
   width: 14.5%;
-  border-radius: 0 13px 13px 0;
+  border-radius: 13px;
   position: absolute;
-  margin-left: 54.9%;
+  margin-left: 30%;
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
@@ -105,7 +101,8 @@ body {
   border-radius: 50px;
   display: flexbox;
   margin-top: 70px;
-  margin-left: 30px;
+  margin-left: 20px;
+  padding-left: 30px;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
 }
@@ -161,7 +158,7 @@ body {
 .spinner {
   -webkit-transform-style: preserve-3d;
           transform-style: preserve-3d;
-  height: 700px;
+  height: 450px;
   -webkit-transform-origin: 50% 50% -500px;
           transform-origin: 50% 50% -500px;
   -webkit-transition: 1s;
@@ -169,10 +166,10 @@ body {
 }
 
 .spinner img {
-  width: 40%;
+  width: 15%;
   max-width: 425px;
   position: absolute;
-  left: 32%;
+  left: 41.3%;
   -webkit-transform-origin: 50% 50% -500px;
           transform-origin: 50% 50% -500px;
   outline: 1px solid transparent;
@@ -226,58 +223,6 @@ body {
   cursor: pointer;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-}
-
-.slide-banner {
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  font-size: 40px;
-  letter-spacing: 3px;
-  color: #f1f1f1;
-  text-align: auto;
-  background-color: #505050;
-  position: absolute;
-  text-shadow: #28282B 4px 0 5px;
-  left: 0;
-  bottom: 20px;
-  padding: 15px;
-  font-size: 2.5vw;
-}
-
-.slide-indicators {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.slide-indicator {
-  height: 44px;
-  width: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  justify-items: center;
-  cursor: pointer;
-}
-
-.slide-indicator:after {
-  content: "";
-  background-color: #505050;
-  height: 10px;
-  margin-top: 10px;
-  width: 40px;
-}
-
-.slide-indicator.active:after {
-  background-color: #28282B;
-}
-
-.slide-indicator:hover:after {
-  background-color: #AB060F;
-  -webkit-transition: 0.5s ease-out;
-  transition: 0.5s ease-out;
 }
 
 /* -- Arrows direction management -- */
