@@ -70,25 +70,25 @@ const playButton = document.querySelector(".play");
     }
 )
 
-function previewItem(idParent) {
-    const preview = document.querySelector(`.preview__${idParent}`);
-    preview.addEventListener('click', (idParent) => {
-        preview.querySelector(`.preview__${idParent}`)
-        picturesGallery('')
-    })
-}
+// function previewItem(idParent) {
+//     const preview = document.querySelector(`.preview__${idParent}`);
+//     preview.addEventListener('click', () => {
+//         preview.querySelector(`.preview__top_rated`)
+//         picturesGallery('')
+//     })
+// }
 
-function nextItem(idParent) {
-    const next = document.querySelector(`.next__${idParent}`);
-        next.addEventListener('click', (idParent) => {
-            next.querySelector(`.next__${idParent}`)
-            picturesGallery(`-`)
-    })
-}
+// function nextItem(idParent) {
+//     const next = document.querySelector(`.next__${idParent}`);
+//         next.addEventListener('click', () => {
+//             next.querySelector(`.next__top_rated`)
+//             picturesGallery(`-`)
+//     })
+// }
 
-function picturesGallery(sign) { 
+function picturesGallery(sign, idParent) { 
     let angle = 0
-    spinner = document.querySelector(`.spinner`);
+    spinner = document.querySelector(`.spinner__${idParent}`);
     if (!sign) { angle = angle + 51.428 
     } else { 
         angle = angle - 51.428
@@ -98,21 +98,63 @@ function picturesGallery(sign) {
 
 getMovie(`best_movie`, `sort_by=-imdb_score`)
 
+
+
 getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
-previewItem(`top_rated`)
-nextItem(`top_rated`)
+const previewTopRated = document.querySelector(`.preview__top_rated`);
+previewTopRated.addEventListener('click', () => {
+    previewTopRated.querySelector(`.preview__top_rated`)
+    picturesGallery('', `top_rated`)
+    })
+
+const nextTopRated = document.querySelector(`.next__top_rated`);
+nextTopRated.addEventListener('click', () => {
+    nextTopRated.querySelector(`.next__top_rated`)
+    picturesGallery(`-`, `top_rated`)
+    })
+
+
 
 getMovie(`first_categorie`, `genre=Comedy`)
-previewItem(`first_categorie`)
-nextItem(`first_categorie`)
+const previewFirstCategorie = document.querySelector(`.preview__first_categorie`);
+previewFirstCategorie.addEventListener('click', () => {
+    previewFirstCategorie.querySelector(`.preview__first_categorie`)
+        picturesGallery('', `first_categorie`)
+    })
+
+const nextFirstCategorie = document.querySelector(`.next__first_categorie`);
+nextFirstCategorie.addEventListener('click', () => {
+    nextFirstCategorie.querySelector(`.next__first_categorie`)
+        picturesGallery(`-`, `first_categorie` )
+    })
+
+
 
 getMovie(`second_categorie`, `genre=Animation`)
-previewItem(`second_categorie`)
-nextItem(`second_categorie`)
+const previewSecondCategorie = document.querySelector(`.preview__second_categorie`);
+previewSecondCategorie.addEventListener('click', () => {
+    previewSecondCategorie.querySelector(`.preview__second_categorie`)
+        picturesGallery('', `second_categorie`)
+    })
+
+const nextSecondCategorie = document.querySelector(`.next__second_categorie`);
+nextSecondCategorie.addEventListener('click', () => {
+    nextSecondCategorie.querySelector(`.next__second_categorie`)
+        picturesGallery(`-`, `second_categorie`)
+    })
 
 getMovie(`third_categorie`, `genre=War`)
-previewItem(`third_categorie`)
-nextItem(`third_categorie`)
+const previewThirdCategorie = document.querySelector(`.preview__third_categorie`);
+previewThirdCategorie.addEventListener('click', () => {
+    previewThirdCategorie.querySelector(`.preview__third_categorie`)
+        picturesGallery('', `third_categorie`)
+    })
+
+const nextThirdCategorie = document.querySelector(`.next__third_categorie`);
+nextThirdCategorie.addEventListener('click', () => {
+    nextThirdCategorie.querySelector(`.next__third_categorie`)
+        picturesGallery(`-`, `third_categorie`)
+    })
 
 
 // function autoplayCarousel(idParent) {
