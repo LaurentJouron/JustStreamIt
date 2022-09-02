@@ -13,12 +13,14 @@ async function getMovie(idParent, getCategorie) {
                 if (idParent === `best_movie`) {
                     const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
                     const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
-                // const playLink = document.querySelector(`play`)
+                    const getBestMovieModal = document.querySelector(`info`)
+                    const playLink = document.querySelector(`play_link`)
                 
                     getMovieTitle.textContent = data.results[0].title
                     getMoviePicture.src = data.results[0].image_url
-                // data.results[0].imdb_url 
-                
+                    // playLink = data.results[0].url
+                    // getBestMovieModal =  data.results[0].imdb_url 
+
                 } else {
 /// Condition pour nommer la première catégorie
                     const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
@@ -65,9 +67,9 @@ async function getMovie(idParent, getCategorie) {
 }
 
 /// Bouton play sur lequel j'aimerais attribuer l'url du film
-const playButton = document.querySelector(".play");
+const playButton = document.querySelector(".play_link");
     playButton.addEventListener('click', () => {
-        playButton.getElementsByClassName("play");
+        playButton.getElementsByClassName("play_link");
         data.results[0].imdb_url
     }
 )
@@ -90,21 +92,23 @@ const playButton = document.querySelector(".play");
 //     })
 // }
 
+
 /// Fonction de rotation des images
+let angle = 0;
 function picturesGallery(sign, idParent) { 
-    let angle = 0
     spinner = document.querySelector(`.spinner__${idParent}`);
     if (!sign) { angle = angle + 51.428 
     } else { 
         angle = angle - 51.428
     }
     spinner.setAttribute(`style`,`-webkit-transform: rotateY(${angle}deg)`); 
-        // `-moz-transform: rotateY(${angle}deg)`; 
-        // `transform: rotateY(${angle}deg)`;
+        `-moz-transform: rotateY(${angle}deg)`; 
+        `transform: rotateY(${angle}deg)`;
 }
 
 /// Appel de la fonction Fecth pour le meilleur film
 getMovie(`best_movie`, `sort_by=-imdb_score`)
+
 
 
 /// Appel de la fonction Fecth pour les films les mieux notés et attribution de la fonction de rotation aux boutons
@@ -112,7 +116,7 @@ getMovie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`)
 const previewTopRated = document.querySelector(`.preview__top_rated`);
 previewTopRated.addEventListener('click', () => {
     previewTopRated.querySelector(`.preview__top_rated`)
-    picturesGallery('', `top_rated`)
+    picturesGallery('', 'top_rated')
     })
 
 const nextTopRated = document.querySelector(`.next__top_rated`);
@@ -127,13 +131,13 @@ getMovie(`first_categorie`, `genre=Comedy`)
 const previewFirstCategorie = document.querySelector(`.preview__first_categorie`);
 previewFirstCategorie.addEventListener('click', () => {
     previewFirstCategorie.querySelector(`.preview__first_categorie`)
-        picturesGallery('', `first_categorie`)
+        picturesGallery('',`first_categorie`)
     })
 
 const nextFirstCategorie = document.querySelector(`.next__first_categorie`);
 nextFirstCategorie.addEventListener('click', () => {
     nextFirstCategorie.querySelector(`.next__first_categorie`)
-        picturesGallery(`-`, `first_categorie` )
+        picturesGallery(`-`, `first_categorie`)
     })
 
 
@@ -165,80 +169,6 @@ nextThirdCategorie.addEventListener('click', () => {
     nextThirdCategorie.querySelector(`.next__third_categorie`)
         picturesGallery(`-`, `third_categorie`)
     })
-
-
-/// Fonction du carousel que j'ai essayé via le lien que tu m'as envoyé, sans réussite
-
-// function autoplayCarousel(idParent) {
-//     const carousel = document.getElementById(`carousel__${idParent}`)
-//     const slideContainer = carousel.querySelector(`.slide_container__${idParent}`)
-//     const slide = carousel.querySelector(`.slide`)
-//     let slideWidth = slide.offsetWidth;
-
-//     document.querySelector(`.preview__${idParent}`)
-//         .addEventListener("click", () => navigate("backward"))
-
-//     document.querySelector(`.next__${idParent}`)
-//         .addEventListener("click", () => navigate("forward"))
-
-//     document.querySelectorAll(".slide-indicator")
-//         .forEach((dot, index) => {
-//             dot.addEventListener("click", () => navigate(index))
-//     })
-
-//     // Add keyboard handlers
-//     document.addEventListener('keydown', (e) => {
-//         if (e.code === 'ArrowLeft') {
-//             clearInterval(autoplay)
-//             navigate("backward")
-//         } else if (e.code === 'ArrowRight') {
-//             clearInterval(autoplay)
-//             navigate("forward")
-//         }
-//     })
-
-//     // Add resize handler
-//     window.addEventListener('resize', () => {
-//         slideWidth = slide.offsetWidth;
-//     })
-
-//     const getNewScrollPosition = (arg) => {
-//         const gap = 10
-//         const maxScrollLeft = slideContainer.scrollWidth - slideWidth
-//         if (arg === "forward") {
-//             const x = slideContainer.scrollLeft + slideWidth + gap
-//             return x <= maxScrollLeft ? x : 0
-//         } else if (arg === "backward") {
-//             const x = slideContainer.scrollLeft - slideWidth - gap
-//             return x >= 0 ? x : maxScrollLeft
-//         } else if (typeof arg === "number") {
-//             const x = arg * (slideWidth + gap)
-//             return x
-//         }
-//     }
-//     const navigate = (arg) => {
-//         slideContainer.scrollLeft = getNewScrollPosition(arg)
-//     }
-
-//     // Slide indicators
-//     const slideObserver = new IntersectionObserver((entries, observer) => {
-//         entries.forEach(entry => {
-//             if (entry.isIntersecting) {
-//                 const slideIndex = entry.target.dataset.slideindex;
-
-//             }
-//         })
-//     }, 
-//     { root: slideContainer, threshold: .1 })
-//     document.querySelectorAll('.slide').forEach((slide) => {
-//         slideObserver.observe(slide)
-//     })
-// }
-
-// autoplayCarousel(`top_rated`)
-// autoplayCarousel(`first_categorie`)
-// autoplayCarousel(`second_categorie`)
-// autoplayCarousel(`third_categorie`)
 
 // ///////////////////
 // // MODAL WINDOWS //
