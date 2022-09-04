@@ -32,14 +32,31 @@
 
 <!-- Categorie movie presentation -->
         <section id="best_movie">
-
+            <!-- Modal windows -->
             <div class="container container__best_movie">
                 <img src="" class="movie_picture movie_picture__best_movie" alt="picture"></img>
                 <h1 class="movie_title movie_title__best_movie" alt="title"></h1>
-                <button class="play" type="button" value="Play" alt="play movie"><a href="" class="play_link">Play ▶</a></button>
-                <button class="info modal-trigger" type="button" value="More info" alt="read information"><a href="" class="more_info_link">More info</a></button>
+                <button class="play" type="button" value="Play" alt="play movie">Play ▶</button>
+                <button class="info modal-trigger" type="button" value="More info" alt="read information">More info</button>
             </div>
-
+            <div class="modal-container">
+                <div class="overlay modal-trigger"></div>
+                <div id="modal" class="modal" role="dialog" aria-labelleby="modal_title">
+                    <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+                    <img src="" id="modal_picture">
+                    <h1 id="modal_title"></h1>
+                    <p id="modal_genres"></p>
+                    <p id="modal_date_published"></p>
+                    <p id="rated"></p>
+                    <p id="modal_score"></p>
+                    <p id="modal_directors"></p><br>
+                    <p id="modal_actors"></p><br>
+                    <p id="modal_duration"></p>
+                    <p id="modal_origine_countries"></p><br>
+                    <p id="modal_results_of_box_office"></p>
+                    <p id="modal_description"></p>
+                </div>
+            </div>
         </section>
 
 <!-- Categorie top rated -->
@@ -47,6 +64,13 @@
             <h1 class="categorie_title categorie_title__top_rated"></h1>
             <div class="carousel carousel__top_rated">
                 <figure class="spinner spinner__top_rated">
+                    <div class="modal-container">
+                        <div class="overlay modal-trigger"></div>
+                        <div id="modal" class="modal modal__top-rated" role="dialog" aria-labelleby="modal_title">
+                            <button aria-label="close modal" class="close-modal modal-trigger">X</button>
+
+                        </div>
+                    </div>
 
                 </figure>
             </div>
