@@ -1,32 +1,8 @@
-const APIUrl = `http://localhost:8000/api/v1/titles/?`
-
-function createElementWithBaliseIdAndClassName(idParent, balise, nameId, className){
-    let element = document.createElement(balise);
-    element.id = nameId
-    element.className = className;
-    idParent.appendChild(element);
-}
-function createModalElement(idParent){
-    let modal = document.getElementById(`modal`)
-    createElementWithBaliseIdAndClassName(modal, `img`, `modal`, `modal_picture modal_picture__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `h1`, `modal_title`, `modal_title modal_title__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_genres`, `modal_genres modal_genres__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_date_published`, `modal_date_published modal_date_published__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_rated`, `modal_rated modal_rated__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_score`, `modal_score modal_score__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_directors`, `modal_directors modal_directors__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_actors`, `modal_actors modal_actors__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_duration`, `modal_duration modal_duration__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_origine_countries`, `modal_origine_countries modal_origine_countries__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_results_of_box_office`, `modal_results_of_box_office modal_results_of_box_office__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_description`, `modal_description modal_description__${idParent}` )
-}
-
-function getValueAndAttributeInModalWindow(data) {
-    const getMoviePicture = document.querySelector(`.modal_picture`);
-    const getMovieTitle = document.querySelector(`.modal_title`);
-    const getMovieGenres = document.querySelector(`.modal_genres`);
-    const getMovieDatePublished = document.querySelector(`.modal_date_published`);
+function modalWindow(idParent) {
+    const getMoviePicture = document.querySelector(`.movie_picture`);
+    const getMovieTitle = document.querySelector(`.movie_title`);
+    const getMovieGenres = document.querySelector(`.movie_genres`);
+    const getMovieDatePublished = document.querySelector(`.movie_date_published`);
     const getMovieRated = document.querySelector(`.movie_rated`);
     const getMovieScore = document.querySelector(`.movie_score`);
     const getMovieDirectors = document.querySelector(`.movie_directors`);
@@ -40,7 +16,7 @@ function getValueAndAttributeInModalWindow(data) {
     getMovieTitle.textContent = "Title: " + data.results[0].title;
     getMovieGenres.textContent = "Genres: " + data.results[0].genres;
     getMovieDatePublished.textContent = "Date published: " + data.results[0].date_published;
-    getMovieRated.textcontent = "Rated: " + data.results[0].rated;
+    getMovieRated.textContent = "Rated: " + data.results[0].rated;
     getMovieScore.textContent = "Score: " + data.results[0].imdb_score;
     getMovieDirectors.textContent = "Directors: " + data.results[0].directors;
     getMovieActors.textContent = "Actors: " + data.results[0].actors;
@@ -48,10 +24,23 @@ function getValueAndAttributeInModalWindow(data) {
     getMovieOrigineCountries.textContent = "Countrie: " + data.results[0].countries;
     // getMovieResultsOfBoxOffice.textContent = "Box Office: " + data.results[0].;
     getMovieDescription.textContent = "Description: " + data.results[0].description;
+
+    idParent.appendChild(getMoviePicture);
+    idParent.appendChild(getMovieTitle);
+    idParent.appendChild(getMovieGenres);
+    idParent.appendChild(getMovieDatePublished);
+    idParent.appendChild(getMovieRated);
+    idParent.appendChild(getMovieScore);
+    idParent.appendChild(getMovieDirectors);
+    idParent.appendChild(getMovieActors);
+    idParent.appendChild(getMovieDuration);
+    idParent.appendChild(getMovieOrigineCountries);
+    idParent.appendChild(getMovieDescription);
 }
 
 /// Fecth qui fonctionne selon moi. Il me semble très chargée mais fonctionnelle.
 async function getMovie(idParent, getCategorie) {
+    const APIUrl = `http://localhost:8000/api/v1/titles/?`
     const spinner = document.querySelector(`.spinner__${idParent}`)
     try {
         const response = await fetch(APIUrl+getCategorie)
@@ -64,11 +53,36 @@ async function getMovie(idParent, getCategorie) {
                 if (idParent === `best_movie`) {
                     const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
                     const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
-                    getMovieTitle.textContent = data.results[0].title;
-                    getMoviePicture.src = data.results[0].image_url;
-                    createModalElement(idParent)
-                    getValueAndAttributeInModalWindow(data);
                     
+                    const modalPicture = document.getElementById('modal_picture');
+                    const modalTitle = document.getElementById('modal_title');
+                    const modalGenres = document.getElementById('modal_genres');
+                    const modalDatePublished = document.getElementById('modal_date_published');
+                    const modalRated = document.getElementById('rated');
+                    const modalScore = document.getElementById('modal_score');
+                    const modalDirectors = document.getElementById('modal_directors');
+                    const modalActors = document.getElementById('modal_actors');
+                    const modalDuration = document.getElementById('modal_duration');
+                    const modalOrigineCountries = document.getElementById('modal_origine_countries');
+                    const modalResultsOfBoxOffice = document.getElementById('modal_results_of_box_office');
+                    const modalDescription = document.getElementById('modal_description');
+               
+                    getMovieTitle.textContent = data.results[0].title
+                    getMoviePicture.src = data.results[0].image_url
+                    modalPicture.src = data.results[0].image_url;
+                    modalTitle.textContent = "Title: " + data.results[0].title;
+                    modalGenres.textContent = "Genres: " + data.results[0].genres;
+                    modalDatePublished.textContent = "Date published: " + data.results[0].date_published;
+                    modalRated.textContent = "Rated: " + data.results[0].rated;
+                    modalScore.textContent = "Score: " + data.results[0].imdb_score;
+                    modalDirectors.textContent = "Directors: " + data.results[0].directors;
+                    modalActors.textContent = "Actors: " + data.results[0].actors;
+                    modalDuration.textContent = "Duration: " + data.results[0].duration + " min";
+                    modalOrigineCountries.textContent = "Countrie: " + data.results[0].countries;
+                    // modalResultsOfBoxOffice.textContent = "Box Office: " + data.results[0].;
+                    modalDescription.textContent = "Description: " + data.results[0].description;
+
+
                 } else {
 /// Condition pour nommer la première catégorie
                     const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
@@ -117,6 +131,24 @@ async function getMovie(idParent, getCategorie) {
     }
 }
 
+/// Fonction pour gérer les images.
+function previewItem(idParent) {
+    const preview = document.querySelector(`.preview__${idParent}`);
+    preview.addEventListener('click', () => {
+        preview.querySelector(`.preview__top_rated`)
+        picturesGallery('')
+    })
+}
+
+function nextItem(idParent) {
+    const next = document.querySelector(`.next__${idParent}`);
+        next.addEventListener('click', () => {
+            next.querySelector(`.next__top_rated`)
+            picturesGallery(`-`)
+    })
+}
+
+
 /// Fonction de rotation des images
 let angle = 0;
 function picturesGallery(sign, idParent) { 
@@ -141,7 +173,6 @@ previewTopRated.addEventListener('click', () => {
     previewTopRated.querySelector(`.preview__top_rated`)
     picturesGallery('', 'top_rated')
     })
-
 
 const nextTopRated = document.querySelector(`.next__top_rated`);
 nextTopRated.addEventListener('click', () => {
