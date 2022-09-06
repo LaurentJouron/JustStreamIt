@@ -76,12 +76,11 @@ body {
         box-shadow: 10px 15px 30px 10px $background_nav_bar;
         border-radius: 15px;
         padding: 30px;
-
         .movie_picture {
             width: 14.5%;
             border-radius: 13px ;
             position: absolute;
-            margin-left: 500px;
+            margin-left: 28%;
             border: 2px solid $border_boxes;
             box-shadow: 3px 3px 10px 10px $background_color_files;
         }
@@ -94,7 +93,16 @@ body {
             padding-top: 20px;
             padding-left: 30px;
         }
-        .play, .info {
+        .movie_description {
+            width: 500px;
+            font-family: $font_family;
+            font-size: $play_font_size;
+            color: $nav_font_color;
+            text-shadow: $border_boxes 6px 0 10px;
+            padding-top: 20px;
+            padding-left: 30px;
+        }
+        .info {
             color: $nav_font_color;
             font-size: $play_font_size;
             letter-spacing: 2px;
@@ -104,34 +112,20 @@ body {
             margin-top: 70px;
             margin-left: 20px;
             transition: 0.3s ease-out;
-            &:hover {
-                cursor: pointer;
-                transition: 0.3s ease-out;
-                border: none;
-            }
-        }
-        .play {
-        background: $play_button;
-        .play_link  {
-            text-decoration: none;
-            color: $nav_font_color;
-        }
-        &:hover {
-            box-shadow: 1px 1px 1px 1px $play_button;
-        }
-    }
-        .info {
             background: $border_boxes;
             .more_info_link{
                 text-decoration: none;
                 color: $nav_font_color;
             }
             &:hover {
+                cursor: pointer;
+                transition: 0.3s ease-out;
+                border: none;
                 box-shadow: 1px 1px 1px 1px $border_boxes;
             }
         }
-
     }
+
     .modal-container {
         visibility: hidden;
         position: fixed;
@@ -189,7 +183,8 @@ body {
         background: $play_button;
       }
       .modal img{
-        width: 20%;
+        margin-top: 30%;
+        width: 30%;
         border-radius: 13px ;
         position: absolute;
         margin-left: 270px;
@@ -197,16 +192,19 @@ body {
         box-shadow: 3px 3px 10px 10px $border_boxes;
       }
       .modal h1 {
+        text-shadow: $nav_font_color 10px 0 10px;
         font-family: $font_family;
         margin-bottom: 10px;
         font-weight: 500;
       }
-      .modal h4 {
-        font-size: 20px;
+      .modal p {
         margin-bottom: 10px;
+        font-weight: 500;
       }
-      #modal_actors{
-        margin-top: 10px;
+
+      .modal_actors {
+        width: 20px;
+        margin-top: 30px;
       }
 }
 
@@ -228,39 +226,21 @@ body {
 
 /* ------ Carousel management ------*/
 .carousel { 
-    perspective: 1200px; 
-    font-size:0; 
-    margin-bottom: 1rem; 
-    overflow: hidden; 
+    display: flex;
+    background-color: $background_color_files;
+    width: 100%;
+    margin: 50px 10px 10px 10px;
+    justify-content: space-between;
   }
-.spinner { 
-    transform-style: preserve-3d; 
-    height: 450px; 
-    transform-origin: 50% 50% -500px; 
-    transition: 1s; 
-  } 
-.spinner img { 
-    width: 15%; 
-    max-width: 425px; 
-    position: absolute; 
-    left: 41.3%;
-    transform-origin: 50% 50% -500px;
-    outline:1px solid transparent; 
-  }
-.spinner img:nth-child(1) {transform:rotateY(0deg);}
-.spinner img:nth-child(2) {transform: rotateY(-51.428deg);}
-.spinner img:nth-child(3) {transform: rotateY(-102.856deg);}
-.spinner img:nth-child(4) {transform: rotateY(-154.284deg);}
-.spinner img:nth-child(5) {transform: rotateY(-205.712deg);}
-.spinner img:nth-child(6) {transform: rotateY(-257.14deg);}
-.spinner img:nth-child(7) {transform: rotateY(-308.568deg);}
 
-.spinner--item {
+.item {
     border-radius: 15px;
     border: 4px solid $border_boxes;
     margin: 20px;
+    box-shadow: 10px 15px 30px 10px $background_nav_bar;
     &:hover {
         border: 4px solid $play_button;
+        box-shadow: 10px 15px 30px 10px $background_nav_bar;
         box-shadow: none;
         cursor: pointer;
         transition: 0.3s ease-out;
