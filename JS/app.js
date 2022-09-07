@@ -1,28 +1,29 @@
 const APIUrl = `http://localhost:8000/api/v1/titles/?`
 
-function createElementWithBaliseIdAndClassName(idParent, balise, nameId, className){
+function createElementWithBaliseAndClassName(idParent, balise, className){
     let element = document.createElement(balise);
-    element.id = nameId
     element.className = className;
     idParent.appendChild(element);
 }
 
 function createModalElement(idParent){
     let modal = document.getElementById(`modal`)
-    createElementWithBaliseIdAndClassName(modal, `img`, `modal`, `modal_picture modal_picture__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `h1`, `modal_title`, `modal_title modal_title__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_description`, `modal_description modal_description__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_actors`, `modal_actors modal_actors__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_directors`, `modal_directors modal_directors__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_duration`, `modal_duration modal_duration__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_rated`, `modal_rated modal_rated__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_score`, `modal_score modal_score__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_date_published`, `modal_date_published modal_date_published__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_genres`, `modal_genres modal_genres__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_origine_countries`, `modal_origine_countries modal_origine_countries__${idParent}` )
-    createElementWithBaliseIdAndClassName(modal, `p`, `modal_results_of_box_office`, `modal_results_of_box_office modal_results_of_box_office__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `button`, `close-modal modal-trigger`)
+    createElementWithBaliseAndClassName(modal, `img`, `modal_picture modal_picture__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `h1`, `modal_title modal_title__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_description modal_description__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_actors modal_actors__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_directors modal_directors__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_duration modal_duration__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_rated modal_rated__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_score modal_score__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_date_published modal_date_published__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_genres modal_genres__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_origine_countries modal_origine_countries__${idParent}` )
+    createElementWithBaliseAndClassName(modal, `p`, `modal_results_of_box_office modal_results_of_box_office__${idParent}` )
 }
 function getValueToModalElement(data) {
+    const closeButton = document.querySelector(`.close-modal`);
     const getModalPicture = document.querySelector(`.modal_picture`);
     const getModalTitle = document.querySelector(`.modal_title`);
     const getModalDescription = document.querySelector(`.modal_description`);
@@ -36,6 +37,7 @@ function getValueToModalElement(data) {
     const getModalOrigineCountries = document.querySelector(`.modal_origine_countries`);
     const getModalResultsOfBoxOffice = document.querySelector(`.modal_results_of_box_office`);
 
+    closeButton.textContent = `X`
     getModalPicture.src = data.image_url;
     getModalTitle.textContent = "Title: " + data.title;
     getModalDescription.textContent = "Description: " + data.description;
@@ -68,7 +70,7 @@ async function getBestMovie(idParent) {
 
                         getMovieTitle.textContent = data.title;
                         getMoviePicture.src = data.image_url;
-                        getMovieDescription.textContent= data.description
+                        getMovieDescription.textContent = data.description
                         
                         createModalElement(idParent)
                         getValueToModalElement(data)                        
@@ -83,7 +85,7 @@ async function getBestMovie(idParent) {
     }
 }
 
-/// Fecth qui fonctionne selon moi. Il me semble très chargée mais fonctionnelle.
+
 async function getMovieCategorie(idParent, getCategorie, categorieName) {
     const carousel = document.querySelector(`.carousel__${idParent}`)
     try {
@@ -95,35 +97,46 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
             .then(data => {
                 const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
                 getCategortieTitle.textContent = categorieName
-
-                    /// We read about the five films in the package
                     for(let i = 0; i < 5; i++) {
-                        let picture = document.createElement('img');
-                        picture.id = data.results[i].id;     
-                        picture.className = 'item modal-trigger';
-                        picture.alt = data.results[i].title;
-                        picture.src = data.results[i].image_url;
-                        carousel.appendChild(picture);
+                        movieURL = data.results[i].url
+                        {fetch(movieURL)
+                            .then(response => {if (response.ok) {response.json()
+                            .then(data => {
+                                let picture = document.createElement('img');
+                                picture.id = data.id;     
+                                picture.className = 'item modal-trigger';
+                                picture.alt = data.title;
+                                picture.src = data.image_url;
+                                carousel.appendChild(picture);
+
+                            })
+                        }})}
                     }
                     let nextPage = data.next
                     {fetch(nextPage)
                         .then(response => {if(response.ok) {response.json()
-                            .then(data => {
-                                /// We read about the first 2 films of the package
-                                for(i = 0; i < 2; i++) {
-                                    let picture = document.createElement('img');
-                                    picture.id = data.results[i].id;     
+                        .then(data => {
+                            /// We read about the first 2 films of the package
+                            for(i = 0; i < 2; i++) {
+                                movieURL = data.results[i].url
+                                {fetch(movieURL)
+                                .then(response => {if (response.ok) response.json()
+                                .then(data => {
+                                    picture = document.createElement('img');
+                                    picture.id = data.id;     
                                     picture.className = 'item modal-trigger';
-                                    picture.alt = data.results[i].title;
-                                    picture.src = data.results[i].image_url;
-                                    carousel.appendChild(picture);
-                                }
-                            })
+                                    picture.alt = data.title;
+                                    picture.src = data.image_url;
+                                    carousel.appendChild(picture); 
+                                    })
+                                })
+                            }}
+                        })
 
-                        }})
-                    }
+                    }})
                 }
-            )
+            }
+        )
         } else {
             console.error('Retour du serveur : ', response.status)
         }
@@ -132,7 +145,10 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
     }
 }
 
-/// Fonction de rotation des images
+//////////////
+// CAROUSEL //
+//////////////
+
 let angle = 0;
 function picturesGallery(sign, idParent) { 
     spinner = document.querySelector(`.spinner__${idParent}`);

@@ -88,7 +88,7 @@ body {
   padding-top: 20px;
   padding-left: 30px;
 }
-#best_movie .container .info {
+#best_movie .container .play, #best_movie .container .info {
   color: #f1f1f1;
   font-size: 26px;
   letter-spacing: 2px;
@@ -98,6 +98,23 @@ body {
   margin-top: 70px;
   margin-left: 20px;
   transition: 0.3s ease-out;
+}
+#best_movie .container .play:hover, #best_movie .container .info:hover {
+  cursor: pointer;
+  transition: 0.3s ease-out;
+  border: none;
+}
+#best_movie .container .play {
+  background: #AB060F;
+}
+#best_movie .container .play .play_link {
+  text-decoration: none;
+  color: #f1f1f1;
+}
+#best_movie .container .play:hover {
+  box-shadow: 1px 1px 1px 1px #AB060F;
+}
+#best_movie .container .info {
   background: #28282B;
 }
 #best_movie .container .info .more_info_link {
@@ -105,9 +122,6 @@ body {
   color: #f1f1f1;
 }
 #best_movie .container .info:hover {
-  cursor: pointer;
-  transition: 0.3s ease-out;
-  border: none;
   box-shadow: 1px 1px 1px 1px #28282B;
 }
 #best_movie .modal-container {
@@ -191,6 +205,7 @@ body {
 /* ------- Category titles -------- */
 .categorie_title {
   height: 80px;
+  width: 400px;
   margin: auto;
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #28282B, 3px solid;
@@ -198,7 +213,7 @@ body {
   color: #28282B;
   text-shadow: #f1f1f1 7px 0 10px;
   letter-spacing: 3px;
-  margin-top: 80px;
+  margin-top: 150px;
   text-align: center;
   margin-bottom: 20px;
   border-style: dotted;
@@ -273,6 +288,4 @@ footer #imgCopy {
   footer footer {
     padding-left: 0px;
   }
-}
-
-/* ---------- MODAL WINDOW -------- *//*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

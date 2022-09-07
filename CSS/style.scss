@@ -102,7 +102,7 @@ body {
             padding-top: 20px;
             padding-left: 30px;
         }
-        .info {
+        .play, .info {
             color: $nav_font_color;
             font-size: $play_font_size;
             letter-spacing: 2px;
@@ -112,15 +112,29 @@ body {
             margin-top: 70px;
             margin-left: 20px;
             transition: 0.3s ease-out;
+            &:hover {
+                cursor: pointer;
+                transition: 0.3s ease-out;
+                border: none;
+            }
+        }
+        .play {
+        background: $play_button;
+        .play_link  {
+            text-decoration: none;
+            color: $nav_font_color;
+        }
+        &:hover {
+            box-shadow: 1px 1px 1px 1px $play_button;
+        }
+    }
+        .info {
             background: $border_boxes;
             .more_info_link{
                 text-decoration: none;
                 color: $nav_font_color;
             }
             &:hover {
-                cursor: pointer;
-                transition: 0.3s ease-out;
-                border: none;
                 box-shadow: 1px 1px 1px 1px $border_boxes;
             }
         }
@@ -211,6 +225,7 @@ body {
 /* ------- Category titles -------- */
 .categorie_title {
     height:80px;
+    width: 400px;
     margin: auto;
     font-family: $font_family;
     color: $border_boxes, $small_border solid;
@@ -218,13 +233,14 @@ body {
     color: $border_boxes;
     text-shadow: $nav_font_color 7px 0 10px;
     letter-spacing: 3px;
-    margin-top: 80px;
+    margin-top: 150px;
     text-align: center;
     margin-bottom:20px;
     border-style: dotted;
 }
 
 /* ------ Carousel management ------*/
+
 .carousel { 
     display: flex;
     background-color: $background_color_files;
@@ -292,71 +308,3 @@ footer {
         }
     }
 }
-
-/* ---------- MODAL WINDOW -------- */
-// .modal-container {
-//     visibility: hidden;
-//     position: fixed;
-//     top: 0;
-//     width:100vw;
-//     height: 100vh;
-//     transition: visibility 0.4s;
-//     background-color: $background_color_files;
-//   }
-//   .modal-container.active {
-//     visibility: visible;
-//   }
-//   .overlay {
-//     opacity: 0;
-//     position: absolute;
-//     width: 100%;
-//     height: 100%;
-//     background: $overlay;
-//     transition: opacity 0.4s 0.2s ease-out;
-//   }
-//   .modal-container.active .overlay {
-//     opacity: 1;
-//     transition: opacity 0.4s ease-out;
-//   }
-//   .modal {
-//     opacity: 0;
-//     width: 95%;
-//     max-width: 500px;
-//     min-width: 300px;
-//     padding: 30px;
-//     background: $nav_font_color;
-//     border-radius: 5px;
-//     position: absolute;
-//     top: 40%;
-//     left: 50%;
-//     transform: translate(-50%, calc(-50% - 50px));
-//     transition: opacity 0.4s ease-out,
-//     transform 0.4s ease-out;
-//   }
-//   .modal-container.active .modal {
-//     opacity: 1;
-//     transform: translate(-50%, -50%);
-//     transition: opacity 0.4s 0.2s ease-out,
-//     transform 0.4s 0.2s ease-out;
-//   }
-//   .close-modal {
-//     color: $nav_font_color;
-//     padding: 8px 10px;
-//     border: none;
-//     border-radius: 5px;
-//     font-weight: 18px;
-//     position: absolute;
-//     top: 10px;
-//     right: 10px;
-//     cursor: pointer;
-//     background: $play_button;
-//   }
-//   .modal h1 {
-//     font-family: $font_family;
-//     margin-bottom: 10px;
-//     font-weight: 500;
-//   }
-//   .modal h4 {
-//     font-size: 20px;
-//     margin-bottom: 10px;
-//   }
