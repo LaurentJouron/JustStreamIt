@@ -37,30 +37,33 @@
                 <h1 class="movie_title movie_title__best_movie" alt="title"></h1>
                 <p class="movie_description movie_description__best_movie" alt="description"></p>
                 <button class="play" type="button" value="Play" alt="play movie">Play ▶</button>
-                <button class="info modal-trigger" type="button" value="More info" alt="read information">More info</button>
-            </div>
-            <div class="modal-container modal-container__best_movie">
-                <div class="overlay overlay__best-movie modal-trigger"></div>
-                <div id="modal" class="modal modal__best_movie" role="dialog" aria-labelleby="modal_title">
-                <!-- <button class="close-modal modal-trigger">X</button> -->
-
-                </div>
+                <button class="info js-modal" type="button" value="More info" alt="read information">More info</button>
             </div>
         </section>
+
+        <aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal_title" style="display: none;">
+            <div class="modal-wrapper js-modal-stop">
+                <button class="js-close-modal">Close</button>
+                <h1 id="modal_title" class="modal_title"></h1>
+                <img src="" alt="" class="modal_picture">
+                <p class="modal_description"></p>
+                <p class="modal_actors"></p>
+                <p class="modal_directors"></p>
+                <p class="modal_duration"></p>
+                <p class="modal_score"></p>
+                <p class="modal_date_published"></p>
+                <p class="modal_genres"></p>
+                <p class="modal_origine_countries"></p>
+                <p class="modal_results_of_box_office"></p>
+            </div>
+        </aside>
 
 <!-- Categorie top rated -->
         <section id="top_rated">
             <h1 class="categorie_title categorie_title__top_rated"></h1>
             <div class="carousel carousel__top_rated">
 
-                    <div class="modal-container modal-container__modal-container">
-                        <div class="overlay overlay__top-rated modal-trigger"></div>
-                        <div id="modal__top_rated" class="modal modal__top-rated" role="dialog" aria-labelleby="modal_title">
-                            <!-- <button class="close-modal modal-trigger">X</button> -->
-                            
-                        </div>
-                    </div>
-                </div>
+            </div>
             <button class="preview preview__top_rated">◀</button>
             <button class="next next__top_rated">▶</button>
         </section>
@@ -70,13 +73,6 @@
             <h1 class="categorie_title categorie_title__first_categorie"></h1>
             <div class="carousel carousel__first_categorie">
 
-            </div>
-            <div class="modal-container modal-container__first_categorie">
-                <div class="overlay overlay__first_categorie modal-trigger"></div>
-                <div id="modal__first_categorie" class="modal modal__first_categorie">
-                    <!-- <button class="close-modal modal-trigger">X</button> -->
-
-                </div>
             </div>
             <button class="preview preview__first_categorie">◀</button>
             <button class="next next__first_categorie">▶</button>
@@ -88,13 +84,6 @@
             <div class="carousel carousel__second_categorie">
 
             </div>
-            <div class="modal-container modal-container__second_categorie">
-                <div class="overlay overlay__second_categorie modal-trigger"></div>
-                <div id="modal__second_categorie" class="modal modal__second_categorie" role="dialog" aria-labelleby="modal_title">
-                    <!-- <button class="close-modal modal-trigger">X</button> -->
-
-                </div>
-            </div>
             <button class="preview preview__second_categorie">◀</button>
             <button class="next next__second_categorie">▶</button>
         </section>
@@ -105,13 +94,7 @@
             <div class="carousel carousel__third_categorie">
 
             </div>
-            <div class="modal-container modal-container__third_categorie">
-                <div class="overlay overlay__third_categorie modal-trigger"></div>
-                <div id="modal__third_categorie" class="modal modal__third_categorie" role="dialog" aria-labelleby="modal_title">
-                    <!-- <button class="close-modal modal-trigger">X</button> -->
 
-                </div>
-            </div>
             <button class="preview preview__third_categorie">◀</button>
             <button class="next next__third_categorie">▶</button>
         </section>

@@ -1,57 +1,8 @@
 const APIUrl = `http://localhost:8000/api/v1/titles/?`
 
-function createElementWithBaliseAndClassName(idParent, balise, className){
-    let element = document.createElement(balise);
-    element.className = className;
-    idParent.appendChild(element);
-}
-
-function createModalElement(idParent){
-    let modal = document.getElementById(`modal`)
-    createElementWithBaliseAndClassName(modal, `button`, `close-modal modal-trigger`)
-    createElementWithBaliseAndClassName(modal, `img`, `modal_picture modal_picture__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `h1`, `modal_title modal_title__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_description modal_description__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_actors modal_actors__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_directors modal_directors__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_duration modal_duration__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_rated modal_rated__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_score modal_score__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_date_published modal_date_published__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_genres modal_genres__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_origine_countries modal_origine_countries__${idParent}` )
-    createElementWithBaliseAndClassName(modal, `p`, `modal_results_of_box_office modal_results_of_box_office__${idParent}` )
-}
-function getValueToModalElement(data) {
-    const closeButton = document.querySelector(`.close-modal`);
-    const getModalPicture = document.querySelector(`.modal_picture`);
-    const getModalTitle = document.querySelector(`.modal_title`);
-    const getModalDescription = document.querySelector(`.modal_description`);
-    const getModalActors = document.querySelector(`.modal_actors`);
-    const getModalDirectors = document.querySelector(`.modal_directors`);
-    const getModalDuration = document.querySelector(`.modal_duration`);
-    const getModalRated = document.querySelector(`.modal_rated`);
-    const getModalScore = document.querySelector(`.modal_score`);
-    const getModalDatePublished = document.querySelector(`.modal_date_published`);
-    const getModalGenres = document.querySelector(`.modal_genres`);
-    const getModalOrigineCountries = document.querySelector(`.modal_origine_countries`);
-    const getModalResultsOfBoxOffice = document.querySelector(`.modal_results_of_box_office`);
-
-    closeButton.textContent = `X`
-    getModalPicture.src = data.image_url;
-    getModalTitle.textContent = "Title: " + data.title;
-    getModalDescription.textContent = "Description: " + data.description;
-    getModalActors.textContent = "Actors: " + data.actors;
-    getModalDirectors.textContent = "Directors: " + data.directors;
-    getModalDuration.textContent = "Duration: " + data.duration + " min";
-    getModalRated.textcontent = "Rated: " + data.rated;
-    getModalScore.textContent = "Score: " + data.imdb_score;
-    getModalDatePublished.textContent = "Date published: " + data.date_published;
-    getModalGenres.textContent = "Genres: " + data.genres;
-    getModalOrigineCountries.textContent = "Countrie: " + data.countries;
-    // getModalResultsOfBoxOffice.textContent = "Box Office: " + data.;
-}
-
+////////////////
+// BEST MOVIE //
+////////////////
 async function getBestMovie(idParent) {
     try {
         const response = await fetch(APIUrl+`sort_by=-imdb_score`)
@@ -70,10 +21,7 @@ async function getBestMovie(idParent) {
 
                         getMovieTitle.textContent = data.title;
                         getMoviePicture.src = data.image_url;
-                        getMovieDescription.textContent = data.description
-                        
-                        createModalElement(idParent)
-                        getValueToModalElement(data)                        
+                        getMovieDescription.textContent = data.description                      
                     })
                 }})}
             }) 
@@ -84,8 +32,12 @@ async function getBestMovie(idParent) {
         errorMsg.textContent = `${error}`
     }
 }
+getBestMovie(`best_movie`)
 
 
+/////////////////////
+// CATEGORIE MOVIE //
+/////////////////////
 async function getMovieCategorie(idParent, getCategorie, categorieName) {
     const carousel = document.querySelector(`.carousel__${idParent}`)
     try {
@@ -95,8 +47,10 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
         }
         if (response.ok) {response.json()
             .then(data => {
+
                 const getCategortieTitle = document.querySelector(`.categorie_title__${idParent}`)
                 getCategortieTitle.textContent = categorieName
+
                     for(let i = 0; i < 5; i++) {
                         movieURL = data.results[i].url
                         {fetch(movieURL)
@@ -104,11 +58,10 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
                             .then(data => {
                                 let picture = document.createElement('img');
                                 picture.id = data.id;     
-                                picture.className = 'item modal-trigger';
+                                picture.className = 'item';
                                 picture.alt = data.title;
                                 picture.src = data.image_url;
                                 carousel.appendChild(picture);
-
                             })
                         }})}
                     }
@@ -124,7 +77,7 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
                                 .then(data => {
                                     picture = document.createElement('img');
                                     picture.id = data.id;     
-                                    picture.className = 'item modal-trigger';
+                                    picture.className = 'item';
                                     picture.alt = data.title;
                                     picture.src = data.image_url;
                                     carousel.appendChild(picture); 
@@ -145,102 +98,97 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
     }
 }
 
-//////////////
-// CAROUSEL //
-//////////////
-
-let angle = 0;
-function picturesGallery(sign, idParent) { 
-    spinner = document.querySelector(`.spinner__${idParent}`);
-    if (!sign) { angle = angle + 51.428 
-    } else { 
-        angle = angle - 51.428
-    }
-    spinner.setAttribute(`style`,`-webkit-transform: rotateY(${angle}deg)`); 
-        `-moz-transform: rotateY(${angle}deg)`; 
-        `transform: rotateY(${angle}deg)`;
-}
-
-
-////////////////
-// BEST MOVIE //
-////////////////
-getBestMovie(`best_movie`)
-
-/////////////////////
-// CATEGORIE MOVIE //
-/////////////////////
-
-/// Appel de la fonction Fecth pour les films les mieux notés et attribution de la fonction de rotation aux boutons
 getMovieCategorie(`top_rated`, `imdb_score_min=9&imdb_score_max=10`, `Top rated`)
-const previewTopRated = document.querySelector(`.preview__top_rated`);
-previewTopRated.addEventListener('click', () => {
-    previewTopRated.querySelector(`.preview__top_rated`)
-    picturesGallery('', 'top_rated')
-    })
-
-
-const nextTopRated = document.querySelector(`.next__top_rated`);
-nextTopRated.addEventListener('click', () => {
-    nextTopRated.querySelector(`.next__top_rated`)
-    picturesGallery(`-`, `top_rated`)
-    })
-
-
-/// Appel de la fonction Fecth pour les films de la première catégorie et attribution de la fonction de rotation aux boutons
 getMovieCategorie(`first_categorie`, `genre=Comedy&sort_by=-imdb_score`, `Comedy`)
-const previewFirstCategorie = document.querySelector(`.preview__first_categorie`);
-previewFirstCategorie.addEventListener('click', () => {
-    previewFirstCategorie.querySelector(`.preview__first_categorie`)
-        picturesGallery('',`first_categorie`)
-    })
-
-const nextFirstCategorie = document.querySelector(`.next__first_categorie`);
-nextFirstCategorie.addEventListener('click', () => {
-    nextFirstCategorie.querySelector(`.next__first_categorie`)
-        picturesGallery(`-`, `first_categorie`)
-    })
-
-
-/// Appel de la fonction Fecth pour les films de la seconde catégorie et attribution de la fonction de rotation aux boutons
 getMovieCategorie(`second_categorie`, `genre=Animation&sort_by=-imdb_score`, `Animation`)
-const previewSecondCategorie = document.querySelector(`.preview__second_categorie`);
-previewSecondCategorie.addEventListener('click', () => {
-    previewSecondCategorie.querySelector(`.preview__second_categorie`)
-        picturesGallery('', `second_categorie`)
-    })
-
-const nextSecondCategorie = document.querySelector(`.next__second_categorie`);
-nextSecondCategorie.addEventListener('click', () => {
-    nextSecondCategorie.querySelector(`.next__second_categorie`)
-        picturesGallery(`-`, `second_categorie`)
-    })
-
-
-/// Appel de la fonction Fecth pour les films de la troisième catégorie et attribution de la fonction de rotation aux boutons
 getMovieCategorie(`third_categorie`, `genre=Sport&sort_by=-imdb_score`, `Sport`)
-const previewThirdCategorie = document.querySelector(`.preview__third_categorie`);
-previewThirdCategorie.addEventListener('click', () => {
-    previewThirdCategorie.querySelector(`.preview__third_categorie`)
-        picturesGallery('', `third_categorie`)
-    })
 
-const nextThirdCategorie = document.querySelector(`.next__third_categorie`);
-nextThirdCategorie.addEventListener('click', () => {
-    nextThirdCategorie.querySelector(`.next__third_categorie`)
-        picturesGallery(`-`, `third_categorie`)
-    })
 
-///////////////////
-// MODAL WINDOWS //
-///////////////////
-const modalContainer = document.querySelector(".modal-container");
-const modalTriggers = document.querySelectorAll(".modal-trigger");
+/////////////////
+// MODAL MOVIE //
+/////////////////
+let modal = null
+const focusableSelector = `button, a, input, textarea`
+let focusables = []
+let previouslyFocusedElement = null
 
-modalTriggers.forEach((trigger) =>
-    trigger.addEventListener("click", toggleModal)
-)
-
-function toggleModal() {
-     modalContainer.classList.toggle("active")
+const openModal = async function (event) {
+    event.preventDefault()
+    const target = event.target.getAttribute(`href`)
+    if (target.startsWith(`#`)) {
+        modal = document.querySelector(target)
+    } else {
+        modal = await loadModal(target)
+    }
+    focusables = Array.from(modal.querySelectorAll(focusableSelector))
+    previouslyFocusedElement = document.querySelector(`:focus`)
+    modal.style.display = null
+    focusables[0].focus()
+    modal.removeAttribute(`aria-hidden`)
+    modal.setAttribute(`aria-modal`, `true`)
+    modal.addEventListener(`click`, closeModal)
+    modal.querySelector(`.js-close-modal`).addEventListener(`click`, closeModal)
+    modal.querySelector(`.js-close-stop`).addEventListener(`click`, stopPropagation)
 }
+
+const closeModal = function (event) {
+    if (modal === null) return
+    if (previouslyFocusedElement !== null) previouslyFocusedElement.focus()
+    event.preventDefault()
+    modal.setAttribute(`aria-hidden`, `true`)
+    modal.removeAttribute(`aria-modal`)
+    modal.removeEventListener(`click`, closeModal)
+    modal.querySelector(`.js-close-modal`).removeEventListener(`click`, closeModal)
+    modal.querySelector(`.js-close-stop`).removeEventListener(`click`, stopPropagation)
+    const hideModal = function() {
+        modal.style.display = `none`
+        modal.removeEventListener(`animationend`, hideModal)
+        modal = null
+    }
+    modal.addEventListener(`animationend`, hideModal)
+}
+
+const stopPropagation = function (event) {
+    event.stopPropagation()
+}
+
+const focusInModal = function (event) {
+    event.preventDefault()
+    let index = focusables.findIndex(f => f === modal.querySelector(`:focus`))
+    if (event.shiftkey === true) {
+        index--
+    } else {
+        index++
+    }
+    if(index >= focusables.length) {
+        index = 0
+    }
+    if(index < 0){
+        index.focusables.length - 1
+    }
+    focusables[index].focus()
+}
+
+const loadModal = async function (url) {
+    const target = `#` + url.split(`#`)[1]
+    const existingModal = document.querySelector(target)
+    if (existingModal !== null) return existingModal
+    const html = await fetch(url).then(response => response.text())
+    const element = document.createRange().createContextualFragment(html).querySelector(target)
+    if (element === null) throw `L'élément ${target} n'a pas été trouvé dans la page ${url}`
+    document.body.append(element)
+    return element
+}
+
+document.querySelectorAll(`js-modal`).forEach(a => {
+    a.addEventListener(`click`, openModal)
+})
+
+window.addEventListener(`keydown`, function (event) {
+    if (event.key === `Escape` || event.key === `Esc`) {
+        closeModal(event)
+    }
+    if (event.key === `Tab` && modal !== null) {
+        focusInModal(event)
+    }
+})
