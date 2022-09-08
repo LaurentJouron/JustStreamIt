@@ -37,69 +37,71 @@
                 <h1 class="movie_title movie_title__best_movie" alt="title"></h1>
                 <p class="movie_description movie_description__best_movie" alt="description"></p>
                 <button class="play" type="button" value="Play" alt="play movie">Play ▶</button>
-                <button class="info js-modal" type="button" value="More info" alt="read information">More info</button>
+                <button class="info modal-trigger" type="button" value="More info" alt="read information">More info</button>
             </div>
         </section>
-
-        <aside id="modal" class="modal" aria-hidden="true" role="dialog" aria-modal="false" aria-labelledby="modal_title" style="display: none;">
-            <div class="modal-wrapper js-modal-stop">
-                <button class="js-close-modal">Close</button>
-                <h1 id="modal_title" class="modal_title"></h1>
-                <img src="" alt="" class="modal_picture">
+        
+<!-- Categorie top rated -->
+        <section id="top_rated" class="top_rated">
+            <h1 class="categorie_title categorie_title__top_rated"></h1>
+            <div class="carousel carousel__top_rated">
+                
+            </div>
+            <button class="preview preview__top_rated">◀</button>
+            <button class="next next__top_rated">▶</button>
+        </section>
+        
+<!-- Categorie first category -->     
+        <section id="first_categorie" class="first_categorie">
+            <h1 class="categorie_title categorie_title__first_categorie"></h1>
+            <div class="carousel carousel__first_categorie">
+                
+            </div>
+            <button class="preview preview__first_categorie">◀</button>
+            <button class="next next__first_categorie">▶</button>
+        </section>
+        
+<!-- Categorie second category -->     
+        <section id="second_categorie" class="second_categorie">
+            <h1 class="categorie_title categorie_title__second_categorie"></h1>
+            <div class="carousel carousel__second_categorie">
+                
+            </div>
+            <button class="preview preview__second_categorie">◀</button>
+            <button class="next next__second_categorie">▶</button>
+        </section>
+        
+<!-- Categorie third category -->     
+        <section id="third_categorie" class="third_categorie">
+            <h1 class="categorie_title categorie_title__third_categorie"></h1>
+            <div class="carousel carousel__third_categorie">
+                
+            </div>
+            <button class="preview preview__third_categorie">◀</button>
+            <button class="next next__third_categorie">▶</button>
+        </section>
+        
+<!-- Modal windows -->
+        <div class="modal-container modal-container__best_movie">
+            <div class="overlay overlay__best-movie modal-trigger"></div>
+            <div id="modal" class="modal modal__best_movie" role="dialog" aria-labelleby="modal_title">
+                <button class="close-modal modal-trigger">X</button>
+                <img class="modal_picture">
+                <p class="modal_title"></p>
                 <p class="modal_description"></p>
                 <p class="modal_actors"></p>
                 <p class="modal_directors"></p>
                 <p class="modal_duration"></p>
+                <p class="modal_rated"></p>
                 <p class="modal_score"></p>
                 <p class="modal_date_published"></p>
                 <p class="modal_genres"></p>
                 <p class="modal_origine_countries"></p>
                 <p class="modal_results_of_box_office"></p>
             </div>
-        </aside>
-
-<!-- Categorie top rated -->
-        <section id="top_rated">
-            <h1 class="categorie_title categorie_title__top_rated"></h1>
-            <div class="carousel carousel__top_rated">
-
-            </div>
-            <button class="preview preview__top_rated">◀</button>
-            <button class="next next__top_rated">▶</button>
-        </section>
-
-<!-- Categorie first category -->     
-        <section id="first_categorie">
-            <h1 class="categorie_title categorie_title__first_categorie"></h1>
-            <div class="carousel carousel__first_categorie">
-
-            </div>
-            <button class="preview preview__first_categorie">◀</button>
-            <button class="next next__first_categorie">▶</button>
-        </section>
-
-<!-- Categorie second category -->     
-        <section id="second_categorie">
-            <h1 class="categorie_title categorie_title__second_categorie"></h1>
-            <div class="carousel carousel__second_categorie">
-
-            </div>
-            <button class="preview preview__second_categorie">◀</button>
-            <button class="next next__second_categorie">▶</button>
-        </section>
-
-<!-- Categorie third category -->     
-        <section id="third_categorie">
-            <h1 class="categorie_title categorie_title__third_categorie"></h1>
-            <div class="carousel carousel__third_categorie">
-
-            </div>
-
-            <button class="preview preview__third_categorie">◀</button>
-            <button class="next next__third_categorie">▶</button>
-        </section>
-
-<!-- Footer -->
+        </div>
+        
+        <!-- Footer -->
         <footer>
             <img id="imgCopy" src="src/index/ikigai.png" type="developer logo"> Laurent Jouron - Copyright 2022 &copy; - All rights reserved
         </footer>

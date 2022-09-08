@@ -12,7 +12,7 @@ body {
   background-color: #969696;
 }
 
-/* ---------- HEADER NAV ---------- */
+/* ---------- Header NAV ---------- */
 #nav {
   background: #505050;
   box-shadow: #505050;
@@ -44,7 +44,7 @@ body {
   margin-right: 30px;
 }
 
-/* ------- HEADER MOVIE BOX ------- */
+/* ------- Header movie box ------- */
 #best_movie {
   width: 100%;
   display: flex;
@@ -89,14 +89,14 @@ body {
   padding-left: 30px;
 }
 #best_movie .container .play, #best_movie .container .info {
+  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
   color: #f1f1f1;
   font-size: 26px;
   letter-spacing: 2px;
   padding: 15px 50px;
   border-radius: 50px;
+  border: 2px solid #28282B;
   display: flexbox;
-  margin-top: 70px;
-  margin-left: 20px;
   transition: 0.3s ease-out;
 }
 #best_movie .container .play:hover, #best_movie .container .info:hover {
@@ -107,31 +107,22 @@ body {
 #best_movie .container .play {
   background: #AB060F;
 }
-#best_movie .container .play .play_link {
-  text-decoration: none;
-  color: #f1f1f1;
-}
 #best_movie .container .play:hover {
   box-shadow: 1px 1px 1px 1px #AB060F;
 }
 #best_movie .container .info {
   background: #28282B;
 }
-#best_movie .container .info .more_info_link {
-  text-decoration: none;
-  color: #f1f1f1;
-}
 #best_movie .container .info:hover {
   box-shadow: 1px 1px 1px 1px #28282B;
 }
 
-/* ------- CATEGORIE TITLES -------- */
+/* ------- Category titles -------- */
 .categorie_title {
   height: 80px;
   width: 400px;
   margin: auto;
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  color: #28282B, 3px solid;
   font-size: 40px;
   color: #28282B;
   text-shadow: #f1f1f1 7px 0 10px;
@@ -142,7 +133,7 @@ body {
   border-style: dotted;
 }
 
-/* ------ CAROUSEL MANAGEMENT ------*/
+/* ------ Carousel management ------*/
 .carousel {
   display: flex;
   background-color: #969696;
@@ -165,7 +156,7 @@ body {
   transition: 0.3s ease-out;
 }
 
-/* -- ARROWS DIRECTION MANAGEMENT -- */
+/* -- Arrows direction management -- */
 .preview, .next {
   font-size: 40px;
   color: #28282B;
@@ -194,97 +185,111 @@ body {
   transform: translateX(5px);
 }
 
-/* ------------ MODAL ------------ */
-.modal-container {
-  visibility: hidden;
-  position: fixed;
-  top: 0;
-  width: 150vw;
-  height: 100vh;
-  transition: visibility 0.4s;
-}
-
-.modal-container.active {
-  visibility: visible;
-}
-
-.overlay {
-  opacity: 0;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: rgba(51, 51, 51, 0.8274509804);
-  transition: opacity 0.4s 0.2s ease-out;
-}
-
-.modal-container.active .overlay {
-  opacity: 1;
-  transition: opacity 0.4s ease-out;
+/* ------------- MODAL -------------*/
+*:focus {
+  box-shadow: 0 0 10px blue;
 }
 
 .modal {
   position: fixed;
+  display: flex;
   align-items: center;
-  opacity: 0;
-  width: 95%;
-  max-width: 500px;
-  min-width: 300px;
-  padding: 30px;
+  justify-content: center;
+  top: 0%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(51, 51, 51, 0.8274509804);
+  -webkit-animation: fadeIn 0.3s both;
+          animation: fadeIn 0.3s both;
+}
+
+.modal-wrapper {
+  overflow: auto;
+  width: 600px;
+  max-width: calc(100vh - 20px);
+  max-height: calc(100vh - 20px);
+  padding: 20px;
   background-color: #969696;
-  border-radius: 5px;
-  position: absolute;
-  top: 40%;
-  left: 35%;
-  transform: translate(-50%, calc(-50% - 50px));
-  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  -webkit-animation: slideFromTop 0.5s both 0.1s;
+          animation: slideFromTop 0.5s both 0.1s;
 }
 
-.modal-container.active .modal {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.4s 0.2s ease-out, transform 0.4s 0.2s ease-out;
+.modal[aria-hidden=true] {
+  -webkit-animation-name: fadeOut;
+          animation-name: fadeOut;
 }
 
-.close-modal {
-  color: #f1f1f1;
-  padding: 8px 10px;
-  border: none;
-  border-radius: 5px;
-  font-weight: 18px;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  cursor: pointer;
-  background: #AB060F;
+.modal[aria-hidden=true] .modal-wrapper {
+  -webkit-animation-name: slideToBottom;
+          animation-name: slideToBottom;
 }
 
-.modal img {
-  margin-top: 30%;
-  width: 30%;
-  border-radius: 13px;
-  position: absolute;
-  margin-left: 270px;
-  border: 2px solid #28282B;
-  box-shadow: 3px 3px 10px 10px #28282B;
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.modal h1 {
-  text-shadow: #f1f1f1 10px 0 10px;
-  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
-  margin-bottom: 10px;
-  font-weight: 500;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-
-.modal p {
-  margin-bottom: 10px;
-  font-weight: 500;
+@-webkit-keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-
-.modal_actors {
-  width: 20px;
-  margin-top: 30px;
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
-
+@-webkit-keyframes slideFromTop {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-50px);
+  }
+  to {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes slideToBottom {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(50px);
+  }
+}
+@keyframes slideToBottom {
+  from {
+    transform: translateY(0px);
+  }
+  to {
+    transform: translateY(50px);
+  }
+}
 /* ------------ FOOTER ------------ */
 footer {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
@@ -302,4 +307,4 @@ footer #imgCopy {
   footer footer {
     padding-left: 0px;
   }
-}/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=test2.css.map */
