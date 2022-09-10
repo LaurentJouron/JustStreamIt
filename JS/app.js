@@ -1,91 +1,111 @@
-// Les demandes du client sont:
-// Visualisation en temps réel des films (fait).
-// Maquette à réaliser selon une image (fait) * voir à mettre les flèches de direction sur le côté si indispensable.
-// 4 films visible et le reste en carousel (à faire).
-// Récuperer les films sur une API selon la méthode AJAX afficher sur une page web (fait).
-// 1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, le titre, un bouton pour ouvrir la modal et le résumé (fait).
-// 1 catégorie des films les mieux noté (fait).
-// 3 catégorie au choix (fait).
-// Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film dessus. Modal (faite), ouverture depuis n'importe quel films (à faire).
-//      - L’image de la pochette du film
-//      - Le Titre du film
-//      - Le genre complet du film
-//      - Sa date de sortie
-//      - Son Rated
-//      - Son score Imdb
-//      - Son réalisateur
-//      - La liste des acteurs
-//      - Sa durée
-//      - Le pays d’origine
-//      - Le résultat au Box Office
-//      - Le résumé du film
-// Bouton de fermeture sur la modal (fait).
-// Utiliser Vanilla pour gérer les évènements (à voir).
-
+/**
+Les demandes du client sont:
+Visualisation en temps réel des films (fait).
+Maquette à réaliser selon une image (fait) * voir à mettre les flèches de direction sur le côté si indispensable.
+4 films visible et le reste en carousel (à faire).
+Récuperer les films sur une API selon la méthode AJAX afficher sur une page web (fait).
+1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, le titre, un bouton pour ouvrir la modal et le résumé (fait).
+1 catégorie des films les mieux noté (fait).
+3 catégorie au choix (fait).
+Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film dessus. Modal (faite), ouverture depuis n'importe quel films (à faire).
+    - L’image de la pochette du film
+    - Le Titre du film
+    - Le genre complet du film
+    - Sa date de sortie
+    - Son Rated
+    - Son score Imdb
+    - Son réalisateur
+    - La liste des acteurs
+    - Sa durée
+    - Le pays d’origine
+    - Le résultat au Box Office
+    - Le résumé du film
+Bouton de fermeture sur la modal (fait).
+Utiliser Vanilla pour gérer les évènements (à voir).
+*/
 
 const APIUrl = `http://localhost:8000/api/v1/titles/`
 
 ////////////////
 // BEST MOVIE //
 ////////////////
-// Toutes les informations ne se trouvent pas sur la première page, mais en allant chercher sue une page précise qui correspond à un film en particulier.
-// deux solutions:
-//      - récupération du lien vers cette seconde page depuis la première (solution la plus simple que j'ai prise).
-//      - construction de l'URL car le lien est l'APIUrl + ID du film.
-// Ce qui représente un premier Fetch pour récuperer la première URL et un deuxième pour avoir toutes les infos demandés.
-// Pour le premier film, j'ai saisi le meilleur film en dur (`?sort_by=-imdb_score`) associé à l'APIUrl.
-async function getBestMovie(idParent) {
+/**
+Toutes les informations recherchées ne se trouvent pas sur la première page. Il faut aller chercher sur une autre page 
+qui fournis les informations détaillées du film.
+-Deux solutions:
+    - récupération du lien vers cette seconde page depuis la première (solution la plus simple que j'ai prise).
+    - construction de l'URL, car le lien est l'APIUrl + ID du film.
+Il faut faire un premier Fetch pour récuperer la première URL, et la passer en paramètre dans la fonction qui récupère
+le détail des films grâce à un deuxième Fetch.
+Pour le premier film, j'ai saisi le meilleur film en dur (`?sort_by=-imdb_score`) associé à l'APIUrl.
+ */
+
+/**
+ * Obtention de l'URL du film et la passer dans `getBestMovieInformation` en paramètre pour récupérer les infos.
+ * @param {str} idParent 
+ */
+const getBestMovie = async function (idParent) {
     try {
         const response = await fetch(APIUrl+`?sort_by=-imdb_score`)
-        if (response.ok) {response.json()
-            .then(data => {
-                movieURL = data.results[0].url
-                {fetch(movieURL)
-                    .then(response => {if(response.ok) {response.json()
-                    .then(data => {
-                        const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
-                        const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
-                        const getMovieDescription = document.querySelector(`.movie_description__${idParent}`)
-
-                        getMovieTitle.textContent = data.title;
-                        getMoviePicture.src = data.image_url;
-                        getMovieDescription.textContent = data.description
-                        movieURL = data.url             
-                    })
-                }})}
-            }) 
-        } else {
-            console.error('Retour du serveur : ', response.status)
-        }
-    } catch(error) {
-        errorMsg.textContent = `${error}`
+        let data = await response.json()
+        movieURL = data.results[0].url
+        getBestMovieInformation(idParent, movieURL)
+     } catch(error) {
+        console.log(error)
     }
+}
+/**
+ * En passant en paramètre l'URL du film on attribue les infos aux balises HTML du meilleur film.
+ * @param {str} idParent 
+ * @param {str} movieUrl 
+ */
+const getBestMovieInformation = async function(idParent, movieUrl){
+    const response = await fetch(movieUrl)
+    let data = await response.json()
+    console.log(data)
+    const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
+    const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
+    const getMovieDescription = document.querySelector(`.movie_description__${idParent}`)
+
+    getMovieTitle.textContent = data.title;
+    getMoviePicture.src = data.image_url;
+    getMovieDescription.textContent = data.description 
 }
 
 getBestMovie(`best_movie`)
 
-
 /////////////////////
 // CATEGORIE MOVIE //
 /////////////////////
-// La solution pour récupérer les infomations nécessaire est la même que ci-dessus, à la différence que 
-// l'on saisi en paramètres les catégories et les parents pour éviter la répétition du code.
-// Nous avons besoin de toutes les infos pour la modal. En tout cas c'est ce que je voulais faire au début. 
-// A ce stade ce n'est plus nécéssaire, car comme vu plus haut, nous pouvons construire l'URL. (A voir ensemble)
-// Il y a une boucle pour aller chercher 7 films. J'aurais voulu faire une boucle (while < 7), car sur la première page il n'y a que 5 films.
-// Je n'ai pas réussi à le faire donc je me suis débrouillé comme j'ai pu. Ca marche même si ce n'est pas le top.
-// Toutefois, selon la discussion que nous avons eu jeudi, je vais essayer de simplifier les choses.
-// Idéalement et avec du recule, j'aurais fait des petites fonctions pour une lecture du code plus simple.
-// Je me suis déjà demandé s'il fallait le faire ou pas mais ça me demanderait de refaire quasiment tout le code.
+/**
+La solution pour récupérer les infomations nécessaire est la même que ci-dessus, à la différence que 
+l'on saisi en paramètre les catégories et les parents pour éviter de répéter le code.
+Il faut faire a une boucle pour aller chercher 7 films. J'aurais voulu faire une boucle (while <= 7),
+car sur la première page il n'y a que 5 films. A ce jour je n'ai pas encore réussi.
+Donc je me suis débrouillé comme j'ai pu, mais je récupère 10 films pour le moment.
+J'ai essayé de simplifier les choses.
+ */
 
+/**
+ * Attribution des titres de chaques catégorie.
+ * @param {str} idParent 
+ * @param {str} categorieName 
+ */
 const getCategortieTitle = async function(idParent, categorieName) {
     const categorieTitle = document.querySelector(`.categorie_title__${idParent}`)
     categorieTitle.textContent = categorieName
 }
+
+
+// `?genre=Comedy&sort_by=-imdb_score`
+/**
+ * Je vais chercher les images et informations nécessaire pour l'ajout d'image dans le carousel.
+ * @param {str} movieUrl 
+ * @param {str} carousel 
+ */
 const getCarouselInformationMovie = async function (movieUrl, carousel) {
         const response = await fetch(movieUrl)
         let data = await response.json()
-        console.log(data)
         let picture = document.createElement('img');
         picture.id = data.id;     
         picture.className = 'item modal-trigger';
@@ -93,9 +113,15 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
         picture.src = data.image_url;
         carousel.appendChild(picture);
  }
-
-async function getMovieCategorie(idParent, getCategorie) {
+/**
+ * Je boucle sur les fonctions de récupération d'images et les ajoute au carousel.
+ * Je dois en avoir 7 alors que j'en ai 10. Je sais pourquoi mais je n'ai pas encore trouver la solution.
+ * @param {str} idParent 
+ * @param {str} getCategorie 
+ */
+async function getMovieCategorie(idParent, getCategorie, categorieName) {
     const carousel = document.querySelector(`.carousel__${idParent}`)
+    getCategortieTitle(idParent, categorieName)
     try {
         for(let f = 1; f < 3; f++) {
             const response = await fetch(APIUrl + getCategorie + `&page=${f}`)
@@ -109,68 +135,76 @@ async function getMovieCategorie(idParent, getCategorie) {
         console.log(error)
     }
 }
+/**
+ * J'aurai voulu éviter le troisième paramètre en car le nom à attribuer existe dans le deuxième.
+ * J'ai essayé avec un replace ou un split mais je n'ai pas réussi.
+ */
+getMovieCategorie(`top_rated`, `?imdb_score_min=9&imdb_score_max=10`, `Top rated`)
+getMovieCategorie(`first_categorie`, `?genre=Comedy&sort_by=-imdb_score`, `Comedy`)
+getMovieCategorie(`second_categorie`, `?genre=Animation&sort_by=-imdb_score`, `Animation`)
+getMovieCategorie(`third_categorie`, `?genre=Sport&sort_by=-imdb_score`, `Sport`)
 
-getMovieCategorie(`top_rated`, `?imdb_score_min=9&imdb_score_max=10`)
-getCategortieTitle(`top_rated`, `Top rated`)
-
-getMovieCategorie(`first_categorie`, `?genre=Comedy&sort_by=-imdb_score`)
-getCategortieTitle(`first_categorie`, `Comedy`)
-
-getMovieCategorie(`second_categorie`, `?genre=Animation&sort_by=-imdb_score`)
-getCategortieTitle(`second_categorie`, `Animation`)
-
-getMovieCategorie(`third_categorie`, `?genre=Sport&sort_by=-imdb_score`)
-getCategortieTitle(`third_categorie`, `Sport`)
 
 ///////////////////
 // MODAL WINDOWS //
 ///////////////////
-// La modal s'ouvre avec toutes les informations nécessaires en passant en paramètre l'url du films.
-// Comme je te l'expliquais jeudi, quand les bosens sont en dure dans le fichier HTML , il n'y a pas de soucis au moment du click, 
-// mais pas en création depuis le fichier JS. Quoi qu'il arrive au moment du click, je dois récuperer l'URL ou ID et la passer en paramètre dans la fonction (getModalBox).
+/**
+La modal s'ouvre avec toutes les informations nécessaires en passant en paramètre l'url du films.
+Comme je te l'expliquais jeudi, quand les boxes sont en dure dans le fichier HTML,
+il n'y a pas de soucis au moment du click mais pas depuis le fichier JS. Quoi qu'il arrive au moment du click, 
+je dois récuperer l'URL ou ID et la passer en paramètre dans la fonction (getModalBox).
+*/
 
+const modalContainer = document.querySelector(".modal-container");
+const modalTriggers = document.querySelectorAll(".modal-trigger");
+const getModalPicture = document.querySelector(`.modal_picture`);
+const getModalTitle = document.querySelector(`.modal_title`);
+const getModalDescription = document.querySelector(`.modal_description`);
+const getModalActors = document.querySelector(`.modal_actors`);
+const getModalDirectors = document.querySelector(`.modal_directors`);
+const getModalDuration = document.querySelector(`.modal_duration`);
+const getModalRated = document.querySelector(`.modal_rated`);
+const getModalScore = document.querySelector(`.modal_score`);
+const getModalDatePublished = document.querySelector(`.modal_date_published`);
+const getModalGenres = document.querySelector(`.modal_genres`);
+const getModalOrigineCountries = document.querySelector(`.modal_origine_countries`);
+const getModalResultsOfBoxOffice = document.querySelector(`.modal_results_of_box_office`);
 
-// const modalContainer = document.querySelector(".modal-container");
-// const modalTriggers = document.querySelectorAll(".modal-trigger");
+modalTriggers.forEach((trigger) =>
+trigger.addEventListener("click", toggleModal)
+)
 
-// modalTriggers.forEach((trigger) =>
-// trigger.addEventListener("click", toggleModal)
-// )
+function toggleModal() {
+    modalContainer.classList.toggle("active")
+}
 
-// function toggleModal() {
-//     modalContainer.classList.toggle("active")
-// }
+const getModalBox = async function(movieURL) {
+    try {
+        const response = await fetch(movieURL)
+        let data = await response.json()
 
-// async function getModalBox(movieURL) {
-//     try {
-//         const response = await fetch(movieURL)
-//         if (!response.ok) {
-//             throw new Error(`Error: ${response.status}`)
-//         }
-//         if (response.ok) {response.json()
-//             .then(data => {
-//                 getModalPicture.src = data.image_url;
-//                 getModalTitle.textContent = "Title: " + data.title;
-//                 getModalDescription.textContent = "Description: " + data.description;
-//                 getModalActors.textContent = "Actors: " + data.actors;
-//                 getModalDirectors.textContent = "Directors: " + data.directors;
-//                 getModalDuration.textContent = "Duration: " + data.duration + " min";
-//                 getModalRated.textcontent = "Rated: " + data.rated;
-//                 getModalScore.textContent = "Score: " + data.imdb_score;
-//                 getModalDatePublished.textContent = "Date published: " + data.date_published;
-//                 getModalGenres.textContent = "Genres: " + data.genres;
-//                 getModalOrigineCountries.textContent = "Countrie: " + data.countries;
-//                 // getModalResultsOfBoxOffice.textContent = "Box Office: " + data.;  
-//             })
-//             } else {
-//                 console.error('Retour du serveur : ', response.status)
-//             }
-//         } catch(error) {
-//             errorMsg.textContent = `${error}`
-//     }
-// }
-// getModalBox(APIUrl+'1508669')
+        getModalPicture.src = data.image_url;
+        getModalTitle.textContent = "Title: " + data.title;
+        getModalDescription.textContent = "Description: " + data.description;
+        getModalActors.textContent = "Actors: " + data.actors;
+        getModalDirectors.textContent = "Directors: " + data.directors;
+        getModalDuration.textContent = "Duration: " + data.duration + " min";
+        getModalRated.textcontent = "Rated: " + data.rated;
+        getModalScore.textContent = "Score: " + data.imdb_score;
+        getModalDatePublished.textContent = "Date published: " + data.date_published;
+        getModalGenres.textContent = "Genres: " + data.genres;
+        getModalOrigineCountries.textContent = "Countrie: " + data.countries;
+        // getModalResultsOfBoxOffice.textContent = "Box Office: " + data.;  
 
+    } catch(error) {
+        console.log(error)
+    }
+}
+getModalBox(APIUrl+'1508669')
+
+/**
+ * Il me reste le carousel sur lequel je vais bosser, car je ne dois pas être loin..
+ */
 //////////////////////
 // CAROUSEL VANILLA //
 //////////////////////
