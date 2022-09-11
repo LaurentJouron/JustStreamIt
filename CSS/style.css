@@ -85,10 +85,11 @@ body {
 }
 
 #best_movie .container .movie_picture {
-  width: 14.5%;
+  min-width: 300px;
+  max-width: 300px;
   border-radius: 13px;
   position: absolute;
-  margin-left: 28%;
+  margin-left: 33rem;
   border: 2px solid #28282B;
   -webkit-box-shadow: 6px 6px 6px 6px #969696;
           box-shadow: 6px 6px 6px 6px #969696;
@@ -125,21 +126,17 @@ body {
   margin-left: 20px;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
+  cursor: pointer;
 }
 
 #best_movie .container .play:hover, #best_movie .container .info:hover {
-  cursor: pointer;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
   border: none;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 #best_movie .container .play {
   background: #AB060F;
-}
-
-#best_movie .container .play .play_link {
-  text-decoration: none;
   color: #f1f1f1;
 }
 
@@ -150,9 +147,6 @@ body {
 
 #best_movie .container .info {
   background: #28282B;
-}
-
-#best_movie .container .info .more_info_link {
   text-decoration: none;
   color: #f1f1f1;
 }
@@ -173,65 +167,94 @@ body {
   color: #28282B;
   text-shadow: #f1f1f1 7px 0 10px;
   letter-spacing: 3px;
-  margin-top: 150px;
+  margin-top: 70px;
   text-align: center;
-  margin-bottom: 20px;
   border-style: dotted;
 }
 
 /* ------ CAROUSEL MANAGEMENT ------*/
 .carousel {
+  height: 300px;
+  width: 80%;
+  background-color: #969696;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #969696;
-  width: 100%;
-  margin: 50px 10px 10px 10px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
 }
 
-.item {
-  border-radius: 15px;
+.carousel_box {
+  height: 100%;
+  width: auto;
+  overflow: hidden;
+  display: inline-block;
+  padding-bottom: 10px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 30%;
+}
+
+.carousel_box img {
+  min-width: 147px;
+  max-width: 147px;
+  height: 200px;
+  background-size: cover;
+  margin: 5px 10px;
+  cursor: pointer;
+  -webkit-transition: 0.5s ease;
+  transition: 0.5s ease;
+  z-index: 2;
   border: 4px solid #28282B;
-  margin: 20px;
   -webkit-box-shadow: 10px 15px 30px 10px #505050;
           box-shadow: 10px 15px 30px 10px #505050;
+  border-radius: 15px;
 }
 
-.item:hover {
+.carousel_box img:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
   border: 4px solid #AB060F;
-  -webkit-box-shadow: 10px 15px 30px 10px #505050;
-          box-shadow: 10px 15px 30px 10px #505050;
+  z-index: 5;
   -webkit-box-shadow: none;
           box-shadow: none;
-  cursor: pointer;
-  -webkit-transition: 0.3s ease-out;
-  transition: 0.3s ease-out;
 }
 
 /* -- ARROWS DIRECTION MANAGEMENT -- */
 .preview, .next {
-  font-size: 40px;
   color: #28282B;
+  font-weight: bold;
+  height: 100%;
+  line-height: 250px;
+  font-size: 40px;
+  text-align: center;
   background: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   border: none;
-  position: absolute;
+  top: 0;
+  z-index: 3;
+  cursor: pointer;
 }
 
 .preview:hover, .next:hover {
   color: #AB060F;
   -webkit-transition: 0.3s ease-out;
   transition: 0.3s ease-out;
-  cursor: pointer;
 }
 
 .preview {
-  left: 40%;
+  position: absolute;
+  margin-left: -45%;
 }
 
 .preview:hover {
@@ -240,7 +263,8 @@ body {
 }
 
 .next {
-  right: 40%;
+  position: absolute;
+  margin-right: -105%;
 }
 
 .next:hover {
@@ -353,19 +377,49 @@ body {
   margin-top: 30px;
 }
 
+.close-modal-down {
+  font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  color: #f1f1f1;
+  font-size: 18px;
+  background-color: #28282B;
+  float: right;
+  letter-spacing: 2px;
+  border-radius: 50px;
+  padding: 5px 40px;
+  -webkit-transition: 0.3s ease-out;
+  transition: 0.3s ease-out;
+  cursor: pointer;
+}
+
+.close-modal-down:hover {
+  border: #AB060F;
+  background-color: #AB060F;
+}
+
 /* ------------ FOOTER ------------ */
 footer {
   font-family: "Kaushan Script", Arial, Helvetica, sans-serif;
+  color: #28282B;
   border-top: 2px solid #28282B;
   text-align: center;
   width: 100%;
-  margin-top: 70px;
+  margin-top: 40px;
   padding: 10px 0 10px 0;
 }
 
 footer #imgCopy {
   width: 15px;
   height: 15px;
+}
+
+footer .contact_button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+footer .telephone {
+  cursor: pointer;
+  text-decoration: none;
 }
 
 @media screen and (max-width: 1300px) {

@@ -1,13 +1,14 @@
 /**
 Les demandes du client sont:
-Visualisation en temps réel des films (fait).
-Maquette à réaliser selon une image (fait) * voir à mettre les flèches de direction sur le côté si indispensable.
-4 films visible et le reste en carousel (à faire).
-Récuperer les films sur une API selon la méthode AJAX afficher sur une page web (fait).
-1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, le titre, un bouton pour ouvrir la modal et le résumé (fait).
-1 catégorie des films les mieux noté (fait).
-3 catégorie au choix (fait).
-Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film dessus. Modal (faite), ouverture depuis n'importe quel films (à faire).
+OK => Visualisation en temps réel des films.
+OK => Maquette à réaliser selon une image.
+RESTE A FAIRE => 4 films visible et le reste en carousel HTML et CSS OK, rest JS.
+OK => Récuperer les films sur une API selon la méthode AJAX afficher sur une page web (fait).
+OK => 1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, le titre, un bouton pour ouvrir la modal et le résumé (fait).
+OK => 1 catégorie des films les mieux noté.
+OK => 3 catégories au choix.
+RESTE A FAIRE => Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film. 
+OK => Modal.
     - L’image de la pochette du film
     - Le Titre du film
     - Le genre complet du film
@@ -20,8 +21,8 @@ Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film de
     - Le pays d’origine
     - Le résultat au Box Office
     - Le résumé du film
-Bouton de fermeture sur la modal (fait).
-Utiliser Vanilla pour gérer les évènements (à voir).
+OK => Bouton de fermeture sur la modal.
+RESTE A FAIRE => Utiliser Vanilla pour gérer les évènements.
 */
 
 const APIUrl = `http://localhost:8000/api/v1/titles/`
@@ -62,7 +63,6 @@ const getBestMovie = async function (idParent) {
 const getBestMovieInformation = async function(idParent, movieUrl){
     const response = await fetch(movieUrl)
     let data = await response.json()
-    console.log(data)
     const getMoviePicture = document.querySelector(`.movie_picture__${idParent}`)
     const getMovieTitle = document.querySelector(`.movie_title__${idParent}`)
     const getMovieDescription = document.querySelector(`.movie_description__${idParent}`)
@@ -95,9 +95,6 @@ const getCategortieTitle = async function(idParent, categorieName) {
     const categorieTitle = document.querySelector(`.categorie_title__${idParent}`)
     categorieTitle.textContent = categorieName
 }
-
-
-// `?genre=Comedy&sort_by=-imdb_score`
 /**
  * Je vais chercher les images et informations nécessaire pour l'ajout d'image dans le carousel.
  * @param {str} movieUrl 
@@ -108,7 +105,7 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
         let data = await response.json()
         let picture = document.createElement('img');
         picture.id = data.id;     
-        picture.className = 'item modal-trigger';
+        picture.className = `item modal-trigger`;
         picture.alt = data.title;
         picture.src = data.image_url;
         carousel.appendChild(picture);
@@ -120,7 +117,7 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
  * @param {str} getCategorie 
  */
 async function getMovieCategorie(idParent, getCategorie, categorieName) {
-    const carousel = document.querySelector(`.carousel__${idParent}`)
+    const carousel = document.querySelector(`.carousel_box__${idParent}`)
     getCategortieTitle(idParent, categorieName)
     try {
         for(let f = 1; f < 3; f++) {
@@ -128,12 +125,13 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
             let data = await response.json()
             for(i = 0; i < 5; i++) {
                 movieURL = data.results[i].url
-                getCarouselInformationMovie(movieURL, carousel)
+                getCarouselInformationMovie(movieURL, carousel, i)
             }
         }        
     } catch(error) {
         console.log(error)
     }
+    scrollPerClick = 400;
 }
 /**
  * J'aurai voulu éviter le troisième paramètre en car le nom à attribuer existe dans le deuxième.
@@ -182,7 +180,6 @@ const getModalBox = async function(movieURL) {
     try {
         const response = await fetch(movieURL)
         let data = await response.json()
-
         getModalPicture.src = data.image_url;
         getModalTitle.textContent = "Title: " + data.title;
         getModalDescription.textContent = "Description: " + data.description;
@@ -205,6 +202,12 @@ getModalBox(APIUrl+'1508669')
 /**
  * Il me reste le carousel sur lequel je vais bosser, car je ne dois pas être loin..
  */
+//////////////
+// CAROUSEL //
+//////////////
+
+
+
 //////////////////////
 // CAROUSEL VANILLA //
 //////////////////////
