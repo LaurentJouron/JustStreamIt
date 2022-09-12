@@ -18,9 +18,13 @@ env\Scripts\deactivate
     <img alt="Twitter: LaurentJouron"
       src="https://img.shields.io/twitter/follow/LaurentJouron.svg?style=social" target="_blank" />
   </a>   
-  <a href="https://github.com/LaurentJouron">
+    <a href="https://github.com/LaurentJouron">
     <img alt="GitHub followers" 
       src="https://img.shields.io/github/followers/LaurentJouron?style=social" />
+  </a>
+  <a href="http://vanilla-js.com/">
+    <img alt="Vanilla user" 
+      src="src/ReadMe/button.png" />
   </a>
 </p>
 <p align="center">
