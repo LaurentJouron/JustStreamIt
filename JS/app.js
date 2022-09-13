@@ -106,13 +106,14 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
         let picture = document.createElement('img');
         picture.id = data.id;     
         picture.className = `item modal-trigger`;
-        picture.alt = data.title;
         picture.src = data.image_url;
         carousel.appendChild(picture);
  }
 /**
  * Je boucle sur les fonctions de récupération d'images et les ajoute au carousel.
  * Je dois en avoir 7 alors que j'en ai 10. Je sais pourquoi mais je n'ai pas encore trouver la solution.
+ * Pour faire le carousel il faudrait que je puisse donner un index à chaque image, maiss tel que la boucle est faite ça ne veux pas.
+ * Dois-je faire les items en dure?
  * @param {str} idParent 
  * @param {str} getCategorie 
  */
@@ -131,8 +132,8 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
     } catch(error) {
         console.log(error)
     }
-    scrollPerClick = 400;
 }
+
 /**
  * J'aurai voulu éviter le troisième paramètre en car le nom à attribuer existe dans le deuxième.
  * J'ai essayé avec un replace ou un split mais je n'ai pas réussi.
@@ -141,6 +142,34 @@ getMovieCategorie(`top_rated`, `?imdb_score_min=9&imdb_score_max=10`, `Top rated
 getMovieCategorie(`first_categorie`, `?genre=Comedy&sort_by=-imdb_score`, `Comedy`)
 getMovieCategorie(`second_categorie`, `?genre=Animation&sort_by=-imdb_score`, `Animation`)
 getMovieCategorie(`third_categorie`, `?genre=Sport&sort_by=-imdb_score`, `Sport`)
+
+////////////////////////////////
+// TRY CATEGORIE FOR 7 MOVIES //
+////////////////////////////////
+/**
+ * J'ai essayé de faire en sorte de n'avoir que 7 films qui ressortent mais je n'ai pass réussit.
+ * J'avoue ne pas m'y être pllus approfondie que ça pour avoir le temps de paasser au slide du carousel.
+ */
+
+// const getMovieCategorie = async function (idParent, categorieName) {
+//     const carousel = document.querySelector(`.carousel_box__${idParent}`)
+//     getCategortieTitle(idParent, categorieName)
+//     let page = 1
+//     try {
+//         for (let i = 0; i < 7; i++) {
+//             const response = await fetch(APIUrl + `?genre=${categorieName}&sort_by=-imdb_score&page=${page}`)
+//             let data = await response.json()
+//             movieURL = data.results[i].url
+//             getCarouselInformationMovie(movieURL, carousel)
+//             if(i = 5) {
+//                 page++
+//             }
+//         }
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// getMovieCategorie(`first_categorie`, `Comedy`)
 
 
 ///////////////////
@@ -191,7 +220,7 @@ const getModalBox = async function(movieURL) {
         getModalDatePublished.textContent = "Date published: " + data.date_published;
         getModalGenres.textContent = "Genres: " + data.genres;
         getModalOrigineCountries.textContent = "Countrie: " + data.countries;
-        // getModalResultsOfBoxOffice.textContent = "Box Office: " + data.;  
+        getModalResultsOfBoxOffice.textContent = "Box Office: " + data.avg_vote;  
 
     } catch(error) {
         console.log(error)

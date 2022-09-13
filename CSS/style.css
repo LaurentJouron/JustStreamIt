@@ -98,10 +98,10 @@ body {
   display: flexbox;
   margin-top: 70px;
   margin-left: 20px;
-  transition: 0.3s ease-out;
   cursor: pointer;
 }
 #best_movie .container .play:hover, #best_movie .container .info:hover {
+  transition: 0.3s ease-out;
   border: none;
   transform: scale(1.1);
 }
@@ -315,12 +315,11 @@ body {
   letter-spacing: 2px;
   border-radius: 50px;
   padding: 5px 40px;
-  transition: 0.3s ease-out;
   cursor: pointer;
 }
 .close-modal-down:hover {
-  border: #AB060F;
-  background-color: #AB060F;
+  transition: 0.3s ease-out;
+  background-color: #505050;
 }
 
 /* ------------ FOOTER ------------ */
