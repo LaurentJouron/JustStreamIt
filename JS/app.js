@@ -126,7 +126,7 @@ async function getMovieCategorie(idParent, getCategorie, categorieName) {
             let data = await response.json()
             for(i = 0; i < 5; i++) {
                 movieURL = data.results[i].url
-                getCarouselInformationMovie(movieURL, carousel, i)
+                getCarouselInformationMovie(movieURL, carousel)
             }
         }        
     } catch(error) {
