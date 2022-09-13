@@ -3,8 +3,9 @@ Les demandes du client sont:
 OK => Visualisation en temps réel des films.
 OK => Maquette à réaliser selon une image.
 RESTE A FAIRE => 4 films visible et le reste en carousel HTML et CSS OK, rest JS.
-OK => Récuperer les films sur une API selon la méthode AJAX afficher sur une page web (fait).
-OK => 1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, le titre, un bouton pour ouvrir la modal et le résumé (fait).
+OK => Récuperer les films sur une API selon la méthode AJAX afficher sur une page web.
+OK => 1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, 
+        le titre, un bouton pour ouvrir la modal et le résumé.
 OK => 1 catégorie des films les mieux noté.
 OK => 3 catégories au choix.
 RESTE A FAIRE => Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film. 
@@ -22,7 +23,7 @@ OK => Modal.
     - Le résultat au Box Office
     - Le résumé du film
 OK => Bouton de fermeture sur la modal.
-RESTE A FAIRE => Utiliser Vanilla pour gérer les évènements.
+OK => Utiliser Vanilla pour gérer les évènements.
 */
 
 const APIUrl = `http://localhost:8000/api/v1/titles/`
@@ -228,274 +229,49 @@ const getModalBox = async function(movieURL) {
 }
 getModalBox(APIUrl+'1508669')
 
-/**
- * Il me reste le carousel sur lequel je vais bosser, car je ne dois pas être loin..
- */
 //////////////
 // CAROUSEL //
 //////////////
+/**
+Le scroll ne marche pas comme j'aimerais, mais il à le mérite de faire le job
+Je n'aime pas faire quelque chose qui n'est pas propre, donc je te montrerais jeudi et on en parlera.
+*/
+/// TOP RATED
+const nextTopRated = document.querySelector(`.next__top_rated`);
+    nextTopRated.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__top_rated`).scrollLeft +=180;
+})
+const previewTopRated = document.querySelector(`.preview__top_rated`);
+    previewTopRated.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__top_rated`).scrollLeft -=180;
+})
 
+/// FIRST CATEGORIE
+const nextFirstCategorie = document.querySelector(`.next__first_categorie`);
+nextFirstCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__first_categorie`).scrollLeft +=180;
+})
+const previewFirstCategorie = document.querySelector(`.preview__first_categorie`);
+    previewFirstCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__first_categorie`).scrollLeft -=180;
+})
 
-//////////////////////
-// CAROUSEL VANILLA //
-//////////////////////
-// const carousel = document.querySelector('.carousel');
-// const carouselContent = document.querySelector('.carousel-content');
-// const img = document.querySelectorAll('.img');
-// let arrayOfSlides = Array.prototype.slice.call(img);
-// let carouselDisplaying;
-// let screenSize;
-// setScreenSize();
-// let lengthOfimg;
+/// SECONDE CATEGORIE
+const nextSecondCategorie = document.querySelector(`.next__second_categorie`);
+    nextSecondCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__second_categorie`).scrollLeft +=180;
+})
+const previewSecondCategorie = document.querySelector(`.preview__second_categorie`);
+    previewSecondCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__second_categorie`).scrollLeft -=180;
+})
 
-// function addClone() {
-//     let lastSlide = carouselContent.lastElementChild.cloneNode(true);
-//     lastSlide.style.left = (-lengthOfSlide) + "px";
-//     carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
-// }
-
-// function removeClone() {
-//   let firstSlide = carouselContent.firstElementChild;
-//   firstSlide.parentNode.removeChild(firstSlide);
-// }
-
-// function moveSlidesRight() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   let width = 0;
-
-//   slidesArray.forEach(function(el, i){
-//     el.style.left = width + "px";
-//     width += lengthOfSlide;
-//   });
-//   addClone();
-// }
-// moveSlidesRight();
-
-// function moveSlidesLeft() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   slidesArray = slidesArray.reverse();
-//   let maxWidth = (slidesArray.length - 1) * lengthOfSlide;
-
-//   slidesArray.forEach(function(el, i){
-//     maxWidth -= lengthOfSlide;
-//     el.style.left = maxWidth + "px";
-//   });
-// }
-
-// window.addEventListener('resize', setScreenSize);
-
-// function setScreenSize() {
-//   if ( window.innerWidth >= 500 ) {
-//     carouselDisplaying = 3;
-//   } else if ( window.innerWidth >= 300 ) {
-//     carouselDisplaying = 2;
-//   } else {
-//     carouselDisplaying = 1;
-//   }
-//   getScreenSize();
-// }
-
-// function getScreenSize() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   lengthOfSlide = ( carousel.offsetWidth  / carouselDisplaying );
-//   let initialWidth = -lengthOfSlide;
-//   slidesArray.forEach(function(el) {
-//     el.style.width = lengthOfSlide + "px";
-//     el.style.left = initialWidth + "px";
-//     initialWidth += lengthOfSlide;
-//   });
-// }
-
-
-// let rightNav = document.querySelector('.next');
-// rightNav.addEventListener('click', moveLeft);
-
-// let moving = true;
-// function moveRight() {
-//   if ( moving ) {
-//     moving = false;
-//     let lastSlide = carouselContent.lastElementChild;
-//     lastSlide.parentNode.removeChild(lastSlide);
-//     carouselContent.insertBefore(lastSlide, carouselContent.firstChild);
-//     removeClone();
-//     let firstSlide = carouselContent.firstElementChild;
-//     firstSlide.addEventListener('transitionend', activateAgain);
-//     moveSlidesRight();
-//   }
-// }
-
-// function activateAgain() {
-//   let firstSlide = carouselContent.firstElementChild;
-//   moving = true;
-//   firstSlide.removeEventListener('transitionend', activateAgain);
-// }
-
-// let leftNav = document.querySelector('.preview');
-// leftNav.addEventListener('click', moveRight);
-
-// function moveLeft() {
-//   if ( moving ) {
-//     moving = false;
-//     removeClone();
-//     let firstSlide = carouselContent.firstElementChild;
-//     firstSlide.addEventListener('transitionend', replaceToEnd);
-//     moveSlidesLeft();
-//   }
-// }
-
-// function replaceToEnd() {
-//   let firstSlide = carouselContent.firstElementChild;
-//   firstSlide.parentNode.removeChild(firstSlide);
-//   carouselContent.appendChild(firstSlide);
-//   firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
-//   addClone();
-//   moving = true;
-//   firstSlide.removeEventListener('transitionend', replaceToEnd);
-// }
-
-////////////////////////
-// CAROUSEL EN MANEGE //
-////////////////////////
-// let angle = 0;
-// function picturesGallery(sign, idParent) { 
-//     spinner = document.querySelector(`.spinner__${idParent}`);
-//     if (!sign) { angle = angle + 51.428 
-//     } else { 
-//         angle = angle - 51.428
-//     }
-//     spinner.setAttribute(`style`,`-webkit-transform: rotateY(${angle}deg)`); 
-//         `-moz-transform: rotateY(${angle}deg)`; 
-//         `transform: rotateY(${angle}deg)`;
-// }
-
-// const previewTopRated = document.querySelector(`.preview__top_rated`);
-// previewTopRated.addEventListener('click', () => {
-//     previewTopRated.querySelector(`.preview__top_rated`)
-//     picturesGallery('', 'top_rated')
-// })
-
-
-// const nextTopRated = document.querySelector(`.next__top_rated`);
-// nextTopRated.addEventListener('click', () => {
-//     nextTopRated.querySelector(`.next__top_rated`)
-//     picturesGallery(`-`, `top_rated`)
-// })
-
-
-/////////////////////////////
-// CAROUSEL TEST GRAFIKART //
-/////////////////////////////
-// class Carousel {
-//     constructor (element, options = {}) {
-//         this.element = element
-//         this.options = object.assign({}, {
-//             slidesToScroll: 4,
-//             slidesToVisible: 3,
-//             loop: false
-//         }, options)
-        
-//         let children = [].slice.call(element.children)
-//         this.currentItem = 0
-//         this.root = this.createDivWithClass('carousel')
-//         this.container = this.createDivWithClass('carousel__panorama')
-//         this.root.appendChild(this.container)
-//         this.element.appendChild(this.root)
-//         this.moveCallBacks = []
-//         this.items = children.map((child) => {
-//             let item = this.createDivWithClass('carousel__panorama--item')
-//             item.appendChild(child)
-//             this.container.appendChild(item)
-//             return item
-//         })
-//         this.setStyle()
-//         this.createNavigation()
-//         this.moveCallBacks.forEach(callBack => callBack(0))
-//     }
-
-//     setStyle () {
-//         let ratio = this.items.length / this.options.slidesToVisible
-//         this.container.style.width = (ratio * 100) + "%"
-//         this.items.forEach(item => item.style.width = ((100 / this.options.slidesToVisible) / ratio) + "%")   
-//     }
-
-//     createNavigation() {
-//         let nextButton = this.createDivWithClass('carousel__next')
-//         let prevButton = this.createDivWithClass('carousel__prev')
-//         this.root.appendChild(nextButton)
-//         this.root.appendChild(prevButton)
-//         nextButton.addEventListener('click', this.next.bind(this))
-//         prevButton.addEventListener('click', this.prev.bind(this))
-        
-//         this.onMove(index => {
-//             if(index === 0) {
-//                 prevButton.classList.add('carousel__prev--hidden')
-//             } else {
-//                 prevButton.classList.remove('carousel__prev--hidden')
-//             }
-//             if (this.item[this.currentItem + this.options.slidesToVisible] === undefined){
-//                 nextButton.classList.add('carousel__next--hidden')
-//             } else {
-//                 nextButton.classList.add('carousel__next--hidden')
-//             }
-//         })
-//     }
-
-//     next () {
-//         this.gotToItem(this.currentItem + this.options.slidesToScroll)
-
-//     }
-
-//     prev () {
-//         this.gotToItem(this.currentItem - this.options.slidesToScroll)
-//     }
-
-//     gotToItem(index) {
-//         if (index < 0) {
-//             index = this.items.length - this.options.visible
-//         } else if (index >= this.items.length || this.item[this.currentItem + this.options.slidesToVisible] === undefined) {
-//             index = 0
-//         }
-
-//         let translateX = index * 100 / this.items.length
-//         this.container.style.transfom = 'translate3d(' + translateX + ' %, 0, 0)'
-//         this.currentItem = index
-//         this.moveCallBacks.forEach(callBack => callBack(index))
-//     }
-
-//     onMove(callBack) {
-//         this.moveCallBacks.push(callBack)
-//     }
-
-//     createDivWithClass (className) {
-//         let div = document.createElement('div')
-//         div.setAttribute('class', className)
-//         return div
-//     }
-// }
-    
-// document.addEventListener('DOMContentLoaded', function () {
-//     new Carousel(document.querySelector('.top_rated'), {
-//         slidesToScroll: 3,
-//         slidesToVisible: 4,
-//         loop: false
-//     })
-
-//     new Carousel(document.querySelector('.first_categorie'), {
-//         slidesToScroll: 3,
-//         slidesToVisible: 4,
-//         loop: false
-//     })
-//     new Carousel(document.querySelector('.second_categorie'), {
-//         slidesToScroll: 3,
-//         slidesToVisible: 4,
-//         loop: false
-//     })
-//     new Carousel(document.querySelector('.third_categorie'), {
-//         slidesToScroll: 3,
-//         slidesToVisible: 4,
-//         loop: false
-//     })
-// })
+/// THIRD CATEGORIE
+const nextThirdCategorie = document.querySelector(`.next__third_categorie`);
+    nextThirdCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__third_categorie`).scrollLeft +=180;
+})
+const previewThirdCategorie = document.querySelector(`.preview__third_categorie`);
+    previewThirdCategorie.addEventListener('click', () => {
+    document.querySelector(`.carousel_box__third_categorie`).scrollLeft -=180;
+})
