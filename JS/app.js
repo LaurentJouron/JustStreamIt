@@ -81,10 +81,10 @@ getBestMovie(`best_movie`)
 /**
 La solution pour récupérer les infomations nécessaire est la même que ci-dessus, à la différence que 
 l'on saisi en paramètre les catégories et les parents pour éviter de répéter le code.
-Il faut faire a une boucle pour aller chercher 7 films. J'aurais voulu faire une boucle (while <= 7),
+Il faut faire une boucle pour aller chercher 7 films. J'aurais voulu faire une boucle (while <= 7),
 car sur la première page il n'y a que 5 films. A ce jour je n'ai pas encore réussi.
 Donc je me suis débrouillé comme j'ai pu, mais je récupère 10 films pour le moment.
-J'ai essayé de simplifier les choses.
+J'ai essayé de simplifier les choses un maximum.
  */
 
 /**
@@ -105,10 +105,14 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
         const response = await fetch(movieUrl)
         let data = await response.json()
         let picture = document.createElement('img');
+        let title = document.createElement('h4');
         picture.id = data.id;     
         picture.className = `item modal-trigger`;
         picture.src = data.image_url;
+        title.className = `title_movie`
+        title.textContent = data.title;
         carousel.appendChild(picture);
+        carousel.appendChild(title);
  }
 /**
  * Je boucle sur les fonctions de récupération d'images et les ajoute au carousel.
@@ -275,3 +279,128 @@ const previewThirdCategorie = document.querySelector(`.preview__third_categorie`
     previewThirdCategorie.addEventListener('click', () => {
     document.querySelector(`.carousel_box__third_categorie`).scrollLeft -=180;
 })
+
+//////////////////////
+// CAROUSEL VANILLA //
+//////////////////////
+/**
+Comme tu le sais la version au dessus fonctionne mais elle sacade, ce qui fait que je ne trouve pas ça correct.
+J'ai fait la version ci-dessous, elle ne fonctionne pas mais ça me parait plus dans ce que je veux faire. 
+*/
+
+// const carousel = document.querySelector('.carousel');
+// const carouselBox = document.querySelector('.carousel_box');
+// const img = document.querySelectorAll('.img');
+// let arrayOfSlides = Array.prototype.slice.call(img);
+// let carouselDisplaying;
+// let screenSize;
+// setScreenSize();
+// let lengthOfimg;
+
+// function addClone() {
+//     let lastSlide = carouselBox.lastElementChild.cloneNode(true);
+//     lastSlide.style.left = (-lengthOfSlide) + "px";
+//     carouselBox.insertBefore(lastSlide, carouselBox.firstChild);
+// }
+
+// function removeClone() {
+//   let firstSlide = carouselBox.firstElementChild;
+//   firstSlide.parentNode.removeChild(firstSlide);
+// }
+
+// function moveSlidesRight() {
+//   let img = document.querySelectorAll('.img');
+//   let slidesArray = Array.prototype.slice.call(img);
+//   let width = 0;
+
+//   slidesArray.forEach(function(el, i){
+//     el.style.left = width + "px";
+//     width += lengthOfSlide;
+//   });
+//   addClone();
+// }
+// moveSlidesRight();
+
+// function moveSlidesLeft() {
+//   let img = document.querySelectorAll('.img');
+//   let slidesArray = Array.prototype.slice.call(img);
+//   slidesArray = slidesArray.reverse();
+//   let maxWidth = (slidesArray.length - 1) * lengthOfSlide;
+
+//   slidesArray.forEach(function(el, i){
+//     maxWidth -= lengthOfSlide;
+//     el.style.left = maxWidth + "px";
+//   });
+// }
+
+// window.addEventListener('resize', setScreenSize);
+
+// function setScreenSize() {
+//   if ( window.innerWidth >= 500 ) {
+//     carouselDisplaying = 3;
+//   } else if ( window.innerWidth >= 300 ) {
+//     carouselDisplaying = 2;
+//   } else {
+//     carouselDisplaying = 1;
+//   }
+//   getScreenSize();
+// }
+
+// function getScreenSize() {
+//   let img = document.querySelectorAll('.img');
+//   let slidesArray = Array.prototype.slice.call(img);
+//   lengthOfSlide = ( carousel.offsetWidth  / carouselDisplaying );
+//   let initialWidth = -lengthOfSlide;
+//   slidesArray.forEach(function(el) {
+//     el.style.width = lengthOfSlide + "px";
+//     el.style.left = initialWidth + "px";
+//     initialWidth += lengthOfSlide;
+//   });
+// }
+
+
+// let rightNav = document.querySelector('.next');
+// rightNav.addEventListener('click', moveLeft);
+
+// let moving = true;
+// function moveRight() {
+//   if ( moving ) {
+//     moving = false;
+//     let lastSlide = carouselBox.lastElementChild;
+//     lastSlide.parentNode.removeChild(lastSlide);
+//     carouselBox.insertBefore(lastSlide, carouselBox.firstChild);
+//     removeClone();
+//     let firstSlide = carouselBox.firstElementChild;
+//     firstSlide.addEventListener('transitionend', activateAgain);
+//     moveSlidesRight();
+//   }
+// }
+
+// function activateAgain() {
+//   let firstSlide = carouselBox.firstElementChild;
+//   moving = true;
+//   firstSlide.removeEventListener('transitionend', activateAgain);
+// }
+
+// let leftNav = document.querySelector('.preview');
+// leftNav.addEventListener('click', moveRight);
+
+// function moveLeft() {
+//   if ( moving ) {
+//     moving = false;
+//     removeClone();
+//     let firstSlide = carouselBox.firstElementChild;
+//     firstSlide.addEventListener('transitionend', replaceToEnd);
+//     moveSlidesLeft();
+//   }
+// }
+
+// function replaceToEnd() {
+//   let firstSlide = carouselBox.firstElementChild;
+//   firstSlide.parentNode.removeChild(firstSlide);
+//   carouselBox.appendChild(firstSlide);
+//   firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
+//   addClone();
+//   moving = true;
+//   firstSlide.removeEventListener('transitionend', replaceToEnd);
+// }
