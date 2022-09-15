@@ -104,15 +104,11 @@ const getCategortieTitle = async function(idParent, categorieName) {
 const getCarouselInformationMovie = async function (movieUrl, carousel) {
         const response = await fetch(movieUrl)
         let data = await response.json()
-        let picture = document.createElement('img');
-        let title = document.createElement('h4');
+        let picture = new Image();
         picture.id = data.id;     
         picture.className = `item modal-trigger`;
         picture.src = data.image_url;
-        title.className = `title_movie`
-        title.textContent = data.title;
         carousel.appendChild(picture);
-        carousel.appendChild(title);
  }
 /**
  * Je boucle sur les fonctions de récupération d'images et les ajoute au carousel.
