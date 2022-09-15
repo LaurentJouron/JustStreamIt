@@ -1,29 +1,29 @@
 /**
 Les demandes du client sont:
-OK => Visualisation en temps réel des films.
-OK => Maquette à réaliser selon une image.
-OK => 4 films visible et le reste en carousel HTML et CSS OK, rest JS.
-OK => Récuperer les films sur une API selon la méthode AJAX afficher sur une page web.
-OK => 1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, 
+    Visualisation en temps réel des films.
+    Maquette à réaliser selon une image.
+    4 films visible et le reste en carousel HTML et CSS OK, rest JS.
+    Récuperer les films sur une API selon la méthode AJAX afficher sur une page web.
+    1 film qui représente le meilleur toute catégorie confondue. En haut, de la page il y l'image, 
         le titre, un bouton pour ouvrir la modal et le résumé.
-OK => 1 catégorie des films les mieux noté.
-OK => 3 catégories au choix.
-RESTE A FAIRE => Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film. 
-OK => Modal.
-    - L’image de la pochette du film
-    - Le Titre du film
-    - Le genre complet du film
-    - Sa date de sortie
-    - Son Rated
-    - Son score Imdb
-    - Son réalisateur
-    - La liste des acteurs
-    - Sa durée
-    - Le pays d’origine
-    - Le résultat au Box Office
-    - Le résumé du film
-OK => Bouton de fermeture sur la modal.
-OK => Utiliser Vanilla pour gérer les évènements.
+    1 catégorie des films les mieux noté.
+    3 catégories au choix.
+    Si on clique sur n'importe quel film, la modal s'ouvre avec les infos du film. 
+    Modal.
+        - L’image de la pochette du film
+        - Le Titre du film
+        - Le genre complet du film
+        - Sa date de sortie
+        - Son Rated
+        - Son score Imdb
+        - Son réalisateur
+        - La liste des acteurs
+        - Sa durée
+        - Le pays d’origine
+        - Le résultat au Box Office
+        - Le résumé du film
+    Bouton de fermeture sur la modal.
+    Utiliser Vanilla pour gérer les évènements.
 */
 
 const APIUrl = `http://localhost:8000/api/v1/titles/`
@@ -32,10 +32,8 @@ const APIUrl = `http://localhost:8000/api/v1/titles/`
 // MODAL WINDOWS //
 ///////////////////
 /**
-La modal s'ouvre avec toutes les informations nécessaires en passant en paramètre l'url du films.
-Comme je te l'expliquais jeudi, quand les boxes sont en dure dans le fichier HTML,
-il n'y a pas de soucis au moment du click mais pas depuis le fichier JS. Quoi qu'il arrive au moment du click, 
-je dois récuperer l'URL ou ID et la passer en paramètre dans la fonction (getModalBox).
+La fenêtre modale s'ouvre avec toutes les informations nécessaires en passant en paramètre l'url du film.
+Je passe l'URL en parametre la fonction et quand je click dessus elle s'active.
 */
 const modalContainer = document.querySelector(".modal-container");
 const modalTriggers = document.querySelectorAll(".modal-trigger");
@@ -81,20 +79,9 @@ function toggleModal() {
     modalContainer.classList.toggle("active")
 }
 
-
 ////////////////
 // BEST MOVIE //
 ////////////////
-
-/**
- Toutes les informations recherchées ne se trouvent pas sur la première page. Il faut aller chercher sur une autre page 
- qui fournis les informations détaillées du film.
- -Deux solutions:
- - récupération du lien vers cette seconde page depuis la première (solution la plus simple que j'ai prise).
- - construction de l'URL, car le lien est l'APIUrl + ID du film.
- Il faut faire un premier Fetch pour récuperer la première URL, et la passer en paramètre dans la fonction qui récupère
- le détail des films grâce à un deuxième Fetch.
- */
 
 /**
  * J'ai saisi le meilleur film en dur (`?sort_by=-imdb_score`) associé à l'APIUrl.
@@ -134,17 +121,6 @@ getBestMovie(`best_movie`)
 // CATEGORIE MOVIE //
 /////////////////////
 /**
-La solution pour récupérer les infomations nécessaire est la même que ci-dessus. 
-Néanmoins, il y a une petite diférence. 
-On passe en paramètre les catégories et les parents pour éviter de répéter le code.
-Il faut faire une boucle pour aller chercher 7 films.
-J'aurais voulu faire une boucle (while <= 7), car sur la première page il n'y a que 5 films.
-A ce jour je n'ai pas encore réussi. Donc je me suis débrouillé comme j'ai pu.
-Nous n'avons pas besoin de toutes les infos pour avoir la photo, mais pour remplir la modal.
-J'ai essayé de simplifier les choses un maximum.
- */
-
-/**
  * Attribution des titres de chaques catégorie.
  * @param {str} idParent 
  * @param {str} categorieName 
@@ -166,12 +142,14 @@ const getCarouselInformationMovie = async function (movieUrl, carousel) {
     image.id = data.id;     
     image.className = `item modal-trigger`;
     image.src = data.image_url;
+    image.addEventListener(`click`, function(){
+        getModalBox(movieUrl)
+        toggleModal()
+    })
     carousel.appendChild(image);
  }
 
 /**
- * Je boucle sur les fonctions de récupération d'images et les ajoute au carousel.
- * J'ai 7 images, comme demandé, mais la solution ne me convien qu'à moitié.
  * @param {str} idParent 
  * @param {str} getCategorie
  * @param {str} categorieName
@@ -210,10 +188,6 @@ getMovieCategorie(`third_categorie`, `?genre=Sport&sort_by=-imdb_score`, `Sport`
 // CAROUSEL //
 //////////////
 
-/**
-Le scroll ne marche pas comme j'aimerais, mais il à le mérite de faire le job.
-Je n'aime pas faire quelque chose qui n'est pas propre, donc je te montrerai jeudi et on en parlera.
-*/
 /// TOP RATED
 const nextTopRated = document.querySelector(`.next__top_rated`);
     nextTopRated.addEventListener('click', () => {
@@ -253,129 +227,3 @@ const previewThirdCategorie = document.querySelector(`.preview__third_categorie`
     previewThirdCategorie.addEventListener('click', () => {
     document.querySelector(`.carousel_box__third_categorie`).scrollLeft -= 180;
 })
-
-
-//////////////////////
-// CAROUSEL VANILLA //
-//////////////////////
-/**
-Comme tu le sais la version au dessus fonctionne mais elle sacade, ce qui fait que je ne trouve pas ça correct.
-J'ai fait la version ci-dessous, elle ne fonctionne pas mais ça me parait plus dans ce que je veux faire. 
-*/
-
-// const carousel = document.querySelector('.carousel');
-// const carouselBox = document.querySelector('.carousel_box');
-// const img = document.querySelectorAll('.img');
-// let arrayOfSlides = Array.prototype.slice.call(img);
-// let carouselDisplaying;
-// let screenSize;
-// setScreenSize();
-// let lengthOfimg;
-
-// function addClone() {
-//     let lastSlide = carouselBox.lastElementChild.cloneNode(true);
-//     lastSlide.style.left = (-lengthOfSlide) + "px";
-//     carouselBox.insertBefore(lastSlide, carouselBox.firstChild);
-// }
-
-// function removeClone() {
-//   let firstSlide = carouselBox.firstElementChild;
-//   firstSlide.parentNode.removeChild(firstSlide);
-// }
-
-// function moveSlidesRight() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   let width = 0;
-
-//   slidesArray.forEach(function(el, i){
-//     el.style.left = width + "px";
-//     width += lengthOfSlide;
-//   });
-//   addClone();
-// }
-// moveSlidesRight();
-
-// function moveSlidesLeft() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   slidesArray = slidesArray.reverse();
-//   let maxWidth = (slidesArray.length - 1) * lengthOfSlide;
-
-//   slidesArray.forEach(function(el, i){
-//     maxWidth -= lengthOfSlide;
-//     el.style.left = maxWidth + "px";
-//   });
-// }
-
-// window.addEventListener('resize', setScreenSize);
-
-// function setScreenSize() {
-//   if ( window.innerWidth >= 500 ) {
-//     carouselDisplaying = 3;
-//   } else if ( window.innerWidth >= 300 ) {
-//     carouselDisplaying = 2;
-//   } else {
-//     carouselDisplaying = 1;
-//   }
-//   getScreenSize();
-// }
-
-// function getScreenSize() {
-//   let img = document.querySelectorAll('.img');
-//   let slidesArray = Array.prototype.slice.call(img);
-//   lengthOfSlide = ( carousel.offsetWidth  / carouselDisplaying );
-//   let initialWidth = -lengthOfSlide;
-//   slidesArray.forEach(function(el) {
-//     el.style.width = lengthOfSlide + "px";
-//     el.style.left = initialWidth + "px";
-//     initialWidth += lengthOfSlide;
-//   });
-// }
-
-
-// let rightNav = document.querySelector('.next');
-// rightNav.addEventListener('click', moveLeft);
-
-// let moving = true;
-// function moveRight() {
-//   if ( moving ) {
-//     moving = false;
-//     let lastSlide = carouselBox.lastElementChild;
-//     lastSlide.parentNode.removeChild(lastSlide);
-//     carouselBox.insertBefore(lastSlide, carouselBox.firstChild);
-//     removeClone();
-//     let firstSlide = carouselBox.firstElementChild;
-//     firstSlide.addEventListener('transitionend', activateAgain);
-//     moveSlidesRight();
-//   }
-// }
-
-// function activateAgain() {
-//   let firstSlide = carouselBox.firstElementChild;
-//   moving = true;
-//   firstSlide.removeEventListener('transitionend', activateAgain);
-// }
-
-// let leftNav = document.querySelector('.preview');
-// leftNav.addEventListener('click', moveRight);
-
-// function moveLeft() {
-//   if ( moving ) {
-//     moving = false;
-//     removeClone();
-//     let firstSlide = carouselBox.firstElementChild;
-//     firstSlide.addEventListener('transitionend', replaceToEnd);
-//     moveSlidesLeft();
-//   }
-// }
-
-// function replaceToEnd() {
-//   let firstSlide = carouselBox.firstElementChild;
-//   firstSlide.parentNode.removeChild(firstSlide);
-//   carouselBox.appendChild(firstSlide);
-//   firstSlide.style.left = ( (arrayOfSlides.length -1) * lengthOfSlide) + "px";
-//   addClone();
-//   moving = true;
-//   firstSlide.removeEventListener('transitionend', replaceToEnd);
-// }

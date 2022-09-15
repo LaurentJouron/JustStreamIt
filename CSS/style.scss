@@ -179,6 +179,7 @@ body {
         height: 300px;
         background-size: cover;
         margin: 5px 10px;
+        margin-left: 5rem;
         cursor: pointer;
         transition: 0.5s ease;
         z-index: 2;
@@ -186,7 +187,7 @@ body {
         box-shadow: 10px 15px 30px 10px $background_nav_bar;
         border-radius: 15px;
         &:hover {
-            transform: scale(1.11);
+            transform: scale(1.2);
             border: 4px solid $play_button;
             z-index: 3;
             box-shadow: none;
