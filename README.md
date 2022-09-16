@@ -1,16 +1,3 @@
-// MAISON
-cd C:\Users\Public.PC\PycharmProjects\JustStreamIt\OCMovies
-
-cd C:\Users\jouro\PycharmProjects\JustStreamIt\OCMovies
-
-// BUREAU
-cd C:\Users\l.jouron\PycharmProjects\JustStreamIt\OCMovies
-
-env\Scripts\activate
-python manage.py runserver
-
-env\Scripts\deactivate
-
 <h1 align="center">Welcome to JustStreamIt 👋</h1>
 
 <p align="center">
@@ -227,6 +214,10 @@ ___________
   <a href="https://github.com/LaurentJouron">
     <img alt="GitHub followers" 
       src="https://img.shields.io/github/followers/LaurentJouron?style=social" />
+  </a>
+    <a href="http://vanilla-js.com/">
+    <img alt="Vanilla user" 
+      src="src/ReadMe/button.png" />
   </a>
 </p>
 
